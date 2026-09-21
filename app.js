@@ -27,7 +27,21 @@ function hasNkPaymentAccess() {
 
 function showScreen(id, push = true) {
   const paid = hasNkPaymentAccess();
-  if (!paid && id !== 'payment-gate') id = 'payment-gate';
+
+  // Payment is the absolute first gate. Before a verified payment, no
+  // onboarding/legal routing is allowed to override the payment screen.
+  if (!paid) {
+    id = 'payment-gate';
+    const target = document.getElementById(id);
+    if (!target) return;
+    screens.forEach(s => s.classList.remove('active'));
+    target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    navButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.go === id));
+    if (push && historyStack[historyStack.length - 1] !== id) historyStack.push(id);
+    return;
+  }
+
   const gate = getActivationGateState();
   const onboardingScreens = new Set(['home','onboarding','account','profile-edit','profile','schedule','knowledge','membership','referral','team','support']);
   const legalScreens = new Set(['home','account','profile-edit','profile','legal','legal-terms','legal-offer','legal-privacy','legal-code','legal-data-consent','legal-media-consent','support']);
