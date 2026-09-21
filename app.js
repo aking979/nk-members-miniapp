@@ -127,6 +127,7 @@ const subscriptionModal = document.getElementById('subscriptionModal');
 const subscriptionAutoStatus = document.getElementById('subscriptionAutoStatus');
 const subscriptionPaymentMethod = document.getElementById('subscriptionPaymentMethod');
 const unlinkCardBtn = document.getElementById('unlinkCardBtn');
+const subscriptionCloseBtn = document.getElementById('subscriptionCloseBtn');
 
 function openSubscriptionPanel() {
   if (!subscriptionPanel) return;
@@ -207,6 +208,11 @@ window.addEventListener('DOMContentLoaded', async () => {
 });
 
 document.getElementById('membershipManageBtn')?.addEventListener('click', openSubscriptionPanel);
+subscriptionCloseBtn?.addEventListener('click', () => {
+  if (!subscriptionPanel) return;
+  subscriptionPanel.hidden = true;
+  document.getElementById('membershipManageBtn')?.scrollIntoView({behavior:'smooth', block:'center'});
+});
 
 function renderAutopayState() {
   const disabled = localStorage.getItem('nkAutopayDisabled') === '1';
@@ -1478,7 +1484,7 @@ function applyResidentProfile(profile, {cache=true} = {}) {
   if (membershipJoinDate) membershipJoinDate.textContent = join ? formatResidentDate(join) : '—';
   if (membershipEndDate) membershipEndDate.textContent = end ? formatResidentDate(end) : '—';
   const subscriptionNextCharge = document.getElementById('subscriptionNextCharge');
-  if (subscriptionNextCharge) subscriptionNextCharge.textContent = end ? formatResidentDate(end) : 'По окончании оплаченного периода';
+  if (subscriptionNextCharge) subscriptionNextCharge.textContent = end ? formatResidentDate(end) : 'По окончании резидентства';
   if (profileMembershipType) profileMembershipType.textContent = 'NK MEMBERS';
   if (profileMembershipStatus) {
     profileMembershipStatus.textContent = status.label;
