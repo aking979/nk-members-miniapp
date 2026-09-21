@@ -1,6 +1,6 @@
 const screens = document.querySelectorAll('.screen');
 const navButtons = document.querySelectorAll('.bottom-nav button');
-const historyStack = ['home'];
+const historyStack = ['payment-gate'];
 let onboardingStepNavigation = false;
 let profileEditorDirty = false;
 
@@ -18,6 +18,8 @@ function getActivationGateState() {
 }
 
 function showScreen(id, push = true) {
+  const paid = localStorage.getItem('nkLastSuccessfulPaymentId');
+  if (!paid && id !== 'payment-gate') id = 'payment-gate';
   const gate = getActivationGateState();
   const onboardingScreens = new Set(['home','onboarding','account','profile-edit','profile','schedule','knowledge','membership','referral','team','support']);
   const legalScreens = new Set(['home','account','profile-edit','profile','legal','legal-terms','legal-offer','legal-privacy','legal-code','legal-data-consent','legal-media-consent','support']);
@@ -132,7 +134,7 @@ function openSubscriptionPanel() {
   subscriptionPanel.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
-const membershipPayBtn = document.getElementById('membershipPayBtn');
+const membershipPayBtn = document.getElementById('entryPayBtn');
 
 async function startNkPayment() {
   if (!membershipPayBtn) return;
@@ -178,7 +180,7 @@ async function checkReturnedNkPayment() {
       localStorage.setItem('nkPaymentMethodSaved', data.payment_method_saved ? '1' : '0');
       localStorage.removeItem('nkPendingPaymentId');
       toast(data.payment_method_saved ? 'Оплата прошла. Карта сохранена для автопродления.' : 'Оплата прошла успешно.');
-      if (membershipPayBtn) membershipPayBtn.textContent = 'Оплачено — 4 900 ₽';
+      showScreen('onboarding');
     } else if (data.status === 'canceled') {
       toast('Оплата не завершена');
     } else {
@@ -195,7 +197,14 @@ async function checkReturnedNkPayment() {
 }
 
 membershipPayBtn?.addEventListener('click', startNkPayment);
-window.addEventListener('DOMContentLoaded', checkReturnedNkPayment);
+window.addEventListener('DOMContentLoaded', async () => {
+  await checkReturnedNkPayment();
+  if (localStorage.getItem('nkLastSuccessfulPaymentId')) {
+    showScreen('onboarding', false);
+  } else {
+    showScreen('payment-gate', false);
+  }
+});
 
 document.getElementById('membershipManageBtn')?.addEventListener('click', openSubscriptionPanel);
 unlinkCardBtn?.addEventListener('click', () => { if (subscriptionModal) subscriptionModal.hidden = false; });
@@ -209,15 +218,15 @@ document.getElementById('confirmUnlinkCard')?.addEventListener('click', async ()
   localStorage.setItem('nkAutopayDisabled', '1');
   if (subscriptionModal) subscriptionModal.hidden = true;
   if (subscriptionAutoStatus) { subscriptionAutoStatus.textContent = 'Автопродление отключено'; subscriptionAutoStatus.classList.add('off'); }
-  if (subscriptionPaymentMethod) subscriptionPaymentMethod.textContent = 'Карта отвязана';
-  if (unlinkCardBtn) { unlinkCardBtn.textContent = 'Карта отвязана'; unlinkCardBtn.disabled = true; }
+  if (subscriptionPaymentMethod) subscriptionPaymentMethod.textContent = 'Автопродление отключено';
+  if (unlinkCardBtn) { unlinkCardBtn.textContent = 'Автопродление отключено'; unlinkCardBtn.disabled = true; }
   toast('Автопродление отключено. Доступ сохранится до конца оплаченного периода');
 });
 
 if (localStorage.getItem('nkAutopayDisabled') === '1') {
   if (subscriptionAutoStatus) { subscriptionAutoStatus.textContent = 'Автопродление отключено'; subscriptionAutoStatus.classList.add('off'); }
-  if (subscriptionPaymentMethod) subscriptionPaymentMethod.textContent = 'Карта отвязана';
-  if (unlinkCardBtn) { unlinkCardBtn.textContent = 'Карта отвязана'; unlinkCardBtn.disabled = true; }
+  if (subscriptionPaymentMethod) subscriptionPaymentMethod.textContent = 'Автопродление отключено';
+  if (unlinkCardBtn) { unlinkCardBtn.textContent = 'Автопродление отключено'; unlinkCardBtn.disabled = true; }
 }
 
 document.querySelectorAll('[data-video-key]').forEach(el=>el.addEventListener('click',()=>{const u=window.RVNW_CONFIG?.videos?.[el.dataset.videoKey];u?window.open(u,'_blank'):toast('Ссылка на видео ещё не добавлена')}));
@@ -1473,7 +1482,7 @@ function applyResidentProfile(profile, {cache=true} = {}) {
     if (!hasMembership) {
       note.hidden = false;
       note.textContent = officialName
-        ? 'Профиль найден. Данные резидентства пока не заполнены в базе RVNW.'
+        ? 'Профиль найден. Данные резидентства пока не заполнены в базе NK Club.'
         : 'Мы определили твой Telegram. Подтверди профиль — данные резидентства появятся здесь автоматически.';
     } else {
       note.hidden = true;

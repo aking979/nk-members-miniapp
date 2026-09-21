@@ -14,7 +14,7 @@ module.exports = async function handler(req, res) {
     const username = String(body.username || '').replace(/^@/, '').slice(0, 64);
 
     const payload = {
-      amount: { value: '4900.00', currency: 'RUB' },
+      amount: { value: '1.00', currency: 'RUB' },
       capture: true,
       confirmation: {
         type: 'redirect',

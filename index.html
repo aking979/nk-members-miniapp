@@ -27,7 +27,22 @@
 
     <main>
       <!-- HOME -->
-      <section class="screen active" id="home">
+      <section class="screen payment-gate-screen active" id="payment-gate">
+        <div class="payment-gate-wrap">
+          <span class="eyebrow">NK RESIDENT CLUB</span>
+          <h1>Вступление в NK</h1>
+          <p>Оплати резидентство, чтобы открыть онбординг, подписать документы и получить доступ к закрытым возможностям клуба.</p>
+          <div class="payment-gate-tariff">
+            <span>Резидентство NK</span>
+            <strong>4 900 ₽ / месяц</strong>
+            <small>Для теста сейчас спишется 1 ₽</small>
+          </div>
+          <button class="membership-pay-btn" id="entryPayBtn">Оплатить и продолжить</button>
+          <p class="payment-gate-note">При оплате способ оплаты сохраняется для ежемесячного автопродления. Автопродление можно отключить в личном кабинете.</p>
+        </div>
+      </section>
+
+      <section class="screen" id="home">
         <div class="hero-card">
           <div class="hero-kicker">ТВОЙ КЛУБ. ТВОИ ВОЗМОЖНОСТИ.</div>
           <h1>Добро пожаловать,<br><span id="homeResidentName">—</span></h1>
@@ -627,8 +642,6 @@
           </div>
 
           <div class="membership-data-note" id="membershipDataNote" hidden></div>
-          <button class="membership-pay-btn" id="membershipPayBtn">Оплатить резидентство — 4 900 ₽</button>
-          <p class="membership-pay-note">При оплате способ оплаты сохраняется для ежемесячного автопродления. Автопродление можно отключить в личном кабинете.</p>
           <button class="membership-manage-btn" id="membershipManageBtn" disabled>Управление подпиской</button>
         </div>
 
@@ -640,15 +653,15 @@
           <div class="subscription-row"><span>Тариф</span><strong>4 900 ₽ / месяц</strong></div>
           <div class="subscription-row"><span>Следующее списание</span><strong id="subscriptionNextCharge">По окончании оплаченного периода</strong></div>
           <div class="subscription-row"><span>Способ оплаты</span><strong id="subscriptionPaymentMethod">Банковская карта</strong></div>
-          <p class="subscription-note">Карта используется только для автоматического продления резидентства. Вы можете отключить автопродление и отвязать карту в любой момент.</p>
-          <button class="unlink-card-btn" id="unlinkCardBtn">Отвязать карту</button>
+          <p class="subscription-note">Способ оплаты используется для автоматического продления резидентства.</p>
+          <button class="unlink-card-btn subscription-secondary-action" id="unlinkCardBtn">Отключить автопродление</button>
         </div>
 
         <div class="subscription-modal" id="subscriptionModal" hidden>
           <div class="subscription-modal-card" role="dialog" aria-modal="true" aria-labelledby="unlinkTitle">
             <span class="eyebrow">УПРАВЛЕНИЕ ПОДПИСКОЙ</span>
             <h3 id="unlinkTitle">Отключить автоматическое продление?</h3>
-            <p>Карта будет отвязана, и следующие платежи списываться не будут. Доступ к NK сохранится до конца уже оплаченного периода.</p>
+            <p>Следующие автоматические списания будут отключены. Доступ к NK сохранится до конца уже оплаченного периода.</p>
             <button class="unlink-confirm-btn" id="confirmUnlinkCard">Отвязать карту</button>
             <button class="unlink-cancel-btn" id="cancelUnlinkCard">Оставить подписку</button>
           </div>
