@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0b0b" />
+  <title>NK MEMBERS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand" data-go="home">
+        <div class="brand-mark">NK</div>
+        <div>
+          <div class="brand-name">NK</div>
+          <div class="brand-sub">RESIDENT CLUB</div>
+        </div>
+      </div>
+      <button class="avatar-btn" id="headerAvatar" data-go="account" aria-label="Личный кабинет">
+        <span id="headerAvatarText">—</span>
+      </button>
+    </header>
+
+    <main>
+      <!-- HOME -->
+      <section class="screen active" id="home">
+        <div class="hero-card">
+          <div class="hero-kicker">ТВОЙ КЛУБ. ТВОИ ВОЗМОЖНОСТИ.</div>
+          <h1>Добро пожаловать,<br><span id="homeResidentName">—</span></h1>
+          <p>Все возможности резидентства — в одном приложении.</p>
+
+          <div class="membership-strip">
+            <div>
+              <span class="muted">Статус</span>
+              <strong id="homeMembershipStatus"><i class="status-dot"></i> <span>—</span></strong>
+            </div>
+            <div>
+              <span class="muted">Тариф</span>
+              <strong id="homeMembershipType">—</strong>
+            </div>
+          </div>
+        </div>
+
+        <section class="section-block activation-block">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">АДАПТАЦИЯ</span>
+              <h2>Начни с главного</h2>
+            </div>
+            <span class="progress-label" id="activationProgressLabel">0%</span>
+          </div>
+          <div class="progress-track"><span id="activationProgressBar" style="width:0%"></span></div>
+
+          <button class="onboarding-card activation-card" data-go="onboarding">
+            <div class="activation-card-icon" id="onboardingCardIcon">1</div>
+            <div class="activation-card-copy">
+              <strong>Заверши онбординг</strong>
+              <span id="onboardingMainStatus">0 из 5 шагов выполнено</span>
+            </div>
+            <span class="arrow">→</span>
+          </button>
+
+          <button class="onboarding-card activation-card" data-go="legal">
+            <div class="activation-card-icon" id="legalCardIcon">2</div>
+            <div class="activation-card-copy">
+              <strong>Подпиши документы</strong>
+              <span id="legalMainStatus">Документы не подтверждены</span>
+            </div>
+            <span class="arrow">→</span>
+          </button>
+        </section>
+
+        <section class="section-block" id="homeFeaturesBlock">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">ВОЗМОЖНОСТИ</span>
+              <h2>Всё, что входит</h2>
+            </div>
+          </div>
+
+          <div class="feature-grid nk-feature-grid">
+            <button class="feature-card featured" data-go="analysis">
+              <span class="icon">🎯</span><div><strong>Записаться на разбор</strong><span>Получить персональный разбор бизнеса от Ильи</span></div><em>Старт</em>
+            </button>
+            <button class="feature-card" data-go="tracking">
+              <span class="icon">🚀</span><div><strong>Вступить в трекинг</strong><span>Взять задачи в работу и двигаться с группой</span></div>
+            </button>
+            <button class="feature-card nk-wide" data-go="knowledge">
+              <span class="icon">🎓</span><div><strong>Академия</strong><span>Курсы, разборы участников и материалы для роста</span></div>
+            </button>
+            <button class="feature-card" data-go="profile">
+              <span class="icon">👤</span><div><strong>Мой профиль</strong><span>Данные резидента и прогресс</span></div>
+            </button>
+            <button class="feature-card" data-go="members">
+              <span class="icon">👥</span><div><strong>Каталог участников</strong><span>Найти нужного человека внутри клуба</span></div>
+            </button>
+          </div>
+        </section>
+
+        <section class="section-block home-contact-block" id="homeEventsBlock">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">НА СВЯЗИ С NK</span>
+              <h2>Мы рядом</h2>
+            </div>
+          </div>
+
+          <div class="home-contact-actions">
+            <button class="home-contact-card founder" data-go="support" data-support-topic="Вопрос Илье">
+              <span class="contact-number">❓</span>
+              <div><strong>Задать вопрос Илье</strong><small>Получить ответ на конкретный бизнес-вопрос</small></div>
+            </button>
+            <button class="home-contact-card team" data-go="support" data-support-topic="Задать вопрос команде">
+              <span class="contact-number">💬</span>
+              <div><strong>Связаться с командой</strong><small>Организационные вопросы, доступ и поддержка</small></div>
+            </button>
+          </div>
+        </section>
+      </section>
+
+      <!-- SCHEDULE -->
+      <section class="screen" id="schedule">
+        <div class="page-title">
+          <button class="back-btn" data-back>←</button>
+          <div><span class="eyebrow">КЛУБНАЯ ЖИЗНЬ</span><h1>Расписание</h1></div>
+        </div>
+        <div class="luma-calendar-wrap">
+          <iframe
+            class="luma-calendar-frame"
+            src="https://luma.com/embed/calendar/cal-xuyACA0HfsBMGL8/events?lt=dark"
+            title="NK MEMBERS — актуальные события"
+            frameborder="0"
+            allowfullscreen
+            aria-hidden="false"
+            tabindex="0"
+            loading="eager"
+          ></iframe>
+        </div>
+        <p class="luma-sync-note">Актуальные события NK MEMBERS синхронизируются с Luma автоматически.</p>
+      </section>
+
+      <!-- BUSINESS ANALYSIS -->
+      <section class="screen" id="analysis">
+        <div class="page-title"><button class="back-btn" data-back>←</button><div><span class="eyebrow">ПЕРСОНАЛЬНЫЙ РАЗБОР</span><h1>Записаться на разбор</h1></div></div>
+        <div class="analysis-intro"><span>🎙️</span><div><strong>Расскажи о бизнесе и главном запросе</strong><p>Эта анкета даст Илье весь контекст до встречи, чтобы на разборе сразу перейти к сути и решениям.</p></div></div>
+        <form class="form-card analysis-full-form" id="analysisForm">
+          <div class="form-section-title">1. Участник</div>
+          <label>Имя и фамилия<input name="name" placeholder="Имя и фамилия" required></label>
+          <label>Telegram<input name="telegram" placeholder="@username" required></label>
+          <label>Email<input name="email" type="email" placeholder="name@example.com" required></label>
+          <label>Город<input name="city" placeholder="Город" required></label>
+
+          <div class="form-section-title">2. О компании</div>
+          <label>Название компании<input name="company" placeholder="Название компании" required></label>
+          <label>Ниша / сфера бизнеса<input name="niche" placeholder="Например: IT-аутсорсинг" required></label>
+          <label>Сайт / соцсеть<input name="website" placeholder="https://"></label>
+          <label>Возраст бизнеса<input name="age" placeholder="Например: 4 года" required></label>
+          <label>Роль в компании<input name="role" placeholder="Founder / CEO / Partner" required></label>
+          <label>Описание бизнеса<textarea name="description" placeholder="Что продаёте, кому и как устроен бизнес" required></textarea></label>
+          <label>Основные направления<textarea name="directions" placeholder="Ключевые продукты / услуги" required></textarea></label>
+
+          <div class="form-section-title">3. Показатели бизнеса</div>
+          <label>Размер команды<input name="team" placeholder="Количество человек" required></label>
+          <label>Средняя выручка в месяц<select name="revenue" required><option value="" selected disabled>Выбери диапазон</option><option>До 500 тыс. ₽</option><option>500 тыс. – 1 млн ₽</option><option>1–3 млн ₽</option><option>3–5 млн ₽</option><option>5–10 млн ₽</option><option>10–30 млн ₽</option><option>30+ млн ₽</option></select></label>
+          <label>Средняя прибыль в месяц<input name="profit" placeholder="Например: 800 000 ₽"></label>
+          <label>Стадия бизнеса<textarea name="stage" placeholder="Где находится бизнес сейчас: структура, процессы, рост" required></textarea></label>
+
+          <div class="form-section-title">4. Главный запрос</div>
+          <label>Основная проблема<textarea name="problem" placeholder="Что сейчас сильнее всего ограничивает рост?" required></textarea></label>
+          <label>Цель, к которой хочешь прийти<textarea name="result" placeholder="Какого результата хочешь добиться?" required></textarea></label>
+          <label>Что уже пробовали<textarea name="attempts" placeholder="Какие решения уже тестировали и что получилось?" required></textarea></label>
+          <label>Вопрос, который хочешь разобрать с Ильёй<textarea name="question" placeholder="Сформулируй главный вопрос" required></textarea></label>
+          <label>Почему Илья должен выбрать именно этот кейс<textarea name="value" placeholder="Почему этот кейс важный, сильный или полезный для других?" required></textarea></label>
+
+          <div class="form-section-title">5. Видеосъёмка</div>
+          <label>Согласие на видеосъёмку<select name="live" required><option value="" selected disabled>Выбери вариант</option><option>Да</option><option>Нет</option><option>Нужно уточнить детали</option></select></label>
+          <label>Комментарий<textarea name="comment" placeholder="Дополнительная важная информация"></textarea></label>
+          <button class="primary full" type="submit">Отправить заявку на разбор</button>
+        </form>
+      </section>
+
+      <!-- TRACKING -->
+      <section class="screen" id="tracking">
+        <div class="page-title">
+          <button class="back-btn" data-back>←</button>
+          <div><span class="eyebrow">БИЗНЕС-РАЗВИТИЕ</span><h1>Трекинг</h1></div>
+        </div>
+
+        <div class="info-card dark">
+          <span class="eyebrow inverse">ПЕРСОНАЛЬНЫЙ ЗАПРОС</span>
+          <h2>Сформулируй следующий ход для своего бизнеса</h2>
+          <p>Заполни анкету — команда изучит запрос и свяжется с тобой.</p>
+        </div>
+
+        <div class="tracking-status-line" id="trackingStatusLine">
+          <span>Статус заявки</span>
+          <strong id="trackingStatusText">Не отправлено</strong>
+        </div>
+
+        <div class="tracking-stages" id="trackingStages">
+          <div class="stage" data-tracking-stage="submitted"><i>1</i><span>Отправлено</span></div>
+          <div class="stage" data-tracking-stage="review"><i>2</i><span>Рассмотрение</span></div>
+          <div class="stage" data-tracking-stage="approved"><i>3</i><span>Одобрено</span></div>
+          <div class="stage" data-tracking-stage="scheduled"><i>4</i><span>Встреча назначена</span></div>
+        </div>
+
+        <div class="tracking-submitted-note" id="trackingSubmittedNote" hidden>
+          <strong>Заявка уже отправлена</strong>
+          <span>Текущий статус обновляется из базы NK.</span>
+          <span class="tracking-group-note" id="trackingGroupNote" hidden></span>
+        </div>
+
+        <form class="form-card" id="trackingForm">
+          <label>Имя и фамилия
+            <input id="trackingName" name="name" value="" autocomplete="name" placeholder="Имя резидента" />
+          </label>
+
+          <label>Компания
+            <input name="company" autocomplete="organization" placeholder="Название компании" required />
+          </label>
+
+          <label>Ниша / сфера бизнеса
+            <input name="niche" autocomplete="off" placeholder="Например: аутсорсинг" required />
+          </label>
+
+          <label>Текущая роль
+            <input name="role" autocomplete="organization-title" placeholder="Founder / Co-Founder / CEO / Partner" required />
+          </label>
+
+          <label>Сколько лет компании?
+            <select name="company_age" required>
+              <option value="" selected disabled>Выбери вариант</option>
+              <option>До 1 года</option>
+              <option>1–3 года</option>
+              <option>3–5 лет</option>
+              <option>5+ лет</option>
+            </select>
+          </label>
+
+          <label>Средний оборот компании в месяц
+            <select name="monthly_revenue" required>
+              <option value="" selected disabled>Выбери диапазон</option>
+              <option>До 500 тыс. ₽</option>
+              <option>500 тыс. – 1 млн ₽</option>
+              <option>1–3 млн ₽</option>
+              <option>3–5 млн ₽</option>
+              <option>5–10 млн ₽</option>
+              <option>10–30 млн ₽</option>
+              <option>30+ млн ₽</option>
+            </select>
+          </label>
+
+          <label>Размер команды
+            <select name="team_size" required>
+              <option value="" selected disabled>Выбери вариант</option>
+              <option>Только собственник</option>
+              <option>2–5</option>
+              <option>6–10</option>
+              <option>11–30</option>
+              <option>31–50</option>
+              <option>51–100</option>
+              <option>100+</option>
+            </select>
+          </label>
+
+          <label>Текущая точка бизнеса
+            <textarea name="current_point" autocapitalize="sentences" placeholder="Что сейчас происходит в бизнесе? Опиши ключевые показатели и контекст." required></textarea>
+          </label>
+
+          <label>Главный бизнес-запрос
+            <textarea name="business_request" autocapitalize="sentences" placeholder="Какую одну задачу в бизнесе тебе важно решить в первую очередь?" required></textarea>
+          </label>
+
+          <label>Личный запрос
+            <textarea name="personal_request" autocapitalize="sentences" placeholder="Какую одну задачу вне бизнеса тебе сейчас важно решить?" required></textarea>
+          </label>
+
+          <label>Кого ты хотел(а) бы видеть рядом с собой в трекинг-группе?
+            <textarea name="desired_group" autocapitalize="sentences" placeholder="Опиши предпринимателей: уровень бизнеса, сферы, опыт или конкретные компетенции." required></textarea>
+          </label>
+
+          <label>Дополнительный комментарий
+            <textarea name="comment" autocapitalize="sentences" placeholder="Что ещё важно знать трекеру до встречи?"></textarea>
+          </label>
+
+          <label class="tracking-consent custom-consent" for="weeklyCommitment">
+            <input id="weeklyCommitment" name="weekly_commitment" type="checkbox" required>
+            <span class="custom-checkbox" aria-hidden="true"></span>
+            <span class="consent-text">Я готов(а) участвовать в трекинг-встрече каждую неделю в течение 2 месяцев.</span>
+          </label>
+
+          <button class="primary full" type="submit">Отправить заявку</button>
+        </form>
+      </section>
+
+      <!-- KNOWLEDGE -->
+      <section class="screen" id="knowledge">
+        <div class="page-title">
+          <button class="back-btn" data-back>←</button>
+          <div><span class="eyebrow">АКАДЕМИЯ NK</span><h1>База знаний</h1></div>
+        </div>
+        <div class="academy-library-intro">
+          <span class="eyebrow inverse">МАТЕРИАЛЫ ДЛЯ РОСТА</span>
+          <h2>Выбери раздел</h2>
+          <p>Программы, встречи с экспертами и реальные разборы участников NK — всё в одной базе.</p>
+        </div>
+        <div class="academy-folders">
+          <button class="academy-folder folder-orange" data-go="business-active"><span class="folder-icon">🚀</span><div><small>ПРОГРАММА</small><h3>Бизнес как актив</h3><p>4 модуля: стратегия, продажи, операционная система и технологии.</p></div><b>→</b></button>
+          <button class="academy-folder folder-dark" data-go="speaker-meetings"><span class="folder-icon">🎤</span><div><small>БИБЛИОТЕКА ВСТРЕЧ</small><h3>Встречи со спикерами</h3><p>Практические эфиры и записи встреч с приглашёнными экспертами.</p></div><b>→</b></button>
+          <button class="academy-folder folder-light" data-go="resident-reviews"><span class="folder-icon">🧩</span><div><small>КЕЙСЫ УЧАСТНИКОВ</small><h3>Разборы резидентов</h3><p>Разборы бизнесов участников NK: запросы, решения и следующие шаги.</p></div><b>→</b></button>
+        </div>
+      </section>
+
+      <section class="screen" id="speaker-meetings">
+        <div class="page-title"><button class="back-btn" data-back>←</button><div><span class="eyebrow">АКАДЕМИЯ · СПИКЕРЫ</span><h1>Встречи со спикерами</h1></div></div>
+        <div class="academy-section-note"><span>🎤</span><div><strong>Библиотека экспертных встреч</strong><p>Здесь будут появляться записи прошедших встреч NK.</p></div></div>
+        <div class="speaker-library">
+          <button class="speaker-card avito-card speaker-card-button" data-go="speaker-avito"><div class="speaker-card-topline"><div class="speaker-badge">ЗАПИСЬ ДОСТУПНА</div><div class="speaker-watched-badge" id="avitoWatchedBadge" hidden>✓ ПРОСМОТРЕНО</div></div><span class="speaker-icon">📣</span><small>ПРОДАЖИ · AVITO</small><h2>AVITO: как превратить площадку в стабильный канал продаж</h2><p>Практическая встреча с Миленой Мельницкой: системная работа с площадкой, объявлениями и входящими обращениями.</p><div class="speaker-meta"><span>🎙 Милена Мельницкая</span><span>Открыть встречу →</span></div></button>
+        </div>
+      </section>
+
+
+      <section class="screen" id="speaker-avito">
+        <div class="page-title"><button class="back-btn" data-back>←</button><div><span class="eyebrow">АКАДЕМИЯ · СПИКЕРЫ</span><h1>Продажи · AVITO</h1></div></div>
+        <article class="speaker-detail">
+          <span class="speaker-detail-badge">ВСТРЕЧА СО СПИКЕРОМ</span>
+          <h2>AVITO: как превратить площадку в стабильный канал продаж</h2>
+          <p class="speaker-detail-lead">Практическая встреча с Миленой Мельницкой о том, как системно использовать Avito как канал привлечения клиентов и продаж.</p>
+          <div class="speaker-detail-grid">
+            <div><span>Спикер</span><strong>Милена Мельницкая</strong></div>
+            <div><span>Формат</span><strong>Практическая встреча</strong></div>
+          </div>
+          <div class="speaker-detail-section"><span>О ЧЁМ ВСТРЕЧА</span><p>Как выстроить работу с площадкой, усилить объявления, получать больше целевых обращений и превратить Avito из разового источника лидов в стабильный канал продаж.</p></div>
+          <div class="speaker-recording-box">
+            <span class="speaker-recording-icon">🎥</span>
+            <strong>Запись встречи доступна</strong>
+            <p>Открой запись в Zoom. При входе используй код доступа ниже.</p>
+            <button type="button" class="speaker-recording-watch" id="avitoRecordingOpen">Смотреть запись</button>
+            <div class="speaker-access-code"><div><span>КОД ДОСТУПА</span><strong id="avitoAccessCode">dkxx^c0!</strong></div><button type="button" id="avitoCopyCode">Скопировать код</button></div>
+            <button type="button" class="speaker-recording-watched" id="avitoWatchedToggle">Отметить как просмотрено</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="screen" id="resident-reviews">
+        <div class="page-title"><button class="back-btn" data-back>←</button><div><span class="eyebrow">АКАДЕМИЯ · КЕЙСЫ</span><h1>Разборы резидентов</h1></div></div>
+        <div class="academy-empty-folder"><span>🧩</span><h2>Здесь появятся разборы</h2><p>Будем добавлять записи разборов участников NK по мере выхода новых выпусков.</p><small>Пока раздел пуст</small></div>
+      </section>
+
+      <!-- KNOWLEDGE -->
+      <section class="screen" id="business-active">
+        <div class="page-title">
+          <button class="back-btn" data-back>←</button>
+          <div><span class="eyebrow">ПРОГРАММА NK</span><h1>Бизнес как актив</h1></div>
+        </div>
+
+        <article class="academy-hero">
+          <div class="academy-orbit academy-orbit-one"></div>
+          <div class="academy-orbit academy-orbit-two"></div>
+          <span class="eyebrow inverse">ФЛАГМАНСКАЯ ПРОГРАММА NK</span>
+          <h2>Бизнес<br>как актив</h2>
+          <p>Четыре модуля о стратегии, продажах, операционной системе и технологиях для бизнеса, который способен расти без постоянного ручного контроля собственника.</p>
+          <div class="academy-stats">
+            <div><strong>4</strong><span>модуля</span></div>
+            <div><strong>6+</strong><span>часов видео</span></div>
+            <div><strong>4</strong><span>задания</span></div>
+          </div>
+        </article>
+
+        <div class="course-progress-card">
+          <div class="course-progress-top">
+            <div><span class="eyebrow">ТВОЙ ПРОГРЕСС</span><strong id="courseProgressText">0 из 4 модулей завершено</strong></div>
+            <b id="courseProgressPercent">0%</b>
+          </div>
+          <div class="progress-track"><span id="courseProgressBar" style="width:0%"></span></div>
+        </div>
+
+        <div class="learning-modules">
+          <button class="learning-card module-green" data-go="course-module-1">
+            <div class="learning-number">01</div>
+            <div class="learning-content">
+              <span class="learning-label">СТРАТЕГИЯ</span>
+              <h3>Стратегия и архитектура</h3>
+              <p>Как построить стратегию через бизнес-модель, рынок, цели, процессы и команду.</p>
+              <div class="learning-tags"><span>Canvas</span><span>Market Research</span><span>Customer Journey</span></div>
+            </div>
+            <div class="learning-status" data-module-status="1">Начать →</div>
+          </button>
+
+          <button class="learning-card module-dark" data-go="course-module-2">
+            <div class="learning-number">02</div>
+            <div class="learning-content">
+              <span class="learning-label">REVENUE ENGINE</span>
+              <h3>Машина продаж и маркетинг</h3>
+              <p>Как превратить продажи из ручного хаоса в управляемую систему.</p>
+              <div class="learning-tags"><span>CRM</span><span>SLA</span><span>AI Agents</span></div>
+            </div>
+            <div class="learning-status" data-module-status="2">Начать →</div>
+          </button>
+
+          <button class="learning-card module-light" data-go="course-module-3">
+            <div class="learning-number">03</div>
+            <div class="learning-content">
+              <span class="learning-label">ОПЕРАЦИОНКА</span>
+              <h3>Операционная система</h3>
+              <p>Как выйти из тушения пожаров и построить автономный бизнес.</p>
+              <div class="learning-tags"><span>Процессы</span><span>Команда</span><span>Контроль</span></div>
+            </div>
+            <div class="learning-status" data-module-status="3">Начать →</div>
+          </button>
+
+          <button class="learning-card module-ai" data-go="course-module-4">
+            <div class="learning-number">04</div>
+            <div class="learning-content">
+              <span class="learning-label">ТЕХНОЛОГИИ</span>
+              <h3>Автоматизация, данные и ИИ</h3>
+              <p>Как внедрять технологии ради реального роста, а не ради моды.</p>
+              <div class="learning-tags"><span>Dashboards</span><span>Automation</span><span>AI</span></div>
+            </div>
+            <div class="learning-status" data-module-status="4">Начать →</div>
+          </button>
+        </div>
+      </section>
+
+      <!-- COURSE MODULE 1 -->
+      <section class="screen course-module-screen" id="course-module-1" data-module="1">
+        <div class="page-title">
+          <button class="back-btn" data-back>←</button>
+          <div><span class="eyebrow">МОДУЛЬ 01</span><h1>Стратегия и архитектура</h1></div>
+        </div>
+        <div class="module-video-wrap">
+          <iframe src="https://drive.google.com/file/d/1WXkRoTS_5uosCube0-Y1E855RCMjQ080/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </div>
+        <div class="module-intro">
+          <span class="module-symbol">🚀</span>
+          <div><span class="eyebrow">БИЗНЕС КАК АКТИВ</span><h2>Стратегия, переведённая в действия</h2></div>
+        </div>
+        <p class="module-lead">Как перестать строить стратегию на интуиции и посмотреть на компанию как на единую систему: бизнес-модель → рынок → цели → процессы → команда.</p>
+
+        <div class="module-tabs">
+          <button class="module-tab active" data-tab-target="m1-about">Описание</button>
+          <button class="module-tab" data-tab-target="m1-inside">Что внутри</button>
+        </div>
+
+        <div class="module-panel active" id="m1-about">
+          <div class="lesson-block">
+            <span class="eyebrow">ПОСЛЕ ПРОСМОТРА</span>
+            <h3>Ты сможешь</h3>
+            <ul class="check-list">
+              <li>Строить стратегию на основе бизнес-модели и анализа рынка.</li>
+              <li>Декомпозировать путь: Canvas → рынок → цели → показатели → процессы → команда.</li>
+              <li>Определить процессы, роли и метрики, которые мешают компании двигаться к целям.</li>
+              <li>Адаптировать практический шаблон под свой бизнес.</li>
+            </ul>
+          </div>
+          <div class="key-idea"><span>ГЛАВНАЯ МЫСЛЬ</span><strong>Стратегия работает только тогда, когда она переведена в процессы, цифры и действия команды.</strong></div>
+        </div>
+
+        <div class="module-panel" id="m1-inside">
+          <div class="topic-grid">
+            <article><span>01</span><div><strong>Стратегия через людей</strong><p>Как сделать так, чтобы команда понимала стратегию, а не просто слышала её.</p></div></article>
+            <article><span>02</span><div><strong>Business Model Canvas</strong><p>Кому продаём, какую ценность создаём, на чём зарабатываем и где возможен рост.</p></div></article>
+            <article><span>03</span><div><strong>Market Research</strong><p>Как анализировать рынок и понимать реальное положение компании.</p></div></article>
+            <article><span>04</span><div><strong>Цели и доля рынка</strong><p>Как ставить реалистичные цели вместо абстрактного «вырасти в три раза».</p></div></article>
+            <article><span>05</span><div><strong>Goal & Action Alignment</strong><p>Как перевести цели в показатели, процессы, ответственность и контрольные точки.</p></div></article>
+            <article><span>06</span><div><strong>Customer Journey</strong><p>Как увидеть, где стратегия упирается в реальные процессы и путь клиента.</p></div></article>
+          </div>
+        </div>
+<button class="complete-module-btn" data-complete-module="1">Отметить модуль как пройденный</button>
+      </section>
+
+      <!-- COURSE MODULE 2 -->
+      <section class="screen course-module-screen" id="course-module-2" data-module="2">
+        <div class="page-title">
+          <button class="back-btn" data-back>←</button>
+          <div><span class="eyebrow">МОДУЛЬ 02</span><h1>Машина продаж и маркетинг</h1></div>
+        </div>
+        <div class="module-video-wrap">
+          <iframe src="https://drive.google.com/file/d/1C-RbzSoZ8d3xt9yVPS4dcD4LWgkFtm8m/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </div>
+        <div class="module-intro">
+          <span class="module-symbol">💸</span>
+          <div><span class="eyebrow">REVENUE ENGINE</span><h2>Продажи как система</h2></div>
+        </div>
+        <p class="module-lead">Как превратить продажи из зависимости от сильных менеджеров и личных договорённостей в управляемую систему: лиды → CRM → SLA → квалификация → конверсия → AI.</p>
+        <div class="module-tabs">
+          <button class="module-tab active" data-tab-target="m2-about">Описание</button>
+          <button class="module-tab" data-tab-target="m2-inside">Что внутри</button>
+        </div>
+        <div class="module-panel active" id="m2-about">
+          <div class="lesson-block"><span class="eyebrow">ПОСЛЕ ПРОСМОТРА</span><h3>Ты сможешь</h3><ul class="check-list">
+            <li>Увидеть, где в воронке теряются лиды и деньги.</li>
+            <li>Выстроить логику Revenue Engine.</li>
+            <li>Снизить зависимость от отдельных менеджеров.</li>
+            <li>Определить этапы, которые можно автоматизировать или перестроить.</li>
+          </ul></div>
+          <div class="key-idea"><span>ГЛАВНАЯ МЫСЛЬ</span><strong>Продажи должны работать как система, а не как настроение менеджеров.</strong></div>
+        </div>
+        <div class="module-panel" id="m2-inside">
+          <div class="topic-grid">
+            <article><span>01</span><div><strong>Роли и мотивация</strong><p>Хантеры, фермеры, клоузеры и система мотивации без сжигания маржи.</p></div></article>
+            <article><span>02</span><div><strong>Токсичные менеджеры</strong><p>Что делать с людьми, которые приносят деньги, но разрушают систему.</p></div></article>
+            <article><span>03</span><div><strong>Архитектура CRM</strong><p>Почему сейлзы саботируют CRM и как сделать её рабочим инструментом.</p></div></article>
+            <article><span>04</span><div><strong>SLA маркетинг ↔ продажи</strong><p>Скорость обработки, скрипты, ответственность и контрольные точки.</p></div></article>
+            <article><span>05</span><div><strong>Drop-off rate</strong><p>Где теряются лиды, деньги и конверсия.</p></div></article>
+            <article><span>06</span><div><strong>AI-агенты и CAC</strong><p>Квалификация, прозвон и снижение стоимости обработки контакта.</p></div></article>
+          </div>
+        </div>
+<button class="complete-module-btn" data-complete-module="2">Отметить модуль как пройденный</button>
+      </section>
+
+      <!-- COURSE MODULE 3 -->
+      <section class="screen course-module-screen" id="course-module-3" data-module="3">
+        <div class="page-title">
+          <button class="back-btn" data-back>←</button>
+          <div><span class="eyebrow">МОДУЛЬ 03</span><h1>Операционная система</h1></div>
+        </div>
+        <div class="module-video-wrap">
+          <iframe src="https://drive.google.com/file/d/1l1bAZJEOhFEsyD1ohzO13EFbq_THdm1i/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </div>
+        <div class="module-intro">
+          <span class="module-symbol">🔥</span>
+          <div><span class="eyebrow">ВЫХОД ИЗ ОПЕРАЦИОНКИ</span><h2>Бизнес без тушения пожаров</h2></div>
+        </div>
+        <p class="module-lead">Как перестать быть главным бутылочным горлышком и выстроить процессы, роли, ответственность и контрольные точки без лишней бюрократии.</p>
+        <div class="module-tabs">
+          <button class="module-tab active" data-tab-target="m3-about">Описание</button>
+          <button class="module-tab" data-tab-target="m3-inside">Что внутри</button>
+        </div>
+        <div class="module-panel active" id="m3-about">
+          <div class="lesson-block"><span class="eyebrow">ПОСЛЕ ПРОСМОТРА</span><h3>Ты сможешь</h3><ul class="check-list">
+            <li>Определить, где собственник сам блокирует рост.</li>
+            <li>Выбрать процессы, которые нужно перестроить первыми.</li>
+            <li>Понять, какие знания необходимо передать команде.</li>
+            <li>Сделать первый шаг к более автономному бизнесу.</li>
+          </ul></div>
+          <div class="case-card"><span class="eyebrow inverse">РЕАЛЬНЫЙ КЕЙС</span><strong>С 5 до 95 человек · с $500k до $12M · маржа с 33% до 65% за 1,2 года.</strong></div>
+          <div class="key-idea"><span>ГЛАВНАЯ МЫСЛЬ</span><strong>Бизнес становится активом, когда способен работать не только на личном контроле собственника.</strong></div>
+        </div>
+        <div class="module-panel" id="m3-inside">
+          <div class="topic-grid">
+            <article><span>01</span><div><strong>Собственник-пожарный</strong><p>Где собственник становится бутылочным горлышком и что перестроить первым.</p></div></article>
+            <article><span>02</span><div><strong>Описание бизнеса</strong><p>Процессы, роли, ответственность и контроль простым языком.</p></div></article>
+            <article><span>03</span><div><strong>Передача знаний</strong><p>Почему регламент в папке не работает и как встроить знания в работу.</p></div></article>
+            <article><span>04</span><div><strong>Самостоятельная команда</strong><p>Как команда принимает решения и не ждёт каждого согласования.</p></div></article>
+          </div>
+        </div>
+<button class="complete-module-btn" data-complete-module="3">Отметить модуль как пройденный</button>
+      </section>
+
+      <!-- COURSE MODULE 4 -->
+      <section class="screen course-module-screen" id="course-module-4" data-module="4">
+        <div class="page-title">
+          <button class="back-btn" data-back>←</button>
+          <div><span class="eyebrow">МОДУЛЬ 04</span><h1>Автоматизация, данные и ИИ</h1></div>
+        </div>
+        <div class="module-video-wrap">
+          <iframe src="https://drive.google.com/file/d/1UkHOvob9qeYJdUKMw1baNdgvgrXZlbRh/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </div>
+        <div class="module-intro">
+          <span class="module-symbol">🤖</span>
+          <div><span class="eyebrow">ТОЧКИ РОСТА</span><h2>Технологии поверх порядка</h2></div>
+        </div>
+        <p class="module-lead">Как внедрять автоматизацию, данные и ИИ не ради модных инструментов, а ради роста: процессы → данные → автоматизация → дашборды → ИИ.</p>
+        <div class="module-tabs">
+          <button class="module-tab active" data-tab-target="m4-about">Описание</button>
+          <button class="module-tab" data-tab-target="m4-inside">Что внутри</button>
+        </div>
+        <div class="module-panel active" id="m4-about">
+          <div class="lesson-block"><span class="eyebrow">ПОСЛЕ ПРОСМОТРА</span><h3>Ты сможешь</h3><ul class="check-list">
+            <li>Оценить готовность бизнеса к автоматизации и ИИ.</li>
+            <li>Выбрать процессы, которые стоит автоматизировать первыми.</li>
+            <li>Найти места, где теряются данные.</li>
+            <li>Определить нужные дашборды и собрать первую дорожную карту.</li>
+          </ul></div>
+          <div class="case-card"><span class="eyebrow inverse">ПРОДОЛЖЕНИЕ КЕЙСА</span><strong>Как компания после построения операционной системы внедрила автоматизацию, дашборды и ИИ.</strong></div>
+          <div class="key-idea"><span>ГЛАВНАЯ МЫСЛЬ</span><strong>Автоматизация масштабирует то, что уже есть: порядок становится сильнее, хаос — быстрее.</strong></div>
+        </div>
+        <div class="module-panel" id="m4-inside">
+          <div class="topic-grid">
+            <article><span>01</span><div><strong>Готовность к автоматизации</strong><p>Как понять, что CRM, ERP или ИИ пока не решат проблему.</p></div></article>
+            <article><span>02</span><div><strong>Бизнес в реальном времени</strong><p>Какие данные собственник должен видеть каждый день.</p></div></article>
+            <article><span>03</span><div><strong>Дашборды</strong><p>Показатели для собственника, директора и руководителей.</p></div></article>
+            <article><span>04</span><div><strong>Первый процесс</strong><p>Как выбрать стартовую точку и не автоматизировать всё сразу.</p></div></article>
+            <article><span>05</span><div><strong>Единая система</strong><p>Как связать продажи, проекты, обучение и метрики.</p></div></article>
+            <article><span>06</span><div><strong>AI-отдел продаж</strong><p>ИИ в коммуникациях, продажах и контроле качества.</p></div></article>
+          </div>
+        </div>
+<button class="complete-module-btn" data-complete-module="4">Отметить модуль как пройденный</button>
+      </section>
+
+
+      <!-- MEMBERSHIP -->
+      <section class="screen" id="membership">
+        <div class="page-title">
+          <button class="back-btn" data-back>←</button>
+          <div><span class="eyebrow">ЛИЧНЫЙ КАБИНЕТ</span><h1>Резидентство</h1></div>
+        </div>
+
+        <div class="membership-card membership-card-v8" id="membershipCard">
+          <div class="membership-top">
+            <div>
+              <span class="eyebrow inverse">NK RESIDENT</span>
+              <h2 id="membershipType">Загружаем данные...</h2>
+            </div>
+            <span class="status-pill light" id="membershipStatus">...</span>
+          </div>
+
+          <div class="tenure-block tenure-block-v8" id="membershipTenure">
+            <strong id="membershipDays">—</strong>
+            <span id="membershipDaysCaption">дней в NK</span>
+          </div>
+
+          <div class="membership-details membership-details-v8">
+            <div>
+              <span>Дата вступления</span>
+              <strong id="membershipJoinDate">—</strong>
+            </div>
+            <div>
+              <span id="membershipEndLabel">Резидентство до</span>
+              <strong id="membershipEndDate">—</strong>
+            </div>
+          </div>
+
+          <div class="membership-data-note" id="membershipDataNote" hidden></div>
+          <button class="membership-manage-btn" id="membershipManageBtn" disabled>Управление подпиской</button>
+        </div>
+
+        <div class="subscription-panel" id="subscriptionPanel" hidden>
+          <div class="subscription-panel-head">
+            <div><span class="eyebrow">ПОДПИСКА NK</span><h3>Управление подпиской</h3></div>
+            <span class="subscription-active" id="subscriptionAutoStatus">Автопродление включено</span>
+          </div>
+          <div class="subscription-row"><span>Тариф</span><strong>4 900 ₽ / месяц</strong></div>
+          <div class="subscription-row"><span>Следующее списание</span><strong id="subscriptionNextCharge">По окончании оплаченного периода</strong></div>
+          <div class="subscription-row"><span>Способ оплаты</span><strong id="subscriptionPaymentMethod">Банковская карта</strong></div>
+          <p class="subscription-note">Карта используется только для автоматического продления резидентства. Вы можете отключить автопродление и отвязать карту в любой момент.</p>
+          <button class="unlink-card-btn" id="unlinkCardBtn">Отвязать карту</button>
+        </div>
+
+        <div class="subscription-modal" id="subscriptionModal" hidden>
+          <div class="subscription-modal-card" role="dialog" aria-modal="true" aria-labelledby="unlinkTitle">
+            <span class="eyebrow">УПРАВЛЕНИЕ ПОДПИСКОЙ</span>
+            <h3 id="unlinkTitle">Отключить автоматическое продление?</h3>
+            <p>Карта будет отвязана, и следующие платежи списываться не будут. Доступ к NK сохранится до конца уже оплаченного периода.</p>
+            <button class="unlink-confirm-btn" id="confirmUnlinkCard">Отвязать карту</button>
+            <button class="unlink-cancel-btn" id="cancelUnlinkCard">Оставить подписку</button>
+          </div>
+        </div>
+
+        <h3 class="subheading">Как использовать возможности клуба</h3>
+        <div class="benefit-explain">
+          <article><span>01</span><div><strong>Расписание</strong><p>Закрытые события NK, актуальное расписание и регистрация.</p></div></article>
+          <article><span>02</span><div><strong>Трекинг</strong><p>Работа с главным бизнес-запросом: следующий ход, действия и контроль результата.</p></div></article>
+          <article><span>03</span><div><strong>База знаний</strong><p>Записи и материалы по бизнесу, финансам, команде и точкам роста.</p></div></article>
+          <article><span>04</span><div><strong>Управление резидентством</strong><p>Тариф, статус, срок действия и управление подпиской.</p></div></article>
+          <article><span>05</span><div><strong>Резиденты</strong><p>Каталог участников: поиск партнёров и экспертов внутри NK.</p></div></article>
+          <article><span>06</span><div><strong>Реферальная программа</strong><p>Промокоды и бонусы за приглашённых друзей.</p></div></article>
+          <article><span>07</span><div><strong>Задать вопрос Илье</strong><p>Возможность задать прямой вопрос основателю NK Илье Прусенко.</p></div></article>
+          <article><span>08</span><div><strong>Связаться с командой</strong><p>Вопросы по клубу, оплате, предложениям и возможностям.</p></div></article>
+        </div>
+      </section>
+
+      <!-- MEMBERS -->
+      <section class="screen" id="members">
+        <div class="page-title">
+          <button class="back-btn" data-back>←</button>
+          <div><span class="eyebrow">ОКРУЖЕНИЕ</span><h1>Резиденты</h1></div>
+        </div>
+        <p class="members-intro">Ищи партнёров, экспертов и нужные контакты внутри NK.</p>
+        <input class="search" id="membersSearch" placeholder="Поиск по имени, нише, компании или городу" autocomplete="off" />
+        <div class="members-meta"><span id="membersCount">Загружаем каталог…</span><button type="button" id="membersRefresh">Обновить</button></div>
+        <div class="member-list" id="membersList">
+          <div class="members-state">Загружаем резидентов…</div>
+        </div>
+      </section>
+
+
+      <section class="screen" id="member-detail">
+        <div class="page-title"><button class="back-btn" data-back>←</button><div><span class="eyebrow">КАТАЛОГ РЕЗИДЕНТОВ</span><h1>Карточка участника</h1></div></div>
+        <div class="resident-profile" id="directoryResidentProfile">
+          <div class="resident-cover"></div>
+          <div class="resident-main">
+            <div class="large-avatar" id="directoryMemberAvatar">RV</div>
+            <h2 id="directoryMemberName">Резидент NK</h2>
+            <span id="directoryMemberRole">—</span>
+            <small id="directoryMemberMeta">—</small>
+          </div>
+          <div class="resident-section" id="directoryAboutSection"><span>О СЕБЕ / БИЗНЕСЕ</span><p id="directoryMemberAbout">—</p></div>
+          <div class="resident-section" id="directoryUsefulSection"><span>МОЖЕТ БЫТЬ ПОЛЕЗЕН</span><p id="directoryMemberUseful">—</p></div>
+          <div class="resident-section" id="directoryLookingSection"><span>СЕЙЧАС ИЩЕТ</span><p id="directoryMemberLooking">—</p></div>
+          <div class="directory-actions">
+            <button class="primary full" id="directoryTelegramBtn">Написать в Telegram</button>
+            <button class="secondary full" id="directoryWebsiteBtn" hidden>Открыть сайт</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- REFERRAL -->
+      <section class="screen" id="referral">
+        <div class="page-title">
+          <button class="back-btn" data-back>←</button>
+          <div><span class="eyebrow">БОНУСЫ</span><h1>Реферальная программа</h1></div>
+        </div>
+
+        <div class="referral-hero">
+          <span class="eyebrow inverse">ПРИГЛАШАЙ СВОИХ</span>
+          <h2>Делись клубом.<br>Получай больше.</h2>
+          <p>У тебя есть два персональных промокода.</p>
+        </div>
+
+        <div class="promo-card">
+          <span class="muted">Личный промокод</span>
+          <div class="promo-code"><strong id="personalPromoCode">—</strong><button id="copyPersonalPromo" data-copy="">Копировать</button></div>
+          <p>Используется для идентификации твоих приглашений.</p>
+        </div>
+
+        <div class="promo-card highlight">
+          <span class="muted">Промокод для друзей</span>
+          <div class="promo-code"><strong id="friendPromoCode">—</strong><button id="copyFriendPromo" data-copy="">Копировать</button></div>
+          <p>Даёт другу скидку 30% на мероприятие. Можно использовать до 5 раз.</p>
+          <div class="usage">
+            <div><span>Использовано</span><strong id="friendPromoUsesLabel">0 из 5</strong></div>
+            <div class="usage-dots" id="friendPromoUsageDots"><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+        </div>
+
+        <div class="bonus-card">
+          <span class="bonus-number">+14</span>
+          <div>
+            <strong>дней бесплатного участия</strong>
+            <p>Если приглашённый тобой друг приобретает подписку NK.</p>
+          </div>
+        </div>
+
+        <button class="primary full" id="shareReferral">Поделиться приглашением</button>
+      </section>
+
+      <!-- SUPPORT -->
+      <section class="screen" id="support">
+        <div class="page-title">
+          <button class="back-btn" data-back>←</button>
+          <div><span class="eyebrow">КОМАНДА NK</span><h1>Связаться с нами</h1></div>
+        </div>
+
+        <div class="support-options nk-support-options">
+          <button data-topic="Вопрос Илье"><span>❓</span><div><strong>Задать вопрос Илье</strong><small>Получить ответ на конкретный бизнес-вопрос</small></div></button>
+          <button data-topic="Задать вопрос команде"><span>💬</span><div><strong>Задать вопрос команде</strong><small>По клубу или возможностям</small></div></button>
+          <button data-topic="Оставить пожелание"><span>✨</span><div><strong>Оставить пожелание</strong><small>Идея по улучшению клуба</small></div></button>
+          <button data-topic="Предложить мероприятие"><span>🎤</span><div><strong>Предложить мероприятие</strong><small>Формат, тема или спикер</small></div></button>
+          <button data-topic="Вопрос по оплате"><span>💳</span><div><strong>Вопрос по оплате</strong><small>Подписка, счёт или продление</small></div></button>
+        </div>
+
+        <form class="form-card" id="supportForm">
+          <label>Тема
+            <input id="supportTopic" name="topic" placeholder="Выбери тему выше" required />
+          </label>
+          <label>Сообщение
+            <textarea name="message" placeholder="Напиши вопрос или предложение" required></textarea>
+          </label>
+          <button class="primary full" type="submit">Отправить команде</button>
+        </form>
+      </section>
+
+      <!-- ONBOARDING -->
+      <section class="screen" id="onboarding">
+        <div class="page-title">
+          <button class="back-btn" data-back>←</button>
+          <div><span class="eyebrow">ПЕРВЫЕ ШАГИ</span><h1>Онбординг</h1></div>
+        </div>
+        <div class="onboarding-summary">
+          <strong id="onboardingSummaryText">0 из 5 шагов выполнено</strong>
+          <span id="onboardingSummaryHint">Выполни шаги, чтобы освоиться в клубе.</span>
+          <div class="progress-track"><span id="onboardingProgressBar" style="width:0%"></span></div>
+        </div>
+        <div class="checklist" id="onboardingChecklist">
+          <button data-go="profile-edit" data-onboarding-step="profile"><i>1</i><div><strong>Заполнить профиль резидента</strong><span>Добавить данные о себе и бизнесе</span></div></button>
+          <button data-onboarding-step="chat" id="onboardingChatButton"><i>2</i><div><strong>Вступить в закрытый чат</strong><span>Присоединиться к общению участников NK</span></div></button>
+          <button data-go="knowledge" data-onboarding-step="knowledge"><i>3</i><div><strong>Открыть Академию</strong><span>Посмотреть курсы, разборы и материалы</span></div></button>
+          <button data-go="profile" data-onboarding-step="membership"><i>4</i><div><strong>Изучить возможности клуба</strong><span>Резидентство, разбор, трекинг и связь с командой</span></div></button>
+          <button data-go="members" data-onboarding-step="team"><i>5</i><div><strong>Познакомиться с резидентами</strong><span>Открыть каталог участников NK</span></div></button>
+        </div>
+      </section>
+
+
+
+      <!-- ACCOUNT -->
+      <section class="screen" id="account">
+        <div class="page-title">
+          <button class="back-btn" data-back>←</button>
+          <div><span class="eyebrow">ЛИЧНЫЙ КАБИНЕТ</span><h1 id="accountTitleName">Профиль</h1></div>
+        </div>
+        <div class="account-card">
+          <div class="account-avatar" id="accountAvatar">—</div>
+          <h2 id="accountName">Имя и фамилия</h2>
+          <p id="accountTelegram">@username</p>
+          <button class="secondary full" data-go="profile-edit">Редактировать профиль</button>
+        </div>
+      </section>
+
+      <section class="screen" id="profile-edit">
+        <div class="page-title"><button class="back-btn" data-back>←</button><div><span class="eyebrow">КАРТОЧКА РЕЗИДЕНТА</span><h1>Заполнить профиль</h1></div></div>
+        <form class="form-card" id="profileForm">
+          <label class="photo-upload" id="profilePhotoUpload"><input type="file" accept="image/*" id="photoInput"><div class="photo-preview" id="photoPreview">—</div><div><strong>Добавить фотографию <b class="required-star">*</b></strong><span>Обязательно для завершения профиля</span></div></label><div class="profile-required-hint" id="profileRequiredHint">Поля со * обязательны. Без них, фотографии и согласия профиль не сохранится.</div>
+          <label><span class="field-title">Имя и фамилия <b class="required-star">*</b></span><input id="profileFullName" name="full_name" placeholder="Имя и фамилия" required autocomplete="name" enterkeyhint="next"></label>
+          <label><span class="field-title">Должность <b class="required-star">*</b></span><input id="profileRole" name="role" placeholder="Founder / CEO / Partner" required enterkeyhint="next"></label>
+          <label><span class="field-title">Компания <b class="required-star">*</b></span><input id="profileCompany" name="company" placeholder="Название компании" required enterkeyhint="next"></label>
+          <label><span class="field-title">Ниша <b class="required-star">*</b></span><input id="profileNiche" name="niche" placeholder="Например: IT-аутсорсинг" required enterkeyhint="next"></label>
+          <label><span class="field-title">Город <b class="required-star">*</b></span><input id="profileCity" name="city" placeholder="Miami, Florida" required autocomplete="address-level2" enterkeyhint="next"></label>
+          <label><span class="field-title">Сайт или соцсеть <em class="optional-mark">необязательно</em></span><input id="profileWebsite" name="website" placeholder="https://" inputmode="url" enterkeyhint="next"></label>
+          <label><span class="field-title">Коротко о бизнесе <b class="required-star">*</b></span><textarea id="profileAbout" name="about" placeholder="Чем занимается компания, масштаб и география" required></textarea></label>
+          <label><span class="field-title">Чем можешь быть полезен <b class="required-star">*</b></span><textarea id="profileUseful" name="useful" placeholder="Компетенции, связи, опыт" required></textarea></label>
+          <label><span class="field-title">Кого или что сейчас ищешь <em class="optional-mark">необязательно</em></span><textarea id="profileLooking" name="looking" placeholder="Партнёры, сотрудники, экспертиза"></textarea></label>
+          <label><span class="field-title">Email оплаты <b class="required-star">*</b></span><input id="profileEmail" name="email" type="email" inputmode="email" placeholder="name@example.com" required autocomplete="email" enterkeyhint="next"></label>
+          <label><span class="field-title">Telegram <b class="required-star">*</b></span><input id="profileTelegram" name="telegram_username" placeholder="@username" required autocomplete="off" enterkeyhint="next"></label>
+          <label><span class="field-title">Номер телефона <b class="required-star">*</b></span><input id="profilePhone" name="phone" type="tel" inputmode="tel" placeholder="Введите номер телефона" required autocomplete="tel" enterkeyhint="done"><span class="field-help">Используется только командой клуба и не отображается другим резидентам.</span></label>
+          <label class="profile-consent custom-consent is-checked" for="profilePublicConsent" aria-checked="true">
+            <input type="checkbox" id="profilePublicConsent" name="public_consent" required>
+            <span class="custom-checkbox" aria-hidden="true"></span>
+            <span class="consent-text">Разрешаю показывать мою карточку другим резидентам <b class="required-star">*</b></span>
+          </label>
+          <button class="primary full" type="submit">Сохранить профиль</button>
+        </form>
+      </section>
+
+      <section class="screen" id="team">
+        <div class="page-title"><button class="back-btn" data-back>←</button><div><span class="eyebrow">КОМАНДА NK</span><h1>Кто рядом</h1></div></div>
+        <div class="team-list">
+          <article class="team-card"><div class="member-avatar">IP</div><div><strong>Илья Прусенко</strong><span>Founder & Managing Member</span><small>Стратегия клуба, развитие и партнёрства</small></div></article>
+          <article class="team-card"><div class="member-avatar">AS</div><div><strong>Алина</strong><span>CFO & Club Operations</span><small>Резидентский сервис, процессы, оплаты и события</small></div></article>
+          <article class="team-card"><div class="member-avatar">AL</div><div><strong>Алекс</strong><span>Resident Manager</span><small>Регистрация, коммуникация и помощь резидентам</small></div></article>
+        </div>
+        <button class="primary full" data-go="support">Связаться с командой</button>
+      </section>
+
+      <!-- PROFILE -->
+      <section class="screen" id="profile">
+        <div class="page-title">
+          <button class="back-btn" data-back>←</button>
+          <div><span class="eyebrow">ЛИЧНЫЙ КАБИНЕТ</span><h1>Резидентство</h1></div>
+        </div>
+        <div class="membership-card membership-card-v8 profile-membership-card" id="profileMembershipCard">
+          <div class="membership-top">
+            <div>
+              <span class="eyebrow inverse">NK RESIDENT</span>
+              <h2 id="profileMembershipType">Загружаем данные...</h2>
+            </div>
+            <span class="status-pill light" id="profileMembershipStatus">...</span>
+          </div>
+          <div class="tenure-block tenure-block-v8">
+            <strong id="profileDaysCount">—</strong>
+            <span>дней в NK</span>
+          </div>
+          <div class="membership-details membership-details-v8">
+            <div><span>Дата вступления</span><strong id="profileJoinDate">—</strong></div>
+            <div><span>Резидентство до</span><strong id="profileEndDate">—</strong></div>
+          </div>
+          <div class="membership-data-note" id="profileMembershipDataNote" hidden></div>
+          <button class="membership-manage-btn" id="profileMembershipManageBtn">Управление подпиской</button>
+        </div>
+        <h2 class="profile-possibilities-title">Изучи возможности клуба</h2>
+        <div class="profile-possibilities">
+          <button data-go="analysis"><span>🎙️</span><div><strong>Записаться на разбор</strong><small>Получить персональный разбор бизнеса от Ильи.</small></div></button>
+          <button data-go="tracking"><span>🚀</span><div><strong>Трекинг</strong><small>Взять задачи в работу и двигаться к результату с группой.</small></div></button>
+          <button data-go="knowledge"><span>🎓</span><div><strong>Академия</strong><small>Курсы, разборы участников и материалы для роста.</small></div></button>
+          <button data-go="members"><span>👥</span><div><strong>Резиденты</strong><small>Каталог участников и полезные знакомства внутри NK.</small></div></button>
+          <button data-go="support" data-support-topic="Вопрос Илье"><span>❓</span><div><strong>Задать вопрос Илье</strong><small>Задать прямой вопрос по бизнесу.</small></div></button>
+          <button data-go="support" data-support-topic="Задать вопрос команде"><span>💬</span><div><strong>Связаться с командой</strong><small>Организационные вопросы, доступ и поддержка.</small></div></button>
+        </div>
+      </section>
+
+      <section class="screen" id="legal-doc-viewer">
+        <div class="page-title"><button class="back-btn" data-back>←</button><div><span class="eyebrow">ДОКУМЕНТ NK</span><h1 id="legalDocTitle">Документ</h1></div></div>
+        <div class="inline-doc-shell"><iframe id="legalDocFrame" title="Документ NK"></iframe></div>
+      </section>
+
+      <!-- LEGAL CENTER -->
+      <section class="screen" id="legal">
+        <div class="page-title"><button class="back-btn" data-back>←</button><div><span class="eyebrow">ШАГ 2 ИЗ 2</span><h1>Документы клуба</h1></div></div>
+        <div class="legal-hero"><span class="eyebrow inverse">NK MEMBERS</span><h2>Ознакомься с документами</h2><p>Каждый документ можно открыть и прочитать. Подтверждение — одно для всего юридического пакета.</p></div>
+        <div class="legal-list nk-legal-list">
+          <button class="legal-row" data-go="legal-terms"><span class="legal-index">01</span><div><strong>Пользовательское соглашение</strong><small>Правила использования NK MEMBERS</small></div><em>→</em></button>
+          <button class="legal-row" data-go="legal-offer"><span class="legal-index">02</span><div><strong>Публичная оферта</strong><small>Условия предоставления сервиса</small></div><em>→</em></button>
+          <button class="legal-row" data-go="legal-privacy"><span class="legal-index">03</span><div><strong>Политика конфиденциальности</strong><small>Обработка и защита данных</small></div><em>→</em></button>
+          <button class="legal-row" data-go="legal-refund"><span class="legal-index">04</span><div><strong>Политика возврата</strong><small>Порядок возврата денежных средств</small></div><em>→</em></button>
+          <button class="legal-row" data-go="legal-data-consent"><span class="legal-index">05</span><div><strong>Согласие на обработку данных</strong><small>Персональные данные пользователя</small></div><em>→</em></button>
+          <button class="legal-row" data-go="legal-marketing"><span class="legal-index">06</span><div><strong>Согласие на сообщения</strong><small>Информационные и рекламные материалы</small></div><em>→</em></button>
+          <button class="legal-row" data-go="legal-code"><span class="legal-index">07</span><div><strong>Правила сообщества</strong><small>Принципы участия в NK MEMBERS</small></div><em>→</em></button>
+        </div>
+        <div class="legal-acceptance nk-package-accept"><label><input type="checkbox" id="nkLegalPackageCheck"><span>Я ознакомился(ась) и принимаю юридический пакет NK MEMBERS</span></label><button class="primary full" id="nkLegalPackageBtn" disabled>Подписать и открыть доступ</button></div>
+      </section>
+
+      <section class="screen legal-document-screen" id="legal-terms">
+        <div class="page-title"><button class="back-btn" data-back>←</button><div><span class="eyebrow">ЮРИДИЧЕСКАЯ ИНФОРМАЦИЯ NK</span><h1>Пользовательское соглашение</h1></div></div>
+        <article class="legal-document nk-legal-text">
+          <p class="legal-effective">Редакция: август 2026 года</p>
+          <div class="legal-warning"><strong>Оператор сервиса:</strong> Индивидуальный предприниматель Прусенко Илья Николаевич<br><strong>Контактное лицо:</strong> Илья Прусенко</div>
+          <p>ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ​</p>
+<h3>1. ОБЩИЕ ПОЛОЖЕНИЯ</h3>
+<h3>1.1. Настоящее Пользовательское соглашение (далее — «Соглашение») определяет</h3>
+<p>условия использования цифрового сервиса NK | MEMBERS (далее — «Сервис»), а также регулирует права, обязанности и ответственность Индивидуального предпринимателя Прусенко Ильи Николаевича (далее — «Исполнитель») и физического лица, использующего Сервис (далее — «Пользователь»).</p>
+<h3>1.2. Сервис NK | MEMBERS представляет собой закрытое</h3>
+<p>информационно-консультационное сообщество для предпринимателей и специалистов, функционирующее на основе модели подписки и предоставляющее Пользователям доступ к цифровым информационным материалам, библиотеке знаний, аналитическим материалам, онлайн-разборам, закрытым мероприятиям, цифровым сервисам и иным возможностям, предусмотренным выбранным тарифом.</p>
+<h3>1.3. Сервис не является образовательной организацией, не осуществляет</h3>
+<p>образовательную деятельность, подлежащую лицензированию, не реализует образовательные программы в понимании Федерального закона № 273-ФЗ «Об образовании в Российской Федерации», не проводит итоговую аттестацию и не выдает документы об образовании или квалификации.</p>
+<h3>1.4. Материалы, размещенные в Сервисе, носят исключительно информационный,</h3>
+<p>консультационный, аналитический и ознакомительный характер и предназначены для самостоятельного использования Пользователем.</p>
+<h3>1.5. Использование Сервиса означает полное и безоговорочное принятие</h3>
+<p>Пользователем условий настоящего Соглашения, Политики конфиденциальности, Публичной оферты, Правил сообщества и иных документов Исполнителя.</p>
+<h3>1.6. В случае несогласия с условиями настоящего Соглашения Пользователь обязан</h3>
+<p>прекратить использование Сервиса и не оформлять подписку.</p>
+<h3>1.7. Пользователь подтверждает свою гражданскую дееспособность и право</h3>
+<p>заключать настоящий договор.</p>
+<h3>1.8. Использование Сервиса допускается исключительно в законных целях и не</h3>
+<p>должно нарушать законодательство Российской Федерации, права третьих лиц и положения настоящего Соглашения.</p>
+<h3>1.9. Исполнитель вправе привлекать третьих лиц для обеспечения работы Сервиса,</h3>
+<p>включая платежные системы, облачные сервисы, подрядчиков и технических партнеров.</p>
+<h3>1.10. Исполнитель вправе изменять функциональные возможности Сервиса,</h3>
+<p>интерфейс, состав материалов и перечень сервисов при сохранении оплаченного объема доступа Пользователя.</p>
+<h3>1.11. Настоящее Соглашение вступает в силу с момента регистрации, оплаты</h3>
+<p>подписки либо начала использования Сервиса.</p>
+<h3>1.12. Во всем, что не урегулировано настоящим Соглашением, стороны</h3>
+<p>руководствуются законодательством Российской Федерации.</p>
+<h3>2. ТЕРМИНЫ И ОПРЕДЕЛЕНИЯ</h3>
+<h3>2.1. Сервис цифровая платформа NK | MEMBERS, включающая Telegram-канал,</h3>
+<p>Mini App, библиотеку материалов, онлайн-мероприятия и иные цифровые сервисы.</p>
+<h3>2.2. Исполнитель Индивидуальный предприниматель Прусенко Илья Николаевич,</h3>
+<p>предоставляющий Пользователю доступ к Сервису.</p>
+<h3>2.3. Пользователь физическое лицо, принявшее условия настоящего Соглашения и</h3>
+<p>получившее доступ к Сервису.</p>
+<h3>2.4. Подписка возмездное право временного доступа к функционалу Сервиса на</h3>
+<p>оплаченный период с автоматическим продлением до момента отмены Пользователем или Исполнителем в случаях, предусмотренных документами Сервиса.</p>
+<h3>2.5. Личный доступ индивидуальный доступ Пользователя к Сервису, не</h3>
+<p>подлежащий передаче третьим лицам.</p>
+<h3>2.6. Контент любые текстовые материалы, видео, аудио, записи эфиров, шаблоны,</h3>
+<p>документы, презентации, изображения и иные материалы, размещенные в Сервисе.</p>
+<h3>2.7. Онлайн-разбор информационно-консультационная встреча, проводимая</h3>
+<p>дистанционно посредством сервисов видеоконференцсвязи.</p>
+<h3>2.8. Библиотека закрытый раздел Сервиса с цифровыми материалами и архивом</h3>
+<p>записей.</p>
+<h3>2.9. Сообщество совокупность Пользователей, имеющих действующую подписку и</h3>
+<p>соблюдающих Правила сообщества.</p>
+<h3>2.10. Тариф совокупность условий доступа, стоимости и функциональных</h3>
+<p>возможностей, предоставляемых Пользователю.</p>
+<h3>2.11. Персональные данные любая информация, относящаяся к прямо или</h3>
+<p>косвенно определенному Пользователю, обрабатываемая Исполнителем в соответствии с законодательством РФ.</p>
+<h3>2.12. Акцепт полное и безоговорочное принятие условий документов NK |</h3>
+<p>MEMBERS путем регистрации, оплаты либо начала использования Сервиса.</p>
+<h3>2.13. Интеллектуальная собственность результаты интеллектуальной</h3>
+<p>деятельности и средства индивидуализации, принадлежащие Исполнителю либо используемые им на законных основаниях.</p>
+<h3>2.14. Стороны Исполнитель и Пользователь совместно.</h3>
+<h3>2.15. Термины, не определенные настоящим разделом, толкуются в соответствии с</h3>
+<p>законодательством Российской Федерации, обычаями делового оборота и смыслом соответствующих положений настоящего Соглашения.</p>
+<h3>3. ПРЕДМЕТ СОГЛАШЕНИЯ</h3>
+<h3>3.1. Настоящее Соглашение регулирует отношения между Исполнителем и</h3>
+<p>Пользователем, возникающие в связи с предоставлением доступа к цифровому сервису NK | MEMBERS на условиях платной подписки.</p>
+<h3>3.2. Исполнитель предоставляет Пользователю неисключительное, непередаваемое</h3>
+<p>и ограниченное право доступа к функционалу Сервиса на срок действия оплаченной подписки.</p>
+<h3>3.3. В состав Сервиса могут входить: закрытый Telegram-канал, Telegram Mini App,</h3>
+<p>библиотека цифровых материалов, записи онлайн-разборов, аналитические материалы, шаблоны документов, чек-листы, онлайн-встречи, мероприятия, а также иные цифровые сервисы, объявленные Исполнителем.</p>
+<h3>3.4. Перечень материалов и возможностей Сервиса не является фиксированным.</h3>
+<p>Исполнитель вправе дополнять, изменять, обновлять или исключать отдельные материалы и функции при условии сохранения общего характера предоставляемого сервиса.</p>
+<h3>3.5. Предоставляемые материалы носят информационно-консультационный</h3>
+<p>характер и предназначены для самостоятельного использования Пользователем. Исполнитель не принимает управленческие, инвестиционные, юридические, налоговые либо иные решения за Пользователя.</p>
+<h3>3.6. Исполнитель не гарантирует достижение Пользователем конкретных</h3>
+<p>финансовых, предпринимательских, профессиональных либо иных результатов вследствие использования Сервиса. Любые результаты зависят от действий, опыта, компетенций и иных обстоятельств, находящихся вне контроля Исполнителя.</p>
+<h3>3.7. Доступ предоставляется исключительно одному Пользователю. Передача</h3>
+<p>учетной записи, ссылок, материалов или доступа третьим лицам запрещена, если иное прямо не согласовано Исполнителем.</p>
+<h3>3.8. Пользователь обязуется использовать Сервис исключительно в законных целях,</h3>
+<p>соблюдать настоящее Соглашение, Правила сообщества и уважать права других участников.</p>
+<h3>3.9. Оплата подписки предоставляет право доступа к Сервису, но не означает</h3>
+<p>перехода или передачи Пользователю каких-либо исключительных прав на материалы Сервиса.</p>
+<h3>3.10. Заключая настоящее Соглашение, Пользователь подтверждает, что</h3>
+<p>ознакомился с функциональными возможностями Сервиса, понимает характер предоставляемых услуг и принимает условия настоящего Соглашения в полном объеме.</p>
+<h3>4. РЕГИСТРАЦИЯ, УЧЕТНАЯ ЗАПИСЬ И ПОРЯДОК</h3>
+<p>ПРЕДОСТАВЛЕНИЯ ДОСТУПА</p>
+<h3>4.1. Для получения доступа к Сервису Пользователь проходит регистрацию</h3>
+<p>посредством Telegram-бота, Telegram Mini App либо иного интерфейса, определенного Исполнителем.</p>
+<h3>4.2. При регистрации Пользователь предоставляет достоверные сведения,</h3>
+<p>необходимые для идентификации, оформления подписки и исполнения обязательств Исполнителя. Пользователь несет ответственность за актуальность предоставленных данных.</p>
+<h3>4.3. Доступ к Сервису предоставляется после успешного оформления подписки и</h3>
+<p>подтверждения поступления оплаты, если иное не предусмотрено условиями конкретного тарифа или акцией Исполнителя.</p>
+<h3>4.4. Учетная запись и предоставленный доступ являются персональными.</h3>
+<p>Пользователь не вправе передавать свои учетные данные, ссылку на Mini App, доступ к закрытому Telegram-каналу либо иные способы авторизации третьим лицам.</p>
+<h3>4.5. Пользователь обязан незамедлительно уведомить Исполнителя при</h3>
+<p>обнаружении несанкционированного доступа к своей учетной записи либо при наличии оснований полагать, что такие данные стали известны третьим лицам.</p>
+<h3>4.6. Исполнитель вправе использовать технические средства для выявления случаев</h3>
+<p>совместного использования одной учетной записи несколькими лицами, массового скачивания материалов, автоматизированного доступа либо иных действий, нарушающих настоящее Соглашение.</p>
+<h3>4.7. В случае выявления нарушений Исполнитель вправе временно ограничить</h3>
+<p>доступ к Сервису, запросить дополнительную идентификацию Пользователя либо прекратить доступ в порядке, установленном настоящим Соглашением.</p>
+<h3>4.8. Пользователь самостоятельно обеспечивает наличие технических средств и</h3>
+<p>доступа к сети Интернет, необходимых для использования Сервиса. Исполнитель не несет ответственности за невозможность использования Сервиса по причинам, связанным с оборудованием, программным обеспечением, качеством интернет-соединения или действиями третьих лиц.</p>
+<h3>4.9. Исполнитель вправе проводить технические работы, обновления,</h3>
+<p>профилактическое обслуживание и модернизацию Сервиса. При возможности Пользователи уведомляются о плановых работах заранее. Время проведения таких работ не считается нарушением обязательств Исполнителя.</p>
+<h3>4.10. Предоставление доступа к отдельным разделам Сервиса может зависеть от</h3>
+<p>выбранного тарифа, статуса подписки, выполнения дополнительных условий либо прохождения проверки, если это предусмотрено правилами соответствующего раздела Сервиса.</p>
+<h3>4.11. Исполнитель вправе отказать в предоставлении доступа либо прекратить</h3>
+<p>доступ Пользователя при наличии оснований полагать, что регистрация произведена с нарушением законодательства Российской Федерации, настоящего Соглашения или с использованием недостоверных сведений.</p>
+<h3>4.12. Прекращение действия подписки, ее отмена либо непоступление очередного</h3>
+<p>платежа влечет прекращение доступа к материалам и функциональным возможностям Сервиса, если иное прямо не предусмотрено Исполнителем.</p>
+<h3>5. ПОДПИСКА, СТОИМОСТЬ УСЛУГ, ПОРЯДОК ОПЛАТЫ И</h3>
+<p>АВТОМАТИЧЕСКОЕ ПРОДЛЕНИЕ</p>
+<h3>5.1. Доступ к Сервису предоставляется на условиях возмездной подписки. Размер,</h3>
+<p>период действия и состав функциональных возможностей определяются выбранным Пользователем тарифом и информацией, опубликованной Исполнителем на момент оформления подписки.</p>
+<h3>5.2. На дату принятия настоящего Соглашения базовая стоимость подписки</h3>
+<p>составляет 4 900 (четыре тысячи девятьсот) рублей за расчетный период один календарный месяц. Исполнитель вправе изменять стоимость подписки для новых пользователей либо при продлении действующей подписки при условии предварительного уведомления Пользователя.</p>
+<h3>5.3. Оплата осуществляется посредством платежных сервисов, подключенных</h3>
+<p>Исполнителем. Пользователь самостоятельно выбирает способ оплаты из числа доступных на момент совершения платежа.</p>
+<h3>5.4. При использовании банковской карты либо иного платежного инструмента</h3>
+<p>Пользователь подтверждает, что является его законным владельцем либо имеет законные основания для использования такого платежного средства.</p>
+<h3>5.5. Исполнитель не хранит полные реквизиты банковских карт Пользователей.</h3>
+<p>Обработка платежей осуществляется оператором платежной системы в соответствии с его правилами и требованиями законодательства.</p>
+<h3>5.6. Подписка считается оформленной с момента успешного подтверждения</h3>
+<p>платежной операцией и поступления информации об оплате Исполнителю.</p>
+<h3>5.7. Подписка предусматривает автоматическое продление на очередной расчетный</h3>
+<p>период путем автоматического списания денежных средств с выбранного Пользователем платежного средства, если автоматическое продление не было отключено до даты очередного списания.</p>
+<h3>5.8. Пользователь соглашается на автоматическое списание денежных средств в</h3>
+<p>размере стоимости действующего тарифа в целях непрерывного предоставления доступа к Сервису.</p>
+<h3>5.9. Пользователь вправе отменить автоматическое продление подписки в любое</h3>
+<p>время через предусмотренный Исполнителем способ управления подпиской. После отмены доступ сохраняется до окончания уже оплаченного периода, если иное не предусмотрено законодательством Российской Федерации.</p>
+<h3>5.10. Если очередной платеж не может быть списан по причинам, зависящим от</h3>
+<p>банка, платежной системы либо Пользователя, Исполнитель вправе временно приостановить доступ до момента успешного поступления оплаты.</p>
+<h3>5.11. Исполнитель вправе предоставлять скидки, промокоды, специальные</h3>
+<p>предложения и бесплатные пробные периоды. Такие предложения действуют исключительно на условиях, опубликованных Исполнителем, и не изменяют общие положения настоящего Соглашения.</p>
+<h3>5.12. Все комиссии банков, платежных систем и операторов связи, возникающие</h3>
+<p>при осуществлении платежа, оплачиваются Пользователем самостоятельно, если иное прямо не указано Исполнителем.</p>
+<h3>5.13. Обязанность Исполнителя по предоставлению доступа считается исполненной</h3>
+<p>с момента открытия Пользователю возможности использовать функциональные возможности Сервиса независимо от фактического использования Пользователем предоставленного доступа.</p>
+<h3>5.14. Возврат денежных средств осуществляется в порядке, установленном</h3>
+<p>Публичной офертой, Политикой возврата и действующим законодательством Российской Федерации.</p>
+<h3>6. ПРАВА И ОБЯЗАННОСТИ СТОРОН</h3>
+<h3>6.1. Исполнитель обязуется:</h3>
+<p class="legal-bullet">​ предоставить Пользователю доступ к Сервису после выполнения условий</p>
+<p>оплаты;</p>
+<p class="legal-bullet">​ обеспечивать работоспособность Сервиса в разумных пределах с учетом</p>
+<p>проведения технических работ;</p>
+<p class="legal-bullet">​ принимать разумные меры по защите персональных данных Пользователя;</p>
+<p class="legal-bullet">​ информировать Пользователя о существенных изменениях условий</p>
+<p>использования Сервиса;</p>
+<h3>6.2. Исполнитель вправе:</h3>
+<p class="legal-bullet">​ изменять функциональные возможности, интерфейс и состав материалов</p>
+<p>Сервиса;</p>
+<p class="legal-bullet">​ обновлять библиотеку материалов, удалять устаревший контент и публиковать</p>
+<p>новый;</p>
+<p class="legal-bullet">​ изменять стоимость подписки в порядке, предусмотренном документами</p>
+<p>Сервиса;</p>
+<p class="legal-bullet">​ привлекать третьих лиц для исполнения своих обязательств;</p>
+<p class="legal-bullet">​ приостанавливать доступ Пользователя при нарушении настоящего</p>
+<p>Соглашения;</p>
+<p class="legal-bullet">​ запрашивать подтверждение личности при наличии признаков неправомерного</p>
+<p>использования учетной записи;</p>
+<h3>6.3. Пользователь обязуется:</h3>
+<p class="legal-bullet">​ соблюдать настоящее Соглашение и Правила сообщества;</p>
+<p class="legal-bullet">​ предоставлять достоверные сведения при регистрации;</p>
+<p class="legal-bullet">​ не передавать доступ к Сервису третьим лицам;</p>
+<p class="legal-bullet">​ не копировать, не распространять и не публиковать материалы Сервиса без</p>
+<p>письменного разрешения Исполнителя;</p>
+<p class="legal-bullet">​ не использовать автоматизированные средства для скачивания материалов;</p>
+<p class="legal-bullet">​ уважительно относиться к другим участникам сообщества;</p>
+<h3>6.4. Пользователю запрещается:</h3>
+<p class="legal-bullet">​ использовать Сервис в противоправных целях;</p>
+<p class="legal-bullet">​ размещать материалы, нарушающие законодательство РФ или права третьих</p>
+<p>лиц;</p>
+<p class="legal-bullet">​ осуществлять массовую рассылку рекламы, спам или навязчивые коммерческие</p>
+<p>предложения;</p>
+<p class="legal-bullet">​ пытаться получить несанкционированный доступ к технической</p>
+<p>инфраструктуре Сервиса;</p>
+<p class="legal-bullet">​ выдавать себя за другого пользователя либо представителя Исполнителя;</p>
+<h3>6.5.</h3>
+<p class="legal-bullet">​ Нарушение обязанностей, предусмотренных настоящим разделом, может</p>
+<p>являться основанием для ограничения либо прекращения доступа Пользователя без ущерба иным правам Исполнителя, предусмотренным настоящим Соглашением и законодательством Российской Федерации.</p>
+<h3>7. ИНТЕЛЛЕКТУАЛЬНАЯ СОБСТВЕННОСТЬ</h3>
+<h3>7.1. Все объекты, размещенные в Сервисе NK | MEMBERS, включая текстовые</h3>
+<p>материалы, видеозаписи, аудиозаписи, презентации, шаблоны документов, изображения, графические элементы, логотипы, фирменное наименование, дизайн интерфейса, базы данных, методические материалы, подборки контента и иные результаты интеллектуальной деятельности, являются объектами интеллектуальной собственности и охраняются законодательством Российской Федерации.</p>
+<h3>7.2. Исключительные права на объекты интеллектуальной собственности</h3>
+<p>принадлежат Исполнителю либо используются им на законных основаниях в соответствии с договорами с правообладателями.</p>
+<h3>7.3. Оплата подписки предоставляет Пользователю исключительно ограниченное,</h3>
+<p>неисключительное, непередаваемое право личного использования материалов Сервиса в течение срока действия подписки. Исключительные права на материалы Пользователю не передаются.</p>
+<h3>7.4. Пользователю запрещается полностью или частично копировать,</h3>
+<p>воспроизводить, распространять, публиковать, продавать, лицензировать, переводить, перерабатывать, размещать в открытом доступе, передавать третьим лицам либо иным образом использовать материалы Сервиса вне целей личного использования без предварительного письменного согласия Исполнителя.</p>
+<h3>7.5. Запрещается запись, скачивание, массовое архивирование, автоматизированный</h3>
+<p>сбор материалов, использование программных средств, скриптов, ботов, технологий искусственного интеллекта или иных инструментов для создания производных баз знаний либо повторного распространения материалов Сервиса без письменного разрешения Исполнителя.</p>
+<h3>7.6. Пользователь вправе использовать полученные материалы исключительно для</h3>
+<p>собственного профессионального развития и ведения своей деятельности без нарушения исключительных прав Исполнителя.</p>
+<h3>7.7. При обнаружении фактов незаконного распространения материалов</h3>
+<p>Исполнитель вправе потребовать прекращения нарушения, удаления материалов, возмещения убытков и применения иных способов защиты прав, предусмотренных гражданским законодательством Российской Федерации.</p>
+<h3>7.8. Пользователь несет ответственность за нарушение исключительных прав в</h3>
+<p>соответствии с законодательством Российской Федерации и настоящим Соглашением.</p>
+<h3>7.9. Прекращение действия подписки не прекращает обязанность Пользователя</h3>
+<p>соблюдать положения настоящего раздела. Ограничения на использование объектов интеллектуальной собственности сохраняют силу бессрочно в пределах срока действия исключительных прав.</p>
+<h3>8. ОНЛАЙН-РАЗБОРЫ, МЕРОПРИЯТИЯ И ВЗАИМОДЕЙСТВИЕ В</h3>
+<p>СООБЩЕСТВЕ</p>
+<h3>8.1. В рамках подписки Исполнитель вправе проводить онлайн-разборы, прямые</h3>
+<p>эфиры, вебинары, групповые созвоны, встречи сообщества, интервью, мастер-классы и иные мероприятия в дистанционном или очном формате.</p>
+<h3>8.2. Перечень, периодичность, продолжительность, формат и состав мероприятий</h3>
+<p>определяются Исполнителем самостоятельно и могут изменяться без предварительного согласования с Пользователями.</p>
+<h3>8.3. Участие Пользователя в мероприятиях осуществляется добровольно.</h3>
+<p>Невозможность участия по личным причинам не является основанием для продления подписки, перерасчета стоимости либо возврата денежных средств, если иное не предусмотрено законодательством Российской Федерации.</p>
+<h3>8.4. Исполнитель вправе осуществлять аудио-, фото- и видеозапись мероприятий в</h3>
+<p>целях обеспечения работы Сервиса, подготовки обучающих материалов, внутреннего архива, контроля качества, маркетинга и продвижения проекта NK | MEMBERS.</p>
+<h3>8.5. Пользователь, принимая настоящее Соглашение, выражает согласие на</h3>
+<p>возможное попадание его изображения, голоса, имени или иных сведений, добровольно сообщенных во время мероприятий, в записи таких мероприятий. Отдельное согласие на обработку персональных данных и использование изображения оформляется в случаях, предусмотренных законодательством РФ.</p>
+<h3>8.6. Пользователь обязуется соблюдать нормы деловой этики, уважительно</h3>
+<p>относиться к другим участникам сообщества, не использовать оскорбительные выражения, угрозы, дискриминационные высказывания, ненормативную лексику, а также не совершать действий, способных нарушить нормальную работу сообщества.</p>
+<h3>8.7. Пользователю запрещается самостоятельно вести запись мероприятий,</h3>
+<p>транслировать их третьим лицам, публиковать записи, передавать ссылки для подключения или иным способом предоставлять доступ лицам, не имеющим действующей подписки, без письменного согласия Исполнителя.</p>
+<h3>8.8. Исполнитель вправе удалить Пользователя с мероприятия либо ограничить его</h3>
+<p>участие при нарушении настоящего Соглашения, Правил сообщества или законодательства Российской Федерации.</p>
+<h3>8.9. Высказанные экспертами, приглашенными спикерами и другими участниками</h3>
+<p>мнения являются их личной позицией и не рассматриваются как обязательные рекомендации, индивидуальные консультации, финансовые, инвестиционные, юридические либо налоговые советы.</p>
+<h3>8.10. Исполнитель не гарантирует достижение Пользователем какого-либо</h3>
+<p>коммерческого, финансового или иного результата вследствие участия в мероприятиях сообщества.</p>
+<h3>9. ОГРАНИЧЕНИЕ ОТВЕТСТВЕННОСТИ</h3>
+<h3>9.1. Сервис NK | MEMBERS представляет собой</h3>
+<p>информационно-консультационный сервис и закрытое предпринимательское сообщество. Материалы, публикуемые в Сервисе, предназначены исключительно для информационных целей и не являются индивидуальными юридическими, финансовыми, инвестиционными, налоговыми, медицинскими или иными профессиональными консультациями.</p>
+<h3>9.2. Пользователь самостоятельно принимает любые решения, основанные на</h3>
+<p>информации, полученной посредством Сервиса, и несет полную ответственность за последствия таких решений.</p>
+<h3>9.3. Исполнитель не гарантирует получение Пользователем прибыли, роста</h3>
+<p>доходов, привлечения клиентов, заключения сделок, достижения бизнес-результатов либо иных экономических показателей в результате использования Сервиса.</p>
+<h3>9.4. Исполнитель не несет ответственности за невозможность использования</h3>
+<p>Сервиса, вызванную обстоятельствами, не зависящими от него, включая перебои в работе сети Интернет, оборудования Пользователя, программного обеспечения, сервисов Telegram, платежных систем, хостинг-провайдеров и иных третьих лиц.</p>
+<h3>9.5. Исполнитель вправе временно ограничивать доступ к Сервису в связи с</h3>
+<p>обновлением, техническими работами, устранением неисправностей, модернизацией платформы или по причинам обеспечения информационной безопасности.</p>
+<h3>9.6. Исполнитель не отвечает за содержание сайтов, сервисов и ресурсов третьих</h3>
+<p>лиц, ссылки на которые могут размещаться в Сервисе, а также за последствия использования Пользователем таких ресурсов.</p>
+<h3>9.7. Пользователь подтверждает, что до оформления подписки ознакомился с</h3>
+<p>описанием Сервиса, его функциональными возможностями, условиями подписки и принимает их в полном объеме.</p>
+<h3>9.8. В максимально допустимой законодательством Российской Федерации степени</h3>
+<p>ответственность Исполнителя ограничивается размером денежных средств, фактически уплаченных Пользователем за последний оплаченный расчетный период подписки.</p>
+<h3>9.9. Исполнитель не несет ответственности за косвенные убытки, упущенную</h3>
+<p>выгоду, потерю деловой репутации, потерю данных либо иные неблагоприятные последствия, возникшие вследствие использования или невозможности использования Сервиса, если иное не предусмотрено императивными нормами законодательства Российской Федерации.</p>
+<h3>9.10. Ни одно положение настоящего раздела не ограничивает ответственность</h3>
+<p>Исполнителя в случаях, когда такое ограничение прямо запрещено законодательством Российской Федерации.</p>
+<h3>10. ПРИОСТАНОВЛЕНИЕ И ПРЕКРАЩЕНИЕ ДОСТУПА К СЕРВИСУ</h3>
+<h3>10.1. Исполнитель вправе временно приостановить либо полностью прекратить</h3>
+<p>доступ Пользователя к Сервису в случаях, предусмотренных настоящим Соглашением, Публичной офертой, Правилами сообщества или законодательством Российской Федерации.</p>
+<h3>10.2. Основаниями для ограничения или прекращения доступа могут являться, в</h3>
+<p>частности: нарушение условий настоящего Соглашения; передача доступа третьим лицам; распространение материалов Сервиса; использование автоматизированных средств получения контента; нарушение правил поведения в сообществе; размещение противоправного контента; совершение действий, способных причинить вред Исполнителю, другим Пользователям либо работе Сервиса.</p>
+<h3>10.3. При выявлении нарушения Исполнитель вправе без предварительного</h3>
+<p>уведомления временно ограничить доступ Пользователя до выяснения обстоятельств, если дальнейшее использование Сервиса может повлечь ущерб для Исполнителя или других Пользователей.</p>
+<h3>10.4. В случае подтверждения нарушения Исполнитель вправе прекратить доступ</h3>
+<p>Пользователя без возврата денежных средств, если такой возврат не предусмотрен императивными нормами законодательства Российской Федерации.</p>
+<h3>10.5. Приостановление или прекращение доступа не освобождает Пользователя от</h3>
+<p>исполнения обязательств, возникших до момента ограничения доступа, включая обязательства по соблюдению исключительных прав Исполнителя и требований о конфиденциальности.</p>
+<h3>10.6. Если доступ ограничен по ошибке либо вследствие технического сбоя,</h3>
+<p>Исполнитель принимает разумные меры для восстановления доступа в кратчайший возможный срок после подтверждения соответствующих обстоятельств.</p>
+<h3>10.7. Пользователь вправе самостоятельно прекратить использование Сервиса</h3>
+<p>путем отмены автоматического продления подписки. После окончания оплаченного периода доступ прекращается автоматически, если иное не предусмотрено условиями конкретного тарифа.</p>
+<h3>10.8. Удаление учетной записи Пользователя не прекращает действие положений</h3>
+<p>настоящего Соглашения, которые по своей природе сохраняют силу после прекращения отношений сторон, включая положения об интеллектуальной собственности, ответственности, порядке разрешения споров и обработке персональных данных в случаях, предусмотренных законодательством Российской Федерации.</p>
+<h3>10.9. Исполнитель вправе прекратить предоставление Сервиса полностью либо в</h3>
+<p>отношении отдельных функциональных возможностей. В таком случае Пользователи уведомляются в разумный срок, если это возможно с учетом конкретных обстоятельств.</p>
+<h3>10.10. Прекращение доступа к Сервису не препятствует Исполнителю использовать</h3>
+<p>ранее созданные обезличенные статистические данные, а также исполнять обязанности по хранению информации в случаях, установленных законодательством Российской Федерации.</p>
+<h3>11. ВОЗВРАТ ДЕНЕЖНЫХ СРЕДСТВ</h3>
+<h3>11.1. Порядок возврата денежных средств определяется настоящим Соглашением,</h3>
+<p>Публичной офертой, Политикой возврата, а также действующим законодательством Российской Федерации, включая Закон РФ «О защите прав потребителей» в части, подлежащей применению.</p>
+<h3>11.2. Поскольку доступ к цифровому контенту и функциональным возможностям</h3>
+<p>Сервиса предоставляется Пользователю непосредственно после подтверждения оплаты, обязательство Исполнителя по предоставлению доступа считается исполненным с момента открытия такого доступа.</p>
+<h3>11.3. Если Пользователь получил доступ к закрытому Telegram-каналу, библиотеке</h3>
+<p>материалов, Mini App, онлайн-мероприятиям либо иным цифровым материалам Сервиса, это учитывается при рассмотрении вопроса о возврате денежных средств в соответствии с законодательством Российской Федерации.</p>
+<h3>11.4. Возврат денежных средств осуществляется только по письменному</h3>
+<p>обращению Пользователя с указанием причин обращения, реквизитов платежа и данных, позволяющих идентифицировать Пользователя.</p>
+<h3>11.5. Исполнитель рассматривает заявление о возврате в разумный срок, но не</h3>
+<p>позднее срока, установленного действующим законодательством Российской Федерации.</p>
+<h3>11.6. Возврат денежных средств производится тем же способом оплаты, которым</h3>
+<p>была произведена оплата, если иной порядок не согласован сторонами либо не предусмотрен техническими возможностями платежной системы.</p>
+<h3>11.7. Денежные средства не подлежат возврату в случаях, когда Пользователь</h3>
+<p>утратил доступ к Сервису вследствие нарушения настоящего Соглашения, Правил сообщества либо законодательства Российской Федерации, если иное не предусмотрено обязательными нормами закона.</p>
+<h3>11.8. Неиспользование Пользователем предоставленного доступа, пропуск</h3>
+<p>онлайн-мероприятий, отсутствие активности в сообществе или отказ от использования материалов после получения доступа сами по себе не являются основанием для возврата денежных средств.</p>
+<h3>11.9. В случае удовлетворения требования о возврате доступ Пользователя к</h3>
+<p>Сервису прекращается с момента принятия решения о возврате либо с момента фактического перечисления денежных средств — в зависимости от характера оказываемых услуг и технической возможности Исполнителя.</p>
+<h3>11.10. Более детальный порядок возврата денежных средств определяется</h3>
+<p>отдельной Политикой возврата, являющейся неотъемлемой частью договорных документов NK | MEMBERS.</p>
+<h3>12. ПЕРСОНАЛЬНЫЕ ДАННЫЕ</h3>
+<h3>12.1. Обработка персональных данных Пользователя осуществляется</h3>
+<p>Исполнителем в соответствии с Федеральным законом Российской Федерации от</p>
+<h3>27.07.2006 №152-ФЗ «О персональных данных», иными применимыми</h3>
+<p>нормативными правовыми актами Российской Федерации, Политикой конфиденциальности и настоящим Соглашением.</p>
+<h3>12.2. Оформляя подписку, регистрируясь в Сервисе либо продолжая использовать</h3>
+<p>его функциональные возможности, Пользователь подтверждает, что ознакомился с Политикой конфиденциальности и выражает согласие на обработку своих персональных данных в объеме, необходимом для исполнения настоящего Соглашения.</p>
+<h3>12.3. Исполнитель вправе обрабатывать персональные данные Пользователя для</h3>
+<p>целей регистрации, предоставления доступа к Сервису, обработки платежей, направления информационных сообщений, технической поддержки, исполнения требований законодательства Российской Федерации, а также улучшения качества работы Сервиса.</p>
+<h3>12.4. Перечень обрабатываемых персональных данных определяется целями</h3>
+<p>обработки и может включать фамилию, имя, отчество (при наличии), адрес электронной почты, номер телефона, Telegram ID, сведения об оплате, IP-адрес, технические данные устройства и иные сведения, добровольно предоставленные Пользователем.</p>
+<h3>12.5. Исполнитель принимает необходимые правовые, организационные и</h3>
+<p>технические меры для защиты персональных данных от неправомерного или случайного доступа, уничтожения, изменения, блокирования, копирования, распространения и иных неправомерных действий.</p>
+<h3>12.6. Исполнитель вправе поручить обработку персональных данных третьим</h3>
+<p>лицам (операторам платежных систем, сервисам рассылок, облачным провайдерам, техническим подрядчикам и иным лицам), если это необходимо для исполнения настоящего Соглашения и допускается законодательством Российской Федерации.</p>
+<h3>12.7. Пользователь вправе обратиться к Исполнителю с запросом об уточнении,</h3>
+<p>обновлении, ограничении обработки либо удалении своих персональных данных в случаях и порядке, предусмотренных законодательством Российской Федерации.</p>
+<h3>12.8. Прекращение использования Сервиса не означает автоматического удаления</h3>
+<p>персональных данных, если их дальнейшее хранение необходимо для исполнения обязанностей Исполнителя, предусмотренных законодательством Российской Федерации.</p>
+<h3>12.9. Более подробные условия обработки персональных данных содержатся в</h3>
+<p>Политике конфиденциальности, являющейся самостоятельным документом и неотъемлемой частью договорной документации NK | MEMBERS.</p>
+<h3>13. ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ</h3>
+<h3>13.1. Настоящее Пользовательское соглашение вступает в силу с момента его</h3>
+<p>акцепта Пользователем и действует в течение всего периода использования Сервиса, а также в части обязательств, которые по своей природе сохраняют силу после прекращения использования Сервиса.</p>
+<h3>13.2. Акцептом настоящего Соглашения признается регистрация в Сервисе,</h3>
+<p>оформление подписки, оплата услуг либо фактическое использование функциональных возможностей NK | MEMBERS.</p>
+<h3>13.3. Исполнитель вправе в одностороннем порядке изменять настоящее</h3>
+<p>Соглашение. Новая редакция вступает в силу с момента ее публикации, если иной срок не указан в самой редакции документа.</p>
+<h3>13.4. Продолжение использования Сервиса после вступления изменений в силу</h3>
+<p>означает согласие Пользователя с новой редакцией Соглашения.</p>
+<h3>13.5. Если какое-либо положение настоящего Соглашения будет признано</h3>
+<p>недействительным или неисполнимым, это не влияет на действительность остальных положений документа.</p>
+<h3>13.6. Все споры и разногласия стороны стремятся урегулировать путем переговоров</h3>
+<p>и направления письменной претензии. При недостижении соглашения спор подлежит рассмотрению в порядке, установленном законодательством Российской Федерации.</p>
+<h3>13.7. К отношениям сторон применяется право Российской Федерации.</h3>
+<h3>13.8. Во всем, что не урегулировано настоящим Соглашением, стороны</h3>
+<p>руководствуются законодательством Российской Федерации, Публичной офертой, Политикой конфиденциальности, Политикой возврата и иными документами NK | MEMBERS.</p>
+<h3>13.9. Актуальная редакция настоящего Пользовательского соглашения размещается</h3>
+<p>Исполнителем в открытом доступе и доступна Пользователю до момента оформления подписки.</p>
+<h3>13.10. Реквизиты Исполнителя, сведения об операторе персональных данных и иная</h3>
+<p>обязательная информация указываются в соответствующих разделах Публичной оферты либо иных официальных документах проекта.</p>
+        </article>
+      </section>
+
+      <section class="screen legal-document-screen" id="legal-offer">
+        <div class="page-title"><button class="back-btn" data-back>←</button><div><span class="eyebrow">ЮРИДИЧЕСКАЯ ИНФОРМАЦИЯ NK</span><h1>Публичная оферта</h1></div></div>
+        <article class="legal-document nk-legal-text">
+          <p class="legal-effective">Редакция: август 2026 года</p>
+          <div class="legal-warning"><strong>Оператор сервиса:</strong> Индивидуальный предприниматель Прусенко Илья Николаевич<br><strong>Контактное лицо:</strong> Илья Прусенко</div>
+          <p>ПУБЛИЧНАЯ ОФЕРТА​</p>
+<h3>Раздел 1. Общие положения</h3>
+<h3>1.1. Настоящий документ является официальным предложением Индивидуального</h3>
+<p>предпринимателя Прусенко Ильи Николаевича (далее — «Исполнитель») заключить договор возмездного оказания информационно-консультационных услуг посредством сервиса NK | MEMBERS на условиях настоящей Публичной оферты (далее — «Оферта»).</p>
+<h3>1.2. Настоящая Оферта разработана в соответствии со статьями 435, 437, 438,</h3>
+<p>779–783 Гражданского кодекса Российской Федерации и является публичной офертой.</p>
+<h3>1.3. Акцептом Оферты признается совершение Заказчиком действий,</h3>
+<p>свидетельствующих о полном и безоговорочном принятии ее условий, включая регистрацию в Сервисе, оформление подписки, оплату услуг, получение доступа к функционалу Сервиса либо иное использование Сервиса.</p>
+<h3>1.4. С момента акцепта между Исполнителем и Заказчиком считается заключенным</h3>
+<p>договор возмездного оказания информационно-консультационных услуг на условиях настоящей Оферты.</p>
+<h3>1.5. Услуги Исполнителя носят исключительно информационно-консультационный</h3>
+<p>характер, оказываются дистанционно посредством сети Интернет и цифровых сервисов и не являются образовательной деятельностью, не сопровождаются итоговой аттестацией и выдачей документов государственного образца.</p>
+<h3>1.6. Настоящая Оферта регулирует порядок предоставления платного доступа к</h3>
+<p>сервису NK | MEMBERS, включая оформление подписки, оплату услуг, предоставление доступа, права и обязанности сторон, основания прекращения договора и иные правоотношения, возникающие между Исполнителем и Заказчиком.</p>
+<h3>1.7. Совершая акцепт Оферты, Заказчик подтверждает свою дееспособность,</h3>
+<p>ознакомление с условиями настоящего документа, добровольное принятие всех его положений и отсутствие каких-либо оговорок.</p>
+<h3>1.8. Исполнитель вправе в любое время изменять условия настоящей Оферты путем</h3>
+<p>публикации новой редакции. Новая редакция вступает в силу с момента ее размещения, если иной срок не указан в тексте новой редакции.</p>
+<h3>1.9. Продолжение использования Сервиса после вступления в силу новой редакции</h3>
+<p>Оферты означает согласие Заказчика с внесенными изменениями.</p>
+<h3>1.10. Во всем, что не урегулировано настоящей Офертой, стороны руководствуются</h3>
+<p>законодательством Российской Федерации.</p>
+<h3>Раздел 2. Термины и определения</h3>
+<h3>2.1. Для целей настоящей Оферты нижеприведенные термины используются в</h3>
+<p>следующем значении. «Исполнитель» Индивидуальный предприниматель Прусенко Илья Николаевич, оказывающий информационно-консультационные услуги посредством сервиса NK | MEMBERS. «Заказчик» Физическое лицо, индивидуальный предприниматель либо представитель юридического лица, акцептовавший настоящую Оферту. «Сервис» Цифровая экосистема NK | MEMBERS, включая Telegram-бот, Telegram Mini App, закрытые каналы, чаты, сайт, личный кабинет и иные цифровые инструменты Исполнителя. «Подписка» Возмездное предоставление Заказчику доступа к функционалу Сервиса на определенный период с возможностью автоматического продления. «Услуги» Информационно-консультационные услуги, доступ к материалам, мероприятиям, цифровым сервисам и иным возможностям, предусмотренным выбранным тарифом. «Контент» Любые текстовые, графические, аудио-, видео-, фото- и иные материалы, размещенные Исполнителем в Сервисе. «Личный кабинет» Персональная часть Сервиса, используемая Заказчиком для получения доступа к услугам и управления подпиской. «Тариф» Стоимость, состав и срок предоставления услуг, опубликованные Исполнителем на официальных ресурсах проекта.</p>
+<h3>2.2. Термины, не определенные настоящей Офертой, толкуются в соответствии с</h3>
+<p>законодательством Российской Федерации, обычаями делового оборота и их общепринятым значением.</p>
+<h3>2.3. Слова в единственном числе включают множественное число, если из</h3>
+<p>содержания документа не следует иное.</p>
+<h3>2.4. Заголовки разделов используются исключительно для удобства восприятия и не</h3>
+<p>влияют на толкование положений настоящей Оферты.</p>
+<h3>Раздел 3. Предмет договора</h3>
+<h3>3.1. В соответствии с настоящей Офертой Исполнитель обязуется предоставить</h3>
+<p>Заказчику информационно-консультационные услуги посредством сервиса NK | MEMBERS, а Заказчик обязуется оплатить такие услуги на условиях настоящей Оферты.</p>
+<h3>3.2. Услуги оказываются дистанционно с использованием сети Интернет, Telegram,</h3>
+<p>Telegram Mini App, закрытых каналов, чатов, сайта и иных цифровых сервисов Исполнителя.</p>
+<h3>3.3. В состав услуг, в зависимости от выбранного тарифа, может входить доступ к</h3>
+<p>закрытому сообществу, библиотеке материалов, онлайн-встречам, бизнес-разборам, цифровым инструментам, записям мероприятий, дополнительным материалам и иному функционалу, опубликованному Исполнителем.</p>
+<h3>3.4. Конкретный перечень услуг, срок подписки, стоимость и состав выбранного</h3>
+<p>тарифа определяются информацией, размещенной на официальных ресурсах NK | MEMBERS на момент оформления подписки.</p>
+<h3>3.5. Исполнитель вправе изменять состав, формат и содержание услуг в целях</h3>
+<p>развития Сервиса при условии сохранения общей концепции и ценности оплаченного тарифа.</p>
+<h3>3.6. Услуги считаются информационно-консультационными и не являются</h3>
+<p>образовательной деятельностью, инвестиционными, юридическими, бухгалтерскими, финансовыми либо иными профессиональными рекомендациями, обязательными к исполнению.</p>
+<h3>3.7. Исполнитель не гарантирует достижение Заказчиком определенного</h3>
+<p>финансового, предпринимательского, карьерного либо иного результата, поскольку такой результат зависит от личных действий, решений и иных обстоятельств, не зависящих от Исполнителя.</p>
+<h3>3.8. Предоставление доступа к функционалу оплаченного тарифа признается</h3>
+<p>надлежащим исполнением обязательств Исполнителя, если иное прямо не предусмотрено настоящей Офертой.</p>
+<h3>3.9. Заказчик подтверждает, что приобретает доступ к Сервису добровольно,</h3>
+<p>понимает характер оказываемых услуг и принимает условия настоящей Оферты в полном объеме.</p>
+<h3>Раздел 4. Порядок заключения договора (акцепт Оферты)</h3>
+<h3>4.1. Настоящая Оферта является публичным предложением Исполнителя заключить</h3>
+<p>договор возмездного оказания информационно-консультационных услуг на изложенных в ней условиях.</p>
+<h3>4.2. Договор считается заключенным с момента совершения Заказчиком акцепта</h3>
+<p>настоящей Оферты. Дополнительное подписание договора на бумажном носителе не требуется.</p>
+<h3>4.3. Акцептом Оферты признается совершение одного или нескольких следующих</h3>
+<p>действий: оформление подписки; оплата услуг; регистрация в Сервисе; получение доступа к функционалу; нажатие кнопки, подтверждающей согласие с условиями Оферты; иные действия, однозначно свидетельствующие о намерении заключить договор.</p>
+<h3>4.4. Совершая акцепт, Заказчик подтверждает, что до заключения договора ему</h3>
+<p>была предоставлена полная и достаточная информация об Исполнителе, стоимости услуг, порядке оказания услуг, условиях подписки и иных существенных условиях договора.</p>
+<h3>4.5. Заказчик подтверждает, что ознакомился с текстом настоящей Оферты,</h3>
+<p>понимает правовые последствия ее акцепта и принимает условия в полном объеме без каких-либо исключений или оговорок.</p>
+<h3>4.6. Все действия, совершенные с использованием учетной записи Заказчика,</h3>
+<p>считаются совершенными самим Заказчиком либо уполномоченным им лицом до момента уведомления Исполнителя о компрометации доступа.</p>
+<h3>4.7. Электронные документы, уведомления, переписка по электронной почте, через</h3>
+<p>Telegram, личный кабинет, сайт и иные официальные цифровые каналы Исполнителя признаются сторонами юридически значимыми сообщениями.</p>
+<h3>4.8. Исполнитель вправе запросить дополнительную информацию, необходимую</h3>
+<p>для исполнения договора, идентификации Заказчика либо соблюдения требований законодательства Российской Федерации.</p>
+<h3>4.9. После успешной оплаты Исполнитель предоставляет Заказчику доступ к</h3>
+<p>приобретенному тарифу в сроки, предусмотренные описанием соответствующего тарифа либо техническими особенностями Сервиса.</p>
+<h3>4.10. В случае невозможности предоставления доступа по причинам, не зависящим</h3>
+<p>от Исполнителя (ошибки платежной системы, действия третьих лиц, неверные данные Заказчика и иные обстоятельства), срок предоставления доступа может быть увеличен на период устранения соответствующих обстоятельств.</p>
+<h3>4.11. С момента акцепта настоящей Оферты Заказчик приобретает права и</h3>
+<p>обязанности, предусмотренные настоящим договором.</p>
+<h3>Раздел 5. Стоимость услуг, порядок оплаты и автоматическое</h3>
+<p>продление подписки</p>
+<h3>5.1. Стоимость услуг Исполнителя определяется выбранным Заказчиком тарифом и</h3>
+<p>публикуется на официальных ресурсах сервиса NK | MEMBERS. Все цены указываются в соответствующей валюте и действуют на момент оформления подписки.</p>
+<h3>5.2. Оплата услуг осуществляется в безналичной форме посредством платежных</h3>
+<p>систем, подключенных Исполнителем. Обязанность по оплате считается исполненной с момента успешного подтверждения платежа.</p>
+<h3>5.3. Исполнитель вправе предоставлять скидки, специальные предложения,</h3>
+<p>промокоды и бонусные программы. Их действие ограничивается условиями соответствующей акции и не создает обязанности применять аналогичные условия в будущем.</p>
+<h3>5.4. При оформлении подписки Заказчик соглашается с периодическим списанием</h3>
+<p>денежных средств в соответствии с выбранным тарифом до момента отмены автоматического продления.</p>
+<h3>5.5. Автоматическое продление подписки осуществляется в последний день</h3>
+<p>оплаченного периода либо в иную дату, определенную платежной системой. Размер очередного списания соответствует стоимости действующего тарифа, если иное не было заранее доведено до сведения Заказчика.</p>
+<h3>5.6. Заказчик вправе отменить автоматическое продление до даты следующего</h3>
+<p>списания через предусмотренные Исполнителем способы управления подпиской. Отмена автопродления не прекращает действие уже оплаченного периода.</p>
+<h3>5.7. Если очередное списание невозможно по причинам, связанным с банковской</h3>
+<p>картой, платежной системой либо отсутствием денежных средств, Исполнитель вправе временно ограничить доступ к Сервису до момента успешной оплаты.</p>
+<h3>5.8. Исполнитель вправе изменять стоимость тарифов в одностороннем порядке.</h3>
+<p>Новая стоимость применяется исключительно к новым периодам подписки и не распространяется на уже оплаченный период.</p>
+<h3>5.9. Все комиссии банков, платежных систем, операторов связи и иных третьих лиц,</h3>
+<p>возникающие при оплате услуг, оплачиваются Заказчиком самостоятельно, если иное прямо не указано Исполнителем.</p>
+<h3>5.10. Предоставление Заказчиком платежных реквизитов и совершение оплаты</h3>
+<p>означает его согласие на обработку платежной информации в объеме, необходимом для исполнения договора, в соответствии с требованиями законодательства и условиями используемой платежной системы.</p>
+<h3>5.11. Исполнитель не несет ответственности за невозможность проведения платежа</h3>
+<p>вследствие технических сбоев платежных систем, действий банков, операторов связи либо иных обстоятельств, находящихся вне разумного контроля Исполнителя.</p>
+<h3>5.12. Доступ к услугам предоставляется после подтверждения успешной оплаты.</h3>
+<p>При возникновении технических ошибок Исполнитель принимает разумные меры для восстановления доступа после получения информации о проблеме.</p>
+<h3>Раздел 6. Порядок оказания услуг</h3>
+<h3>6.1. Исполнитель оказывает услуги дистанционно посредством сети Интернет с</h3>
+<p>использованием сервиса NK | MEMBERS, Telegram Mini App, Telegram-бота, закрытых каналов, чатов, сайта, платформ видеоконференцсвязи и иных цифровых инструментов.</p>
+<h3>6.2. Исполнитель предоставляет Заказчику доступ к функционалу оплаченного</h3>
+<p>тарифа после подтверждения успешной оплаты в сроки, предусмотренные описанием соответствующего тарифа либо техническими особенностями Сервиса.</p>
+<h3>6.3. Состав услуг определяется выбранным тарифом и может включать доступ к</h3>
+<p>закрытому сообществу, библиотеке материалов, онлайн-встречам, бизнес-разборам, цифровым сервисам, записям мероприятий и иным материалам, размещенным Исполнителем.</p>
+<h3>6.4. Исполнитель самостоятельно определяет формат, периодичность,</h3>
+<p>продолжительность, расписание и способы проведения мероприятий, если иное прямо не предусмотрено описанием соответствующего тарифа.</p>
+<h3>6.5. Исполнитель вправе переносить дату, время или формат проведения</h3>
+<p>мероприятий по организационным, техническим либо иным объективным причинам, уведомив Заказчика любым доступным способом.</p>
+<h3>6.6. В случае пропуска мероприятия Заказчиком по любым причинам Исполнитель</h3>
+<p>не обязан проводить индивидуальное мероприятие взамен пропущенного, если иное не предусмотрено условиями конкретного тарифа.</p>
+<h3>6.7. Материалы, записи встреч и иной цифровой контент предоставляются</h3>
+<p>исключительно в случаях, когда это предусмотрено соответствующим тарифом либо решением Исполнителя.</p>
+<h3>6.8. Исполнитель вправе привлекать третьих лиц для исполнения отдельных</h3>
+<p>обязательств по настоящей Оферте без получения дополнительного согласия Заказчика, сохраняя ответственность за качество оказываемых услуг.</p>
+<h3>6.9. Услуги считаются оказанными надлежащим образом с момента предоставления</h3>
+<p>Заказчику доступа к функционалу оплаченного тарифа независимо от степени фактического использования такого доступа.</p>
+<h3>6.10. Заказчик самостоятельно обеспечивает наличие необходимого оборудования,</h3>
+<p>программного обеспечения, стабильного подключения к сети Интернет и иных технических условий, необходимых для получения услуг.</p>
+<h3>6.11. Исполнитель не несет ответственности за невозможность получения услуг,</h3>
+<p>вызванную неисправностью оборудования Заказчика, ограничениями интернет-провайдера, действиями третьих лиц либо иными обстоятельствами, не зависящими от Исполнителя.</p>
+<h3>6.12. Исполнитель вправе проводить техническое обслуживание, обновление</h3>
+<p>программного обеспечения и иные работы, необходимые для стабильного функционирования Сервиса. При необходимости доступ к отдельным функциям может быть временно ограничен без выплаты какой-либо компенсации.</p>
+<h3>Раздел 7. Права и обязанности сторон</h3>
+<h3>7.1. Исполнитель обязуется добросовестно оказывать услуги в объеме,</h3>
+<p>соответствующем выбранному Заказчиком тарифу.</p>
+<h3>7.2. Исполнитель обязуется предоставить доступ к Сервису после подтверждения</h3>
+<p>оплаты, за исключением случаев технических работ или обстоятельств, не зависящих от Исполнителя.</p>
+<h3>7.3. Исполнитель вправе изменять состав, содержание, структуру, функционал и</h3>
+<p>формат предоставляемых услуг, если такие изменения направлены на развитие Сервиса и не лишают Заказчика оплаченного объема услуг.</p>
+<h3>7.4. Исполнитель вправе привлекать третьих лиц, экспертов, подрядчиков и</h3>
+<p>технических специалистов без дополнительного согласия Заказчика.</p>
+<h3>7.5. Исполнитель вправе временно ограничить либо прекратить доступ Заказчика к</h3>
+<p>Сервису при нарушении условий Оферты, законодательства РФ или правил сообщества.</p>
+<h3>7.6. Исполнитель вправе проводить технические работы, обновления и</h3>
+<p>модернизацию Сервиса.</p>
+<h3>7.7. Заказчик обязуется своевременно оплачивать услуги в соответствии с</h3>
+<p>выбранным тарифом.</p>
+<h3>7.8. Заказчик обязуется предоставлять достоверные сведения при регистрации и</h3>
+<p>своевременно обновлять их при изменении.</p>
+<h3>7.9. Заказчик обязуется соблюдать нормы законодательства РФ, условия настоящей</h3>
+<p>Оферты и внутренние правила сообщества NK | MEMBERS.</p>
+<h3>7.10. Заказчик не вправе передавать доступ к своей учетной записи третьим лицам,</h3>
+<p>распространять материалы Сервиса, использовать их в коммерческих целях либо нарушать права интеллектуальной собственности Исполнителя.</p>
+<h3>7.11. Заказчик обязуется соблюдать корректное и уважительное поведение при</h3>
+<p>взаимодействии с другими участниками сообщества и представителями Исполнителя.</p>
+<h3>7.12. Заказчик самостоятельно несет ответственность за сохранность данных для</h3>
+<p>входа в учетную запись и за все действия, совершенные с использованием такой учетной записи.</p>
+<h3>7.13. Стороны обязуются добросовестно сотрудничать при исполнении настоящего</h3>
+<p>договора, своевременно обмениваться необходимой информацией и принимать разумные меры для предотвращения возможных нарушений своих обязательств.</p>
+<h3>Раздел 8. Изменение, приостановление и прекращение</h3>
+<p>договора</p>
+<h3>8.1. Настоящий договор действует с момента акцепта Оферты Заказчиком и</h3>
+<p>сохраняет силу до полного исполнения сторонами своих обязательств либо до прекращения договора по основаниям, предусмотренным настоящей Офертой и законодательством Российской Федерации.</p>
+<h3>8.2. Исполнитель вправе в одностороннем порядке изменять условия настоящей</h3>
+<p>Оферты, состав, содержание и функциональные возможности Сервиса. Новая редакция применяется к отношениям сторон с момента ее вступления в силу.</p>
+<h3>8.3. Заказчик вправе прекратить использование Сервиса и отменить автоматическое</h3>
+<p>продление подписки в порядке, предусмотренном настоящей Офертой. Отмена подписки не прекращает действие уже оплаченного периода.</p>
+<h3>8.4. Исполнитель вправе временно приостановить предоставление доступа к</h3>
+<p>Сервису при проведении технических работ, обновлений, устранении неисправностей, а также при возникновении обстоятельств, препятствующих безопасной работе Сервиса.</p>
+<h3>8.5. Исполнитель вправе ограничить либо прекратить доступ Заказчика к Сервису</h3>
+<p>без возврата денежных средств в случае существенного нарушения Заказчиком условий настоящей Оферты, законодательства Российской Федерации либо обязательных правил сообщества.</p>
+<h3>8.6. К существенным нарушениям относятся, в том числе: передача доступа</h3>
+<p>третьим лицам, распространение материалов Сервиса, нарушение исключительных прав Исполнителя, размещение противоправной информации, оскорбительное поведение, попытки вмешательства в работу Сервиса.</p>
+<h3>8.7. В случае устранения нарушений Исполнитель вправе по своему усмотрению</h3>
+<p>восстановить доступ Заказчика к Сервису, если такое восстановление не противоречит интересам Исполнителя и других участников сообщества.</p>
+<h3>8.8. Прекращение действия договора не освобождает стороны от исполнения</h3>
+<p>обязательств, возникших до даты прекращения договора, включая обязательства по оплате услуг, защите интеллектуальной собственности и соблюдению конфиденциальности.</p>
+<h3>8.9. После прекращения договора Исполнитель вправе удалить учетную запись</h3>
+<p>Заказчика, историю использования Сервиса и связанные с ней данные по истечении сроков хранения, установленных законодательством и внутренними правилами Исполнителя.</p>
+<h3>Раздел 9. Возврат денежных средств</h3>
+<h3>9.1. Возврат денежных средств осуществляется в соответствии с законодательством</h3>
+<p>Российской Федерации и условиями настоящей Оферты.</p>
+<h3>9.2. Поскольку услуги Исполнителя связаны с предоставлением доступа к</h3>
+<p>цифровому сервису, закрытому сообществу, информационным материалам и иному цифровому контенту, обязательства Исполнителя считаются начавшими исполняться с момента предоставления доступа Заказчику.</p>
+<h3>9.3. Сам по себе факт непосещения мероприятий, неиспользования материалов,</h3>
+<p>отсутствия активности в сообществе либо отказа Заказчика от использования оплаченного функционала не является основанием для возврата денежных средств.</p>
+<h3>9.4. Заказчик вправе обратиться с письменным заявлением о возврате денежных</h3>
+<p>средств. Каждое обращение рассматривается Исполнителем индивидуально с учетом обстоятельств конкретного случая и требований действующего законодательства.</p>
+<h3>9.5. Заявление о возврате должно содержать сведения, позволяющие</h3>
+<p>идентифицировать Заказчика, описание обстоятельств, реквизиты платежа и банковские реквизиты для возможного возврата денежных средств.</p>
+<h3>9.6. Исполнитель вправе запросить дополнительные документы или сведения,</h3>
+<p>необходимые для рассмотрения заявления о возврате.</p>
+<h3>9.7. Возврат денежных средств, при наличии правовых оснований, осуществляется</h3>
+<p>тем же способом, которым производилась оплата, либо иным способом по соглашению сторон, в сроки, предусмотренные законодательством Российской Федерации.</p>
+<h3>9.8. Комиссии банков, платежных систем и иных финансовых организаций,</h3>
+<p>удержанные при проведении платежей, могут не подлежать возврату, если их возврат невозможен по правилам соответствующих организаций.</p>
+<h3>9.9. При отмене автоматического продления подписки возврат денежных средств за</h3>
+<p>уже оплаченный период не производится, если иное не предусмотрено законодательством Российской Федерации или решением Исполнителя.</p>
+<h3>9.10. Настоящий раздел применяется совместно с Политикой возврата денежных</h3>
+<p>средств Исполнителя. В случае противоречий преимущественную силу имеют обязательные нормы законодательства Российской Федерации.</p>
+<h3>Раздел 10. Ответственность сторон</h3>
+<h3>10.1. За неисполнение или ненадлежащее исполнение обязательств по настоящей</h3>
+<p>Оферте стороны несут ответственность в соответствии с законодательством Российской Федерации и условиями настоящей Оферты.</p>
+<h3>10.2. Исполнитель несет ответственность исключительно за надлежащее</h3>
+<p>предоставление доступа к услугам, предусмотренным выбранным Заказчиком тарифом.</p>
+<h3>10.3. Исполнитель не гарантирует достижение Заказчиком какого-либо</h3>
+<p>финансового, предпринимательского, инвестиционного, профессионального или иного результата вследствие использования Сервиса либо рекомендаций, полученных в рамках оказания услуг.</p>
+<h3>10.4. Исполнитель не несет ответственности за решения, принятые Заказчиком на</h3>
+<p>основании информации, материалов, консультаций, мнений участников сообщества либо приглашенных экспертов.</p>
+<h3>10.5. Исполнитель не отвечает за невозможность оказания услуг вследствие</h3>
+<p>действий банков, платежных систем, операторов связи, интернет-провайдеров, программного обеспечения третьих лиц либо иных обстоятельств, не зависящих от Исполнителя.</p>
+<h3>10.6. Заказчик несет полную ответственность за достоверность предоставленных</h3>
+<p>данных, сохранность средств доступа к учетной записи и все действия, совершенные с использованием своей учетной записи.</p>
+<h3>10.7. Заказчик несет ответственность за нарушение исключительных прав</h3>
+<p>Исполнителя, незаконное распространение материалов Сервиса, передачу доступа третьим лицам, размещение противоправной информации и иные нарушения законодательства Российской Федерации.</p>
+<h3>10.8. Совокупный размер ответственности Исполнителя по любым требованиям</h3>
+<p>Заказчика ограничивается суммой денежных средств, фактически уплаченной Заказчиком за последний оплаченный период подписки, если иное не предусмотрено обязательными нормами законодательства Российской Федерации.</p>
+<h3>10.9. Исполнитель не возмещает упущенную выгоду, косвенные убытки,</h3>
+<p>репутационные потери, предполагаемые доходы либо иные непрямые убытки Заказчика.</p>
+<h3>10.10. При нарушении Заказчиком условий настоящей Оферты Исполнитель вправе</h3>
+<p>ограничить либо прекратить доступ к Сервису без компенсации стоимости неиспользованного периода подписки в случаях, предусмотренных настоящей Офертой.</p>
+<h3>10.11. Освобождение одной из сторон от ответственности допускается только в</h3>
+<p>случаях, прямо предусмотренных законодательством Российской Федерации либо настоящей Офертой.</p>
+<h3>Раздел 11. Форс-мажор</h3>
+<h3>11.1. Стороны освобождаются от ответственности за полное или частичное</h3>
+<p>неисполнение обязательств по настоящей Оферте, если такое неисполнение явилось следствием обстоятельств непреодолимой силы, возникших после заключения договора и находящихся вне разумного контроля сторон.</p>
+<h3>11.2. К обстоятельствам непреодолимой силы относятся, в частности: стихийные</h3>
+<p>бедствия, пожары, наводнения, землетрясения, эпидемии, военные действия, террористические акты, массовые беспорядки, акты органов государственной власти, перебои в работе глобальных сетей связи, масштабные сбои инфраструктуры, иные чрезвычайные и непредотвратимые обстоятельства.</p>
+<h3>11.3. Отсутствие денежных средств, изменение рыночной конъюнктуры, действия</h3>
+<p>контрагентов, сбои оборудования стороны либо иные обстоятельства, которые сторона могла разумно предотвратить, не относятся к обстоятельствам непреодолимой силы.</p>
+<h3>11.4. Сторона, для которой стало невозможно исполнение обязательств вследствие</h3>
+<p>обстоятельств непреодолимой силы, обязуется уведомить другую сторону в разумный срок после возникновения таких обстоятельств.</p>
+<h3>11.5. На период действия обстоятельств непреодолимой силы исполнение</h3>
+<p>обязательств сторон приостанавливается в объеме, в котором исполнение объективно невозможно.</p>
+<h3>11.6. Если действие обстоятельств непреодолимой силы продолжается более 60</h3>
+<p>календарных дней подряд и отсутствует возможность исполнения договора, каждая из сторон вправе отказаться от дальнейшего исполнения настоящего договора без обязанности возмещать другой стороне убытки.</p>
+<h3>11.7. Прекращение действия обстоятельств непреодолимой силы влечет</h3>
+<p>возобновление исполнения обязательств сторонами в максимально короткий разумный срок.</p>
+<h3>Раздел 12. Порядок разрешения споров</h3>
+<h3>12.1. Все споры, разногласия и требования, возникающие между Исполнителем и</h3>
+<p>Заказчиком в связи с заключением, исполнением, изменением, прекращением или толкованием настоящей Оферты, стороны стремятся урегулировать путем переговоров.</p>
+<h3>12.2. До обращения в суд заинтересованная сторона обязуется направить другой</h3>
+<p>стороне письменную претензию в электронной или иной письменной форме с изложением существа требований и подтверждающих документов при их наличии.</p>
+<h3>12.3. Срок рассмотрения претензии составляет 30 (тридцать) календарных дней с</h3>
+<p>момента ее получения, если иной срок не установлен обязательными нормами законодательства Российской Федерации.</p>
+<h3>12.4. При недостижении соглашения спор подлежит рассмотрению в судебном</h3>
+<p>порядке в соответствии с законодательством Российской Федерации.</p>
+<h3>12.5. К отношениям сторон применяется материальное и процессуальное право</h3>
+<p>Российской Федерации независимо от места нахождения Заказчика, если иное не предусмотрено обязательными нормами применимого законодательства.</p>
+<h3>12.6. Если какое-либо положение настоящего раздела будет признано</h3>
+<p>недействительным или неприменимым, это не влияет на действительность остальных положений Оферты.</p>
+<h3>12.7. Электронная переписка, сведения из платежных систем, данные Telegram,</h3>
+<p>лог-файлы Сервиса, электронные документы и иные цифровые сведения могут использоваться сторонами в качестве доказательств в объеме, допускаемом законодательством Российской Федерации.</p>
+<h3>Раздел 13. Заключительные положения</h3>
+<h3>13.1. Настоящая Оферта вступает в силу с момента ее размещения Исполнителем и</h3>
+<p>действует бессрочно до момента ее отзыва либо замены новой редакцией.</p>
+<h3>13.2. Исполнитель вправе в любое время вносить изменения в настоящую Оферту.</h3>
+<p>Новая редакция вступает в силу с момента ее публикации, если иной срок не указан в самой редакции.</p>
+<h3>13.3. Продолжение использования Сервиса после вступления в силу новой</h3>
+<p>редакции Оферты означает согласие Заказчика с внесенными изменениями.</p>
+<h3>13.4. Если какое-либо положение настоящей Оферты будет признано</h3>
+<p>недействительным, это не влияет на действительность остальных ее положений.</p>
+<h3>13.5. Во всем, что не урегулировано настоящей Офертой, стороны руководствуются</h3>
+<p>законодательством Российской Федерации.</p>
+<h3>13.6. Электронные документы, уведомления, сообщения, направленные</h3>
+<p>посредством электронной почты, Telegram и иных предусмотренных Сервисом каналов связи, признаются юридически значимыми в случаях, допускаемых законодательством Российской Федерации.</p>
+<h3>13.7. Настоящая Оферта составлена на русском языке. При наличии перевода на</h3>
+<p>иной язык приоритет имеет русскоязычная версия.</p>
+<h3>13.8. Неотъемлемыми частями настоящей Оферты являются документы, на которые</h3>
+<p>она содержит прямые ссылки, включая Пользовательское соглашение, Политику конфиденциальности и иные документы, размещенные Исполнителем.</p>
+<h3>Раздел 14. Реквизиты Исполнителя</h3>
+<p>Исполнитель:​ ​ Индивидуальный предприниматель​ Прусенко Илья Николаевич​ ​ Статус: Индивидуальный предприниматель​ ИНН: ______________________​ ОГРНИП: __________________​ Юридический адрес: ____________________________​ Почтовый адрес: _______________________________​ E-mail: ______________________​ Телефон: ____________________​ Сайт (при наличии): ___________________________​ ​ Банковские реквизиты:​ Получатель: ИП Прусенко Илья Николаевич​ Расчетный счет: __________________​ Банк: ___________________________​ БИК: ____________________________​ Корреспондентский счет: __________​ ​ Актуальные реквизиты Исполнителя могут быть также размещены на официальном сайте, в Telegram Mini App или иных официальных ресурсах Исполнителя. Использование Заказчиком таких реквизитов для оплаты услуг считается надлежащим исполнением обязанности по оплате.</p>
+        </article>
+      </section>
+
+      <section class="screen legal-document-screen" id="legal-privacy">
+        <div class="page-title"><button class="back-btn" data-back>←</button><div><span class="eyebrow">ЮРИДИЧЕСКАЯ ИНФОРМАЦИЯ NK</span><h1>Политика конфиденциальности</h1></div></div>
+        <article class="legal-document nk-legal-text">
+          <p class="legal-effective">Редакция: август 2026 года</p>
+          <div class="legal-warning"><strong>Оператор сервиса:</strong> Индивидуальный предприниматель Прусенко Илья Николаевич<br><strong>Контактное лицо:</strong> Илья Прусенко</div>
+          <p>ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ​ Настоящая Политика конфиденциальности определяет порядок обработки и защиты персональных данных пользователей сервиса NK | MEMBERS, включая Telegram Mini App, Telegram-бот, закрытые каналы, сайт (при наличии) и иные цифровые сервисы Исполнителя.</p>
+<h3>1. Общие положения</h3>
+<p class="legal-bullet">​ Оператор персональных данных — Индивидуальный предприниматель</p>
+<p>Прусенко Илья Николаевич.</p>
+<p class="legal-bullet">​ Политика разработана в соответствии с законодательством Российской</p>
+<p>Федерации, включая Федеральный закон №152-ФЗ «О персональных данных».</p>
+<p class="legal-bullet">​ Использование сервиса означает согласие пользователя с настоящей Политикой.</p>
+<h3>2. Какие данные мы собираем</h3>
+<p class="legal-bullet">​ ФИО, имя пользователя Telegram, номер телефона, адрес электронной почты.</p>
+<p class="legal-bullet">​ Платежные сведения (без хранения данных банковских карт).</p>
+<p class="legal-bullet">​ Технические данные: IP-адрес, сведения об устройстве, браузере, операционной</p>
+<p>системе, cookies (при наличии сайта), журналы действий.</p>
+<p class="legal-bullet">​ Иные сведения, добровольно предоставленные пользователем.</p>
+<h3>3. Цели обработки</h3>
+<p class="legal-bullet">​ Регистрация и идентификация пользователя.</p>
+<p class="legal-bullet">​ Предоставление доступа к сервису и подписке.</p>
+<p class="legal-bullet">​ Исполнение договора (Публичной оферты).</p>
+<p class="legal-bullet">​ Обработка платежей и обращений.</p>
+<p class="legal-bullet">​ Улучшение качества сервиса.</p>
+<p class="legal-bullet">​ Направление сервисных и информационных уведомлений, а при наличии</p>
+<p>согласия — рекламных сообщений.</p>
+<h3>4. Правовые основания</h3>
+<p class="legal-bullet">​ Согласие пользователя.</p>
+<p class="legal-bullet">​ Заключение и исполнение договора.</p>
+<p class="legal-bullet">​ Исполнение требований законодательства РФ.</p>
+<h3>5. Передача третьим лицам</h3>
+<p class="legal-bullet">​ Данные могут передаваться платежным системам, хостинг-провайдерам,</p>
+<p>сервисам аналитики, подрядчикам и государственным органам в случаях, предусмотренных законом.</p>
+<p class="legal-bullet">​ Передача осуществляется только в объеме, необходимом для достижения</p>
+<p>соответствующей цели.</p>
+<h3>6. Защита персональных данных</h3>
+<p class="legal-bullet">​ Оператор принимает организационные и технические меры для защиты</p>
+<p>персональных данных от неправомерного доступа, уничтожения, изменения, блокирования, копирования и распространения.</p>
+<h3>7. Срок хранения</h3>
+<p class="legal-bullet">​ Персональные данные хранятся не дольше, чем это необходимо для целей</p>
+<p>обработки либо в течение сроков, установленных законодательством РФ.</p>
+<h3>8. Права пользователя</h3>
+<p class="legal-bullet">​ Получать информацию об обработке своих данных.</p>
+<p class="legal-bullet">​ Требовать уточнения, блокирования или удаления данных в случаях,</p>
+<p>предусмотренных законом.</p>
+<p class="legal-bullet">​ Отозвать согласие на обработку персональных данных.</p>
+<p class="legal-bullet">​ Обратиться в уполномоченный орган по защите прав субъектов персональных</p>
+<p>данных.</p>
+<h3>9. Cookies и технические данные</h3>
+<p class="legal-bullet">​ При использовании сайта могут применяться файлы cookie и аналогичные</p>
+<p>технологии для обеспечения работы сервиса, аналитики и повышения удобства использования.</p>
+<h3>10. Изменение Политики</h3>
+<p class="legal-bullet">​ Оператор вправе изменять настоящую Политику. Новая редакция вступает в</p>
+<p>силу с момента публикации, если иной срок не указан дополнительно.</p>
+<h3>11. Контакты оператора</h3>
+<p class="legal-bullet">​ ИП Прусенко Илья Николаевич​</p>
+<p>E-mail: __________________​ Телефон: __________________​ Адрес: __________________</p>
+        </article>
+      </section>
+
+      <section class="screen legal-document-screen" id="legal-refund">
+        <div class="page-title"><button class="back-btn" data-back>←</button><div><span class="eyebrow">ЮРИДИЧЕСКАЯ ИНФОРМАЦИЯ NK</span><h1>Политика возврата денежных средств</h1></div></div>
+        <article class="legal-document nk-legal-text">
+          <p class="legal-effective">Редакция: август 2026 года</p>
+          <div class="legal-warning"><strong>Оператор сервиса:</strong> Индивидуальный предприниматель Прусенко Илья Николаевич<br><strong>Контактное лицо:</strong> Илья Прусенко</div>
+          <p>ПОЛИТИКА ВОЗВРАТА ДЕНЕЖНЫХ СРЕДСТВ​ Настоящая Политика определяет порядок рассмотрения обращений пользователей о возврате денежных средств за услуги сервиса NK | MEMBERS и применяется совместно с Публичной офертой.</p>
+<h3>1. Общие положения</h3>
+<p class="legal-bullet">​ Политика распространяется на все платежи, произведенные пользователями</p>
+<p>сервиса NK | MEMBERS.</p>
+<p class="legal-bullet">​ Оплата подписки означает согласие пользователя с настоящей Политикой.</p>
+<h3>2. Особенности цифровых услуг</h3>
+<p class="legal-bullet">​ Сервис предоставляет доступ к цифровому контенту, закрытому сообществу,</p>
+<p>мероприятиям и иным онлайн-сервисам.</p>
+<p class="legal-bullet">​ Оказание услуги начинается с момента предоставления доступа к оплаченному</p>
+<p>тарифу.</p>
+<h3>3. Когда возможен возврат</h3>
+<p class="legal-bullet">​ При ошибочном или двойном списании денежных средств.</p>
+<p class="legal-bullet">​ При технической невозможности предоставить оплаченный доступ по вине</p>
+<p>Исполнителя.</p>
+<p class="legal-bullet">​ В иных случаях, прямо предусмотренных законодательством Российской</p>
+<p>Федерации.</p>
+<h3>4. Когда возврат не производится</h3>
+<p class="legal-bullet">​ Если пользователь отказался от использования сервиса после получения</p>
+<p>доступа.</p>
+<p class="legal-bullet">​ Если пользователь не посещал мероприятия, не использовал материалы или не</p>
+<p>входил в сервис.</p>
+<p class="legal-bullet">​ При отмене автоматического продления после начала оплаченного периода.</p>
+<p class="legal-bullet">​ При блокировке аккаунта за нарушение Пользовательского соглашения,</p>
+<p>Публичной оферты или Правил сообщества.</p>
+<h3>5. Порядок обращения</h3>
+<p class="legal-bullet">​ Заявление направляется на электронную почту Исполнителя.</p>
+<p class="legal-bullet">​ Необходимо указать ФИО (при наличии), Telegram-аккаунт, дату и сумму</p>
+<p>платежа, описание ситуации и подтверждение оплаты.</p>
+<p class="legal-bullet">​ Исполнитель вправе запросить дополнительные сведения для проверки</p>
+<p>обращения.</p>
+<h3>6. Срок рассмотрения</h3>
+<p class="legal-bullet">​ Обращение рассматривается, как правило, в течение 10 рабочих дней, если иной</p>
+<p>срок не установлен законодательством.</p>
+<h3>7. Порядок возврата</h3>
+<p class="legal-bullet">​ При наличии законных оснований денежные средства возвращаются тем же</p>
+<p>способом, которым была произведена оплата, либо иным способом по соглашению сторон.</p>
+<p class="legal-bullet">​ Комиссии банков и платежных систем могут не возвращаться, если их возврат</p>
+<p>невозможен по правилам соответствующих организаций.</p>
+<h3>8. Заключительные положения</h3>
+<p class="legal-bullet">​ Во всем, что не урегулировано настоящей Политикой, применяются Публичная</p>
+<p>оферта и законодательство Российской Федерации.</p>
+<p class="legal-bullet">​ Исполнитель вправе изменять настоящую Политику. Новая редакция вступает в</p>
+<p>силу с момента публикации.</p>
+        </article>
+      </section>
+
+      <section class="screen legal-document-screen" id="legal-data-consent">
+        <div class="page-title"><button class="back-btn" data-back>←</button><div><span class="eyebrow">ЮРИДИЧЕСКАЯ ИНФОРМАЦИЯ NK</span><h1>Согласие на обработку персональных данных</h1></div></div>
+        <article class="legal-document nk-legal-text">
+          <p class="legal-effective">Редакция: август 2026 года</p>
+          <div class="legal-warning"><strong>Оператор сервиса:</strong> Индивидуальный предприниматель Прусенко Илья Николаевич<br><strong>Контактное лицо:</strong> Илья Прусенко</div>
+          <p>СОГЛАСИЕ​ на обработку персональных данных Настоящим, регистрируясь и используя сервис NK | MEMBERS, включая Telegram Mini App, Telegram-бот, закрытые каналы и иные цифровые сервисы, я свободно, своей волей и в своем интересе даю Индивидуальному предпринимателю Прусенко Илье Николаевичу согласие на обработку моих персональных данных в соответствии с Федеральным законом №152-ФЗ «О персональных данных».</p>
+<h3>1. Персональные данные</h3>
+<p class="legal-bullet">​ имя, фамилия (при наличии);</p>
+<p class="legal-bullet">​ имя пользователя Telegram;</p>
+<p class="legal-bullet">​ номер телефона;</p>
+<p class="legal-bullet">​ адрес электронной почты;</p>
+<p class="legal-bullet">​ сведения об оплате (без реквизитов банковской карты);</p>
+<p class="legal-bullet">​ технические данные устройства и сведения об использовании сервиса.</p>
+<h3>2. Цели обработки</h3>
+<p class="legal-bullet">​ регистрация и идентификация пользователя;</p>
+<p class="legal-bullet">​ предоставление доступа к сервису и подписке;</p>
+<p class="legal-bullet">​ исполнение Публичной оферты;</p>
+<p class="legal-bullet">​ обработка платежей;</p>
+<p class="legal-bullet">​ обратная связь;</p>
+<p class="legal-bullet">​ направление сервисных уведомлений;</p>
+<p class="legal-bullet">​ при наличии отдельного согласия — информационных и рекламных сообщений;</p>
+<p class="legal-bullet">​ соблюдение требований законодательства.</p>
+<h3>3. Действия с персональными данными</h3>
+<p class="legal-bullet">​ сбор;</p>
+<p class="legal-bullet">​ запись;</p>
+<p class="legal-bullet">​ систематизация;</p>
+<p class="legal-bullet">​ накопление;</p>
+<p class="legal-bullet">​ хранение;</p>
+<p class="legal-bullet">​ уточнение (обновление);</p>
+<p class="legal-bullet">​ использование;</p>
+<p class="legal-bullet">​ передача в случаях, предусмотренных законодательством или необходимая для</p>
+<p>оказания услуг;</p>
+<p class="legal-bullet">​ обезличивание;</p>
+<p class="legal-bullet">​ блокирование;</p>
+<p class="legal-bullet">​ удаление;</p>
+<p class="legal-bullet">​ уничтожение.</p>
+<h3>4. Срок действия согласия</h3>
+<p class="legal-bullet">​ Согласие действует до достижения целей обработки либо до его отзыва</p>
+<p>пользователем, если иное не предусмотрено законодательством Российской Федерации.</p>
+<h3>5. Отзыв согласия</h3>
+<p class="legal-bullet">​ Пользователь вправе в любое время отозвать согласие путем направления</p>
+<p>письменного обращения на электронную почту Исполнителя. Отзыв согласия не влияет на законность обработки данных, осуществленной до момента его получения.</p>
+<h3>6. Заключительные положения</h3>
+<p class="legal-bullet">​ Настоящее согласие предоставляется в электронной форме и считается</p>
+<p>подписанным простой электронной подписью пользователя посредством совершения действий по регистрации, оплате либо продолжению использования сервиса NK | MEMBERS.</p>
+        </article>
+      </section>
+
+      <section class="screen legal-document-screen" id="legal-marketing">
+        <div class="page-title"><button class="back-btn" data-back>←</button><div><span class="eyebrow">ЮРИДИЧЕСКАЯ ИНФОРМАЦИЯ NK</span><h1>Согласие на получение рекламных материалов</h1></div></div>
+        <article class="legal-document nk-legal-text">
+          <p class="legal-effective">Редакция: август 2026 года</p>
+          <div class="legal-warning"><strong>Оператор сервиса:</strong> Индивидуальный предприниматель Прусенко Илья Николаевич<br><strong>Контактное лицо:</strong> Илья Прусенко</div>
+          <p>СОГЛАСИЕ​ на получение информационных и рекламных сообщений Настоящим пользователь, используя сервис NK | MEMBERS, дает согласие Индивидуальному предпринимателю Прусенко Илье Николаевичу на получение информационных, сервисных и рекламных сообщений в порядке, установленном законодательством Российской Федерации.</p>
+<h3>1. Какие сообщения могут направляться</h3>
+<p class="legal-bullet">​ уведомления о работе сервиса;</p>
+<p class="legal-bullet">​ информация об оплате и подписке;</p>
+<p class="legal-bullet">​ анонсы мероприятий, вебинаров и встреч;</p>
+<p class="legal-bullet">​ новости проекта NK | MEMBERS;</p>
+<p class="legal-bullet">​ информация о новых продуктах, акциях и специальных предложениях.</p>
+<h3>2. Каналы связи</h3>
+<p class="legal-bullet">​ Telegram;</p>
+<p class="legal-bullet">​ электронная почта;</p>
+<p class="legal-bullet">​ SMS (при необходимости);</p>
+<p class="legal-bullet">​ push-уведомления и иные способы связи, указанные пользователем.</p>
+<h3>3. Порядок предоставления согласия</h3>
+<p class="legal-bullet">​ Согласие считается предоставленным при регистрации, оплате подписки либо</p>
+<p>проставлении соответствующей отметки в интерфейсе сервиса.</p>
+<h3>4. Отзыв согласия</h3>
+<p class="legal-bullet">​ Пользователь вправе отказаться от получения рекламных сообщений в любое</p>
+<p>время посредством настроек сервиса, перехода по ссылке для отписки либо направления обращения Исполнителю.</p>
+<p class="legal-bullet">​ Отказ не распространяется на обязательные сервисные уведомления,</p>
+<p>необходимые для исполнения договора.</p>
+<h3>5. Заключительные положения</h3>
+<p class="legal-bullet">​ Согласие действует до момента его отзыва пользователем.</p>
+<p class="legal-bullet">​ Настоящий документ применяется совместно с Пользовательским соглашением,</p>
+<p>Публичной офертой и Политикой конфиденциальности.</p>
+        </article>
+      </section>
+
+      <section class="screen legal-document-screen" id="legal-code">
+        <div class="page-title"><button class="back-btn" data-back>←</button><div><span class="eyebrow">ЮРИДИЧЕСКАЯ ИНФОРМАЦИЯ NK</span><h1>Правила сообщества</h1></div></div>
+        <article class="legal-document nk-legal-text">
+          <p class="legal-effective">Редакция: август 2026 года</p>
+          <div class="legal-warning"><strong>Оператор сервиса:</strong> Индивидуальный предприниматель Прусенко Илья Николаевич<br><strong>Контактное лицо:</strong> Илья Прусенко</div>
+          <p>ПРАВИЛА СООБЩЕСТВА (COMMUNITY RULES)​ Настоящие Правила сообщества регулируют порядок участия пользователей в проекте NK | MEMBERS и обязательны для всех участников независимо от выбранного тарифа.</p>
+<h3>1. Общие принципы</h3>
+<p class="legal-bullet">​ Сообщество создано для предпринимателей и специалистов, заинтересованных</p>
+<p>в развитии бизнеса, обмене опытом и профессиональном нетворкинге.</p>
+<p class="legal-bullet">​ Каждый участник обязан соблюдать нормы деловой этики, уважительно</p>
+<p>относиться к другим участникам и представителям проекта.</p>
+<h3>2. Что приветствуется</h3>
+<p class="legal-bullet">​ Конструктивное общение и обмен опытом.</p>
+<p class="legal-bullet">​ Помощь другим участникам.</p>
+<p class="legal-bullet">​ Участие в мероприятиях и обсуждениях.</p>
+<p class="legal-bullet">​ Соблюдение конфиденциальности информации внутри сообщества.</p>
+<h3>3. Запрещается</h3>
+<p class="legal-bullet">​ Оскорбления, дискриминация, угрозы, травля и неуважительное поведение.</p>
+<p class="legal-bullet">​ Спам, массовая рассылка сообщений и навязчивая реклама.</p>
+<p class="legal-bullet">​ Продажа товаров и услуг без предварительного согласования с администрацией.</p>
+<p class="legal-bullet">​ Передача доступа к аккаунту третьим лицам.</p>
+<p class="legal-bullet">​ Публикация или распространение материалов сообщества вне NK | MEMBERS</p>
+<p>без письменного разрешения Исполнителя.</p>
+<p class="legal-bullet">​ Размещение незаконного, мошеннического, экстремистского,</p>
+<p>порнографического либо иного противоправного контента.</p>
+<p class="legal-bullet">​ Любые действия, нарушающие законодательство Российской Федерации или</p>
+<p>права третьих лиц.</p>
+<h3>4. Интеллектуальная собственность</h3>
+<p class="legal-bullet">​ Все материалы сообщества являются объектами интеллектуальной</p>
+<p>собственности Исполнителя либо иных правообладателей.</p>
+<p class="legal-bullet">​ Копирование, запись, распространение, публикация или коммерческое</p>
+<p>использование материалов без письменного разрешения запрещены.</p>
+<h3>5. Модерация</h3>
+<p class="legal-bullet">​ Администрация вправе удалять сообщения, нарушающие настоящие Правила.</p>
+<p class="legal-bullet">​ Администрация вправе выдавать предупреждения, временно ограничивать</p>
+<p>функционал либо удалять участника из сообщества.</p>
+<h3>6. Блокировка доступа</h3>
+<p class="legal-bullet">​ При существенном нарушении Правил администрация вправе заблокировать</p>
+<p>доступ пользователя без предварительного уведомления.</p>
+<p class="legal-bullet">​ В случаях, предусмотренных Пользовательским соглашением и Публичной</p>
+<p>офертой, стоимость неиспользованного периода подписки может не возвращаться.</p>
+<h3>7. Конфиденциальность</h3>
+<p class="legal-bullet">​ Информация, полученная внутри сообщества от других участников, не</p>
+<p>подлежит распространению без их согласия.</p>
+<p class="legal-bullet">​ Запрещается публиковать записи встреч, скриншоты закрытых чатов и</p>
+<p>персональные данные участников без разрешения.</p>
+<h3>8. Изменение Правил</h3>
+<p class="legal-bullet">​ Исполнитель вправе изменять настоящие Правила в любое время.</p>
+<p class="legal-bullet">​ Новая редакция действует с момента публикации.</p>
+<h3>9. Заключительные положения</h3>
+<p class="legal-bullet">​ Настоящие Правила являются неотъемлемой частью Пользовательского</p>
+<p>соглашения и Публичной оферты.</p>
+<p class="legal-bullet">​ Продолжение использования сервиса означает согласие пользователя с</p>
+<p>настоящими Правилами.</p>
+        </article>
+      </section>
+</main>
+
+    <nav class="bottom-nav">
+      <button class="active" data-go="home"><span>🏠</span><small>Главная</small></button>
+      <button data-go="knowledge"><span>🎓</span><small>Академия</small></button>
+      <button data-go="members"><span>👥</span><small>Резиденты</small></button>
+      <button data-go="profile"><span>👤</span><small>Профиль</small></button>
+    </nav>
+
+    <div class="toast" id="toast">Готово</div>
+  </div>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+
+<script>
+(function(){
+  function numberLegalSubpoints(){
+    document.querySelectorAll('.nk-legal-text').forEach(function(doc){
+      var section=''; var idx=0;
+      Array.from(doc.children).forEach(function(el){
+        if(el.tagName==='H3'){ var m=el.textContent.trim().match(/^(\d+)\./); section=m?m[1]:''; idx=0; }
+        else if(el.classList && el.classList.contains('legal-bullet')){
+          idx++; if(section && !el.querySelector('.legal-subnum')){
+            var n=document.createElement('span'); n.className='legal-subnum'; n.textContent=section+'.'+idx+'.'; el.insertBefore(n,el.firstChild);
+          }
+        }
+      });
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',numberLegalSubpoints); else numberLegalSubpoints();
+})();
+</script>
+</body>
+</html>
