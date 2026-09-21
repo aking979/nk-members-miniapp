@@ -1218,3 +1218,14 @@ body{color:var(--ink)}
 .subscription-secondary-action{color:#8f9397!important}
 .subscription-secondary-action.enable-renewal{color:#d8d9d7!important;border-color:#3b3d3f!important}
 @media(max-width:420px){.subscription-panel-head{display:flex!important}.subscription-head-actions{align-items:flex-start}.subscription-active{margin-top:0!important;white-space:normal;text-align:center;max-width:128px}}
+
+/* V62 — NK-styled subscription confirmation modal */
+.subscription-modal{background:rgba(0,0,0,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.subscription-modal-card{background:#101214!important;color:#fff!important;border:1px solid rgba(255,138,31,.55);border-radius:22px;box-shadow:0 24px 70px rgba(0,0,0,.55)}
+.subscription-modal-card .eyebrow{color:#ff8a1f!important;-webkit-text-fill-color:#ff8a1f!important}
+.subscription-modal-card h3{color:#fff!important;-webkit-text-fill-color:#fff!important}
+.subscription-modal-card p{color:#9da3a8!important;-webkit-text-fill-color:#9da3a8!important}
+.unlink-confirm-btn{border:1px solid #ff8a1f!important;background:#ff8a1f!important;color:#111!important}
+.unlink-cancel-btn{border:1px solid #3b3f43!important;background:#171a1d!important;color:#e9ecef!important}
+.unlink-confirm-btn:hover{filter:brightness(1.04)}
+.unlink-cancel-btn:hover{border-color:#5a5f64!important}
