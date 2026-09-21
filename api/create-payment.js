@@ -20,7 +20,7 @@ module.exports = async function handler(req, res) {
     }
 
     const payload = {
-      amount: { value: '1.00', currency: 'RUB' },
+      amount: { value: '4900.00', currency: 'RUB' },
       capture: true,
       confirmation: {
         type: 'redirect',
