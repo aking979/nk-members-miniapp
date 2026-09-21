@@ -7,7 +7,8 @@ window.RVNW_CONFIG = {
   makeProfileWebhookUrl: 'https://hook.eu1.make.com/y1v4qh9u8dcdcyeapipsmykq5cg3rq81',
   makeProfileSaveWebhookUrl: 'https://hook.eu1.make.com/aih7wmukpblkq7t2fidgnyszuk9dg2f2',
   makeMembersWebhookUrl: 'https://hook.eu1.make.com/hds76iascnpe4tuy046n4tppulgud3yj',
-  makeSubscriptionWebhookUrl: '',
+  makeSubscriptionWebhookUrl: '', // add Make webhook URL for auto_renew sync
+  openChatUrl: "https://t.me/+UJybp__ii_ZhZWFi",
   closedChannelUrl: "https://t.me/+bAV1fRb7FapmZWUy",
   closedChatUrl: "https://t.me/+RFlnlZQgRcQwN2Zi",
   lumaCalendarUrl: "",

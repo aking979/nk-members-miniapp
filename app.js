@@ -264,6 +264,41 @@ subscriptionCloseBtn?.addEventListener('click', () => {
   }
 });
 
+const NK_SUBSCRIPTION_WEBHOOK = window.RVNW_CONFIG?.makeSubscriptionWebhookUrl || '';
+
+async function syncAutoRenewPreference(enabled) {
+  const resident = getTelegramResident();
+  const payload = {
+    action: 'set_auto_renew',
+    source: 'nk_members_miniapp',
+    telegram_id: resident.telegram_id || '',
+    telegram_username: resident.telegram_username || '',
+    auto_renew: Boolean(enabled),
+    membership_status: safeText(rvnwResidentProfile?.status) || 'active',
+    end_date: safeText(rvnwResidentProfile?.end_date)
+  };
+  localStorage.setItem('nkPendingSubscriptionSync', JSON.stringify(payload));
+  if (!NK_SUBSCRIPTION_WEBHOOK) return false;
+  await sendToMake(NK_SUBSCRIPTION_WEBHOOK, payload);
+  localStorage.removeItem('nkPendingSubscriptionSync');
+  return true;
+}
+
+async function retryPendingSubscriptionSync() {
+  if (!NK_SUBSCRIPTION_WEBHOOK) return;
+  let payload = null;
+  try { payload = JSON.parse(localStorage.getItem('nkPendingSubscriptionSync') || 'null'); } catch {}
+  if (!payload) return;
+  try {
+    await sendToMake(NK_SUBSCRIPTION_WEBHOOK, payload);
+    localStorage.removeItem('nkPendingSubscriptionSync');
+  } catch (error) {
+    console.warn('Pending subscription preference sync will retry later', error);
+  }
+}
+window.addEventListener('online', retryPendingSubscriptionSync);
+setTimeout(retryPendingSubscriptionSync, 2200);
+
 function renderAutopayState() {
   const disabled = localStorage.getItem('nkAutopayDisabled') === '1';
   if (subscriptionAutoStatus) {
@@ -283,6 +318,7 @@ unlinkCardBtn?.addEventListener('click', () => {
   if (disabled) {
     localStorage.removeItem('nkAutopayDisabled');
     renderAutopayState();
+    syncAutoRenewPreference(true).catch(error => console.error('NK auto-renew sync error:', error));
     toast('Автопродление включено');
   } else if (subscriptionModal) {
     subscriptionModal.hidden = false;
@@ -296,6 +332,7 @@ document.getElementById('confirmUnlinkCard')?.addEventListener('click', async ()
   // V59: reversible resident preference. Server-side recurring billing will use this flag
   // after subscription persistence is connected in the next integration step.
   localStorage.setItem('nkAutopayDisabled', '1');
+  syncAutoRenewPreference(false).catch(error => console.error('NK auto-renew sync error:', error));
   if (subscriptionModal) subscriptionModal.hidden = true;
   renderAutopayState();
   toast('Автопродление отключено. Доступ сохранится до конца оплаченного периода');
@@ -1948,7 +1985,12 @@ if (rvnwProfileForm) {
     };
     const submitButton = rvnwProfileForm.querySelector('button[type="submit"]');
     try {
+      localStorage.setItem('nkPendingProfileSync', JSON.stringify(savePayload));
       await sendToMake(RVNW_PROFILE_SAVE_WEBHOOK, savePayload, submitButton);
+      localStorage.removeItem('nkPendingProfileSync');
+      // Make may need a moment to update Google Sheets before the directory reads it.
+      rvnwDirectoryLoaded = false;
+      setTimeout(() => fetchResidentDirectory({force:true}), 900);
     } catch (error) {
       console.error('RVNW profile save webhook error:', error);
       toast('Профиль сохранён на устройстве. Синхронизация повторится позже.');
@@ -1973,6 +2015,37 @@ if (rvnwProfileForm) {
 }
 
 
+
+// V69 — retry a profile sync automatically after a temporary network/Make failure.
+async function retryPendingProfileSync() {
+  let pending = null;
+  try { pending = JSON.parse(localStorage.getItem('nkPendingProfileSync') || 'null'); } catch {}
+  if (!pending || !RVNW_PROFILE_SAVE_WEBHOOK) return;
+  try {
+    await sendToMake(RVNW_PROFILE_SAVE_WEBHOOK, pending);
+    localStorage.removeItem('nkPendingProfileSync');
+    rvnwDirectoryLoaded = false;
+  } catch (error) {
+    console.warn('Pending NK profile sync will retry later', error);
+  }
+}
+window.addEventListener('online', retryPendingProfileSync);
+setTimeout(retryPendingProfileSync, 1800);
+
+// V69 — permanent shortcuts to NK Telegram spaces.
+document.querySelectorAll('[data-community-link]').forEach(button => {
+  button.addEventListener('click', () => {
+    const key = button.dataset.communityLink;
+    const urls = {
+      openChat: window.RVNW_CONFIG?.openChatUrl,
+      closedChat: window.RVNW_CONFIG?.closedChatUrl,
+      channel: window.RVNW_CONFIG?.closedChannelUrl
+    };
+    const url = urls[key];
+    if (url) window.open(url, '_blank');
+    else toast('Ссылка пока не подключена');
+  });
+});
 
 document.getElementById('profileMembershipManageBtn')?.addEventListener('click', () => {
   historyStack.push('membership');
@@ -2198,7 +2271,7 @@ async function fetchResidentDirectory({force=false} = {}) {
 }
 
 document.querySelectorAll('[data-go="members"]').forEach(el => {
-  el.addEventListener('click', () => fetchResidentDirectory());
+  el.addEventListener('click', () => fetchResidentDirectory({force:true}));
 });
 
 document.getElementById('membersSearch')?.addEventListener('input', event => {
