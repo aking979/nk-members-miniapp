@@ -132,6 +132,71 @@ function openSubscriptionPanel() {
   subscriptionPanel.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
+const membershipPayBtn = document.getElementById('membershipPayBtn');
+
+async function startNkPayment() {
+  if (!membershipPayBtn) return;
+  const resident = getTelegramResident();
+  membershipPayBtn.disabled = true;
+  const oldText = membershipPayBtn.textContent;
+  membershipPayBtn.textContent = 'Создаём оплату…';
+  try {
+    const response = await fetch('/api/create-payment', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        telegram_id: resident?.telegram_id || '',
+        username: resident?.username || ''
+      })
+    });
+    const data = await response.json();
+    if (!response.ok || !data.confirmation_url) throw new Error(data.error || 'Не удалось создать оплату');
+    localStorage.setItem('nkPendingPaymentId', data.payment_id);
+    window.location.href = data.confirmation_url;
+  } catch (error) {
+    console.error('NK payment error:', error);
+    toast(error?.message || 'Не удалось открыть оплату');
+    membershipPayBtn.disabled = false;
+    membershipPayBtn.textContent = oldText;
+  }
+}
+
+async function checkReturnedNkPayment() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('payment_return') !== '1') return;
+  const paymentId = localStorage.getItem('nkPendingPaymentId');
+  if (!paymentId) {
+    toast('Возврат из оплаты получен. Проверяем статус через кабинет ЮKassa.');
+    return;
+  }
+  try {
+    const response = await fetch(`/api/payment-status?payment_id=${encodeURIComponent(paymentId)}`);
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || 'Не удалось проверить оплату');
+    if (data.status === 'succeeded' && data.paid) {
+      localStorage.setItem('nkLastSuccessfulPaymentId', paymentId);
+      localStorage.setItem('nkPaymentMethodSaved', data.payment_method_saved ? '1' : '0');
+      localStorage.removeItem('nkPendingPaymentId');
+      toast(data.payment_method_saved ? 'Оплата прошла. Карта сохранена для автопродления.' : 'Оплата прошла успешно.');
+      if (membershipPayBtn) membershipPayBtn.textContent = 'Оплачено — 4 900 ₽';
+    } else if (data.status === 'canceled') {
+      toast('Оплата не завершена');
+    } else {
+      toast('Платёж обрабатывается. Статус обновится после подтверждения ЮKassa.');
+    }
+  } catch (error) {
+    console.error('NK payment status error:', error);
+    toast('Не удалось проверить статус оплаты');
+  } finally {
+    params.delete('payment_return');
+    const qs = params.toString();
+    history.replaceState({}, '', `${location.pathname}${qs ? `?${qs}` : ''}${location.hash}`);
+  }
+}
+
+membershipPayBtn?.addEventListener('click', startNkPayment);
+window.addEventListener('DOMContentLoaded', checkReturnedNkPayment);
+
 document.getElementById('membershipManageBtn')?.addEventListener('click', openSubscriptionPanel);
 unlinkCardBtn?.addEventListener('click', () => { if (subscriptionModal) subscriptionModal.hidden = false; });
 document.getElementById('cancelUnlinkCard')?.addEventListener('click', () => { if (subscriptionModal) subscriptionModal.hidden = true; });
