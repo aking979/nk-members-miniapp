@@ -10,7 +10,7 @@ function getActivationGateState() {
   try { legal = JSON.parse(localStorage.getItem('rvnwLegalAcceptances') || '{}'); } catch {}
   try { onboarding = JSON.parse(localStorage.getItem('rvnwOnboardingProgress') || '{}'); } catch {}
   const legalDocs = ['nk-legal-package'];
-  const onboardingSteps = ['profile','chat','knowledge','membership','team'];
+  const onboardingSteps = ['profile','channel','chat','knowledge','membership','team'];
   return {
     legalComplete: legalDocs.every(id => Boolean(legal[id])),
     onboardingComplete: onboardingSteps.every(id => Boolean(onboarding[id]?.completed))
@@ -207,27 +207,45 @@ window.addEventListener('DOMContentLoaded', async () => {
 });
 
 document.getElementById('membershipManageBtn')?.addEventListener('click', openSubscriptionPanel);
-unlinkCardBtn?.addEventListener('click', () => { if (subscriptionModal) subscriptionModal.hidden = false; });
+
+function renderAutopayState() {
+  const disabled = localStorage.getItem('nkAutopayDisabled') === '1';
+  if (subscriptionAutoStatus) {
+    subscriptionAutoStatus.textContent = disabled ? 'Автопродление отключено' : 'Автопродление включено';
+    subscriptionAutoStatus.classList.toggle('off', disabled);
+  }
+  if (subscriptionPaymentMethod) subscriptionPaymentMethod.textContent = disabled ? 'Банковская карта · автопродление выключено' : 'Банковская карта';
+  if (unlinkCardBtn) {
+    unlinkCardBtn.textContent = disabled ? 'Включить автопродление' : 'Отключить автопродление';
+    unlinkCardBtn.disabled = false;
+    unlinkCardBtn.classList.toggle('enable-renewal', disabled);
+  }
+}
+
+unlinkCardBtn?.addEventListener('click', () => {
+  const disabled = localStorage.getItem('nkAutopayDisabled') === '1';
+  if (disabled) {
+    localStorage.removeItem('nkAutopayDisabled');
+    renderAutopayState();
+    toast('Автопродление включено');
+  } else if (subscriptionModal) {
+    subscriptionModal.hidden = false;
+  }
+});
+
 document.getElementById('cancelUnlinkCard')?.addEventListener('click', () => { if (subscriptionModal) subscriptionModal.hidden = true; });
 subscriptionModal?.addEventListener('click', (event) => { if (event.target === subscriptionModal) subscriptionModal.hidden = true; });
 
 document.getElementById('confirmUnlinkCard')?.addEventListener('click', async () => {
-  // UI is complete for YooKassa review. Backend token deletion is intentionally not faked.
-  // Once recurring payments are enabled, replace this local state transition with a secure server request
-  // that deletes/invalidates the stored YooKassa payment_method_id for the authenticated resident.
+  // V59: reversible resident preference. Server-side recurring billing will use this flag
+  // after subscription persistence is connected in the next integration step.
   localStorage.setItem('nkAutopayDisabled', '1');
   if (subscriptionModal) subscriptionModal.hidden = true;
-  if (subscriptionAutoStatus) { subscriptionAutoStatus.textContent = 'Автопродление отключено'; subscriptionAutoStatus.classList.add('off'); }
-  if (subscriptionPaymentMethod) subscriptionPaymentMethod.textContent = 'Автопродление отключено';
-  if (unlinkCardBtn) { unlinkCardBtn.textContent = 'Автопродление отключено'; unlinkCardBtn.disabled = true; }
+  renderAutopayState();
   toast('Автопродление отключено. Доступ сохранится до конца оплаченного периода');
 });
 
-if (localStorage.getItem('nkAutopayDisabled') === '1') {
-  if (subscriptionAutoStatus) { subscriptionAutoStatus.textContent = 'Автопродление отключено'; subscriptionAutoStatus.classList.add('off'); }
-  if (subscriptionPaymentMethod) subscriptionPaymentMethod.textContent = 'Автопродление отключено';
-  if (unlinkCardBtn) { unlinkCardBtn.textContent = 'Автопродление отключено'; unlinkCardBtn.disabled = true; }
-}
+renderAutopayState();
 
 document.querySelectorAll('[data-video-key]').forEach(el=>el.addEventListener('click',()=>{const u=window.RVNW_CONFIG?.videos?.[el.dataset.videoKey];u?window.open(u,'_blank'):toast('Ссылка на видео ещё не добавлена')}));
 
@@ -366,7 +384,7 @@ document.querySelectorAll('[data-legal-question]').forEach(btn => {
 refreshLegalAcceptances();
 
 // V6 fixed onboarding and activation progress
-const RVNW_ONBOARDING_STEPS = ['profile','chat','knowledge','membership','team'];
+const RVNW_ONBOARDING_STEPS = ['profile','channel','chat','knowledge','membership','team'];
 const RVNW_LEGAL_DOCS = ['nk-legal-package'];
 
 function getOnboardingProgress() {
@@ -457,12 +475,12 @@ function refreshActivationProgress() {
   const summary = document.getElementById('onboardingSummaryText');
   const summaryHint = document.getElementById('onboardingSummaryHint');
   const onboardingBar = document.getElementById('onboardingProgressBar');
-  if (mainOnboarding) mainOnboarding.textContent = onboardingCount === 5 ? 'Все 5 шагов выполнены' : `${onboardingCount} из 5 шагов выполнено`;
+  if (mainOnboarding) mainOnboarding.textContent = onboardingCount === 6 ? 'Все 6 шагов выполнены' : `${onboardingCount} из 6 шагов выполнено`;
   if (mainLegal) mainLegal.textContent = legalCount === 1 ? 'Юридический пакет подтверждён' : 'Документы не подтверждены';
   if (overallLabel) overallLabel.textContent = `${overallPercent}%`;
   if (overallBar) overallBar.style.width = `${overallPercent}%`;
-  if (summary) summary.textContent = `${onboardingCount} из 5 шагов выполнено`;
-  if (summaryHint) summaryHint.textContent = onboardingCount === 5 ? 'Онбординг полностью завершён.' : `Осталось ${5-onboardingCount} ${5-onboardingCount === 1 ? 'шаг' : 'шага'}.`;
+  if (summary) summary.textContent = `${onboardingCount} из 6 шагов выполнено`;
+  if (summaryHint) summaryHint.textContent = onboardingCount === 6 ? 'Онбординг полностью завершён.' : `Осталось ${6-onboardingCount} ${6-onboardingCount === 1 ? 'шаг' : 'шага'}.`;
   if (onboardingBar) onboardingBar.style.width = `${onboardingPercent}%`;
 
   document.querySelectorAll('[data-onboarding-step]').forEach(btn => {
@@ -486,16 +504,16 @@ function refreshActivationProgress() {
 
   const onboardingCard = document.querySelector('.activation-card[data-go="onboarding"]');
   const legalCard = document.querySelector('.activation-card[data-go="legal"]');
-  onboardingCard?.classList.toggle('completed', onboardingCount === 5);
+  onboardingCard?.classList.toggle('completed', onboardingCount === 6);
   legalCard?.classList.toggle('completed', legalCount === 1);
   const onboardingIcon = document.getElementById('onboardingCardIcon');
   const legalIcon = document.getElementById('legalCardIcon');
-  if (onboardingIcon) onboardingIcon.textContent = onboardingCount === 5 ? '✓' : '1';
+  if (onboardingIcon) onboardingIcon.textContent = onboardingCount === 6 ? '✓' : '1';
   if (legalIcon) legalIcon.textContent = legalCount === 1 ? '✓' : '2';
 
   // Access gate: onboarding first, then legal documents, then the full cabinet.
   const legalComplete = legalCount === 1;
-  const onboardingComplete = onboardingCount === 5;
+  const onboardingComplete = onboardingCount === 6;
   const fullyActivated = legalComplete && onboardingComplete;
   if (onboardingComplete) setTimeout(persistOnboardingCompletionIfNeeded, 0);
   const homeFeatures = document.getElementById('homeFeaturesBlock');
@@ -520,6 +538,13 @@ document.querySelectorAll('[data-onboarding-step]').forEach(btn => {
     event.preventDefault();
     event.stopImmediatePropagation();
     markOnboardingStep(step);
+
+    if (step === 'channel') {
+      const url = window.RVNW_CONFIG?.closedChannelUrl;
+      if (url) window.open(url, '_blank');
+      else toast('Ссылка на закрытый канал пока не подключена');
+      return;
+    }
 
     if (step === 'chat') {
       const url = window.RVNW_CONFIG?.closedChatUrl;

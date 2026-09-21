@@ -74,7 +74,7 @@
             <div class="activation-card-icon" id="onboardingCardIcon">1</div>
             <div class="activation-card-copy">
               <strong>Заверши онбординг</strong>
-              <span id="onboardingMainStatus">0 из 5 шагов выполнено</span>
+              <span id="onboardingMainStatus">0 из 6 шагов выполнено</span>
             </div>
             <span class="arrow">→</span>
           </button>
@@ -662,7 +662,7 @@
             <span class="eyebrow">УПРАВЛЕНИЕ ПОДПИСКОЙ</span>
             <h3 id="unlinkTitle">Отключить автоматическое продление?</h3>
             <p>Следующие автоматические списания будут отключены. Доступ к NK сохранится до конца уже оплаченного периода.</p>
-            <button class="unlink-confirm-btn" id="confirmUnlinkCard">Отвязать карту</button>
+            <button class="unlink-confirm-btn" id="confirmUnlinkCard">Отключить автопродление</button>
             <button class="unlink-cancel-btn" id="cancelUnlinkCard">Оставить подписку</button>
           </div>
         </div>
@@ -788,16 +788,17 @@
           <div><span class="eyebrow">ПЕРВЫЕ ШАГИ</span><h1>Онбординг</h1></div>
         </div>
         <div class="onboarding-summary">
-          <strong id="onboardingSummaryText">0 из 5 шагов выполнено</strong>
+          <strong id="onboardingSummaryText">0 из 6 шагов выполнено</strong>
           <span id="onboardingSummaryHint">Выполни шаги, чтобы освоиться в клубе.</span>
           <div class="progress-track"><span id="onboardingProgressBar" style="width:0%"></span></div>
         </div>
         <div class="checklist" id="onboardingChecklist">
           <button data-go="profile-edit" data-onboarding-step="profile"><i>1</i><div><strong>Заполнить профиль резидента</strong><span>Добавить данные о себе и бизнесе</span></div></button>
-          <button data-onboarding-step="chat" id="onboardingChatButton"><i>2</i><div><strong>Вступить в закрытый чат</strong><span>Присоединиться к общению участников NK</span></div></button>
-          <button data-go="knowledge" data-onboarding-step="knowledge"><i>3</i><div><strong>Открыть Академию</strong><span>Посмотреть курсы, разборы и материалы</span></div></button>
-          <button data-go="profile" data-onboarding-step="membership"><i>4</i><div><strong>Изучить возможности клуба</strong><span>Резидентство, разбор, трекинг и связь с командой</span></div></button>
-          <button data-go="members" data-onboarding-step="team"><i>5</i><div><strong>Познакомиться с резидентами</strong><span>Открыть каталог участников NK</span></div></button>
+          <button data-onboarding-step="channel" id="onboardingChannelButton"><i>2</i><div><strong>Вступить в закрытый канал</strong><span>Подписаться на закрытый канал NK</span></div></button>
+          <button data-onboarding-step="chat" id="onboardingChatButton"><i>3</i><div><strong>Вступить в закрытый чат</strong><span>Присоединиться к общению участников NK</span></div></button>
+          <button data-go="knowledge" data-onboarding-step="knowledge"><i>4</i><div><strong>Открыть Академию</strong><span>Посмотреть курсы, разборы и материалы</span></div></button>
+          <button data-go="profile" data-onboarding-step="membership"><i>5</i><div><strong>Изучить возможности клуба</strong><span>Резидентство, разбор, трекинг и связь с командой</span></div></button>
+          <button data-go="members" data-onboarding-step="team"><i>6</i><div><strong>Познакомиться с резидентами</strong><span>Открыть каталог участников NK</span></div></button>
         </div>
       </section>
 
