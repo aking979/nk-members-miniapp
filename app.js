@@ -17,8 +17,16 @@ function getActivationGateState() {
   };
 }
 
+function hasNkPaymentAccess() {
+  if (localStorage.getItem('nkLastSuccessfulPaymentId')) return true;
+  const status = String(rvnwResidentProfile?.status || '').trim().toLowerCase();
+  const membership = String(rvnwResidentProfile?.membership_type || '').trim();
+  const paymentMethod = String(rvnwResidentProfile?.yookassa_payment_method_id || '').trim();
+  return status === 'active' && Boolean(membership || paymentMethod);
+}
+
 function showScreen(id, push = true) {
-  const paid = localStorage.getItem('nkLastSuccessfulPaymentId');
+  const paid = hasNkPaymentAccess();
   if (!paid && id !== 'payment-gate') id = 'payment-gate';
   const gate = getActivationGateState();
   const onboardingScreens = new Set(['home','onboarding','account','profile-edit','profile','schedule','knowledge','membership','referral','team','support']);
@@ -200,7 +208,7 @@ async function checkReturnedNkPayment() {
       });
       applyResidentProfile(paidProfile);
       toast(data.payment_method_saved ? 'Оплата прошла. Карта сохранена для автопродления.' : 'Оплата прошла успешно.');
-      showScreen('onboarding');
+      showScreen('home');
     } else if (data.status === 'canceled') {
       toast('Оплата не завершена');
     } else {
@@ -218,12 +226,16 @@ async function checkReturnedNkPayment() {
 
 membershipPayBtn?.addEventListener('click', startNkPayment);
 window.addEventListener('DOMContentLoaded', async () => {
+  // Keep the payment gate as the neutral first state until we have verified
+  // either a just-completed YooKassa payment or the resident's backend row.
+  showScreen('payment-gate', false);
   await checkReturnedNkPayment();
   if (localStorage.getItem('nkLastSuccessfulPaymentId')) {
-    showScreen('onboarding', false);
-  } else {
-    showScreen('payment-gate', false);
+    showScreen('home', false);
+    return;
   }
+  await requestResidentProfile();
+  showScreen(hasNkPaymentAccess() ? 'home' : 'payment-gate', false);
 });
 
 document.getElementById('membershipManageBtn')?.addEventListener('click', openSubscriptionPanel);
@@ -1722,9 +1734,7 @@ setTimeout(async () => {
   // If the resident was removed from NK — РЕЗИДЕНТЫ, the backend lookup
   // clears the stale local payment marker. On a fresh launch, return them to
   // the payment gate instead of leaving an old onboarding screen visible.
-  if (!localStorage.getItem('nkLastSuccessfulPaymentId')) {
-    showScreen('payment-gate', false);
-  }
+  showScreen(hasNkPaymentAccess() ? 'home' : 'payment-gate', false);
 }, 300);
 
 
