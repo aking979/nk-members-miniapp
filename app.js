@@ -184,6 +184,21 @@ async function checkReturnedNkPayment() {
       localStorage.setItem('nkLastSuccessfulPaymentId', paymentId);
       localStorage.setItem('nkPaymentMethodSaved', data.payment_method_saved ? '1' : '0');
       localStorage.removeItem('nkPendingPaymentId');
+      // Reflect the verified YooKassa period immediately. Make/Sheets remains the
+      // persistent source, but the resident should never see stale pre-payment dates
+      // while that row is being updated in the background.
+      const paidProfile = mergeResidentProfile({
+        ...(rvnwResidentProfile || {}),
+        telegram_id: data.metadata?.telegram_id || getTelegramResident().telegram_id,
+        telegram_username: data.metadata?.telegram_username || getTelegramResident().telegram_username,
+        membership_type: data.membership_type || 'NK Monthly',
+        status: 'active',
+        join_date: data.join_date || data.paid_at || '',
+        end_date: data.end_date || '',
+        amount: data.membership_amount || 4900,
+        yookassa_payment_method_id: data.payment_method_id || ''
+      });
+      applyResidentProfile(paidProfile);
       toast(data.payment_method_saved ? 'Оплата прошла. Карта сохранена для автопродления.' : 'Оплата прошла успешно.');
       showScreen('onboarding');
     } else if (data.status === 'canceled') {
@@ -215,7 +230,12 @@ document.getElementById('membershipManageBtn')?.addEventListener('click', openSu
 subscriptionCloseBtn?.addEventListener('click', () => {
   if (!subscriptionPanel) return;
   subscriptionPanel.hidden = true;
-  document.getElementById('membershipManageBtn')?.scrollIntoView({behavior:'smooth', block:'center'});
+  const manageButton = document.getElementById('membershipManageBtn');
+  if (manageButton) {
+    manageButton.disabled = false;
+    manageButton.title = '';
+    manageButton.scrollIntoView({behavior:'smooth', block:'center'});
+  }
 });
 
 function renderAutopayState() {
@@ -591,26 +611,31 @@ const RVNW_SUBSCRIPTION_WEBHOOK = window.RVNW_CONFIG?.makeSubscriptionWebhookUrl
 
 function getTelegramResident() {
   const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user || null;
-  if (!tgUser) {
-    return {
-      telegram_id: '',
-      telegram_username: '',
-      telegram_first_name: '',
-      telegram_last_name: '',
-      telegram_language: '',
-      resident_name: ''
+  if (tgUser?.id) {
+    const fullName = [tgUser.first_name, tgUser.last_name].filter(Boolean).join(' ').trim();
+    const resident = {
+      telegram_id: String(tgUser.id || ''),
+      telegram_username: tgUser.username ? `@${tgUser.username}` : '',
+      telegram_first_name: tgUser.first_name || '',
+      telegram_last_name: tgUser.last_name || '',
+      telegram_language: tgUser.language_code || '',
+      resident_name: fullName
     };
+    // Telegram Desktop can briefly expose an empty initDataUnsafe after returning
+    // from another screen. Keep the verified Mini App identity for this session so
+    // subscription controls never become disabled just because of that UI transition.
+    try { sessionStorage.setItem('nkTelegramResident', JSON.stringify(resident)); } catch {}
+    return resident;
   }
 
-  const fullName = [tgUser.first_name, tgUser.last_name].filter(Boolean).join(' ').trim();
+  try {
+    const cached = JSON.parse(sessionStorage.getItem('nkTelegramResident') || 'null');
+    if (cached?.telegram_id) return cached;
+  } catch {}
 
   return {
-    telegram_id: String(tgUser.id || ''),
-    telegram_username: tgUser.username ? `@${tgUser.username}` : '',
-    telegram_first_name: tgUser.first_name || '',
-    telegram_last_name: tgUser.last_name || '',
-    telegram_language: tgUser.language_code || '',
-    resident_name: fullName
+    telegram_id: '', telegram_username: '', telegram_first_name: '',
+    telegram_last_name: '', telegram_language: '', resident_name: ''
   };
 }
 
@@ -1035,7 +1060,7 @@ function cleanProfileField(value, fieldName='') {
 }
 
 function parseResidentDate(value) {
-  const raw = safeText(value);
+  const raw = safeText(value).trim().replace(/^['"]|['"]$/g, '');
   if (!raw) return null;
 
   // yyyy-mm-dd / ISO
@@ -1641,7 +1666,11 @@ async function requestResidentProfile() {
       const idMatches = Boolean(backendTelegramId && backendTelegramId === resident.telegram_id);
       const meaningfulFields = [
         ['full_name','full_name'], ['email','email'], ['company','company'],
-        ['role','role'], ['niche','niche'], ['city','city'], ['photo','photo']
+        ['role','role'], ['niche','niche'], ['city','city'], ['photo','photo'],
+        // A freshly paid resident may exist before onboarding/profile fields are filled.
+        ['membership_type','membership_type'], ['status','status'],
+        ['join_date','join_date'], ['end_date','end_date'],
+        ['yookassa_payment_method_id','yookassa_payment_method_id']
       ];
       const hasMeaningfulResidentData = meaningfulFields.some(([key,name]) =>
         Boolean(cleanProfileField(profile[key], name))

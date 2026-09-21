@@ -46,11 +46,30 @@ module.exports = async function handler(req, res) {
       }
     }
 
+    const paidAt = data.captured_at || data.created_at || null;
+    let joinDate = null;
+    let endDate = null;
+    if (paidAt) {
+      const start = new Date(paidAt);
+      if (!Number.isNaN(start.getTime())) {
+        const localDate = new Date(Date.UTC(start.getUTCFullYear(), start.getUTCMonth(), start.getUTCDate()));
+        const finish = new Date(localDate);
+        finish.setUTCMonth(finish.getUTCMonth() + 1);
+        joinDate = localDate.toISOString().slice(0, 10);
+        endDate = finish.toISOString().slice(0, 10);
+      }
+    }
+
     return res.status(200).json({
       payment_id: data.id,
       status: data.status,
       paid: Boolean(data.paid),
       amount: data.amount,
+      paid_at: paidAt,
+      join_date: joinDate,
+      end_date: endDate,
+      membership_type: 'NK Monthly',
+      membership_amount: 4900,
       payment_method_saved: Boolean(data.payment_method?.saved),
       payment_method_id: data.payment_method?.saved ? data.payment_method?.id : null,
       payment_method_type: data.payment_method?.type || null,
