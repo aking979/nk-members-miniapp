@@ -52,7 +52,7 @@ module.exports = async function handler(req, res) {
       // Пока тестируем автосписание — реально спишется 1 ₽.
       // Перед запуском резидентов заменим на 4900.00.
       amount: {
-        value: '1.00',
+        value: '4900.00',
         currency: 'RUB'
       },
 
