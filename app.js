@@ -1600,7 +1600,8 @@ function resetResidentAccessAfterBackendRemoval() {
     const exactKeys = [
       'rvnwResidentProfile', RVNW_LOCAL_PROFILE_KEY, RVNW_PROFILE_PHOTO_KEY,
       'rvnwOnboardingProgress', 'rvnwLegalAcceptances', 'rvnwResidentDirectory',
-      'rvnwCourseProgress', 'nk_analysis_request', 'rvnwTrackingDraft', 'rvnwQuestionsDraft'
+      'rvnwCourseProgress', 'nk_analysis_request', 'rvnwTrackingDraft', 'rvnwQuestionsDraft',
+      'nkLastSuccessfulPaymentId', 'nkPendingPaymentId', 'nkPaymentMethodSaved'
     ];
     exactKeys.forEach(key => localStorage.removeItem(key));
     const removePrefixes = ['rvnwOnboardingCompletionSent:', 'rvnwLegal', 'rvnwOnboarding'];
@@ -1718,6 +1719,12 @@ setTimeout(async () => {
   await requestResidentProfile();
   syncProfileOnboardingCompletion();
   refreshActivationProgress();
+  // If the resident was removed from NK — РЕЗИДЕНТЫ, the backend lookup
+  // clears the stale local payment marker. On a fresh launch, return them to
+  // the payment gate instead of leaving an old onboarding screen visible.
+  if (!localStorage.getItem('nkLastSuccessfulPaymentId')) {
+    showScreen('payment-gate', false);
+  }
 }, 300);
 
 

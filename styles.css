@@ -1191,9 +1191,11 @@ body{color:var(--ink)}
 .payment-gate-tariff{margin:24px 0 16px;padding:18px;border:1px solid #30353b;border-radius:18px;background:#0c0f12;display:flex;flex-direction:column;gap:6px}
 .payment-gate-tariff span{font-size:11px;color:#9da9b7}.payment-gate-tariff strong{font-size:22px;color:#fff}.payment-gate-tariff small{font-size:10px;color:#ff9b4a}
 .payment-gate-note{font-size:10px!important;color:#818b95!important;margin-top:12px}
-#onboarding .checklist button strong,#onboarding .checklist button span,#onboarding .checklist button i{color:#79aefc!important;-webkit-text-fill-color:#79aefc!important}
-#onboarding .checklist button.done strong,#onboarding .checklist button.done span{color:#ff8a1f!important;-webkit-text-fill-color:#ff8a1f!important}
-#onboarding .checklist button.done i{background:#ff8a1f!important;border-color:#ff8a1f!important;color:#111!important;-webkit-text-fill-color:#111!important}
+#onboarding .checklist button strong,#onboarding .checklist button i{color:#79aefc!important;-webkit-text-fill-color:#79aefc!important}
+#onboarding .checklist button span{color:var(--muted)!important;-webkit-text-fill-color:var(--muted)!important}
+#onboarding .checklist button.done strong{color:#79aefc!important;-webkit-text-fill-color:#79aefc!important}
+#onboarding .checklist button.done span{color:var(--muted)!important;-webkit-text-fill-color:var(--muted)!important}
+#onboarding .checklist button.done i{background:transparent!important;border-color:#79aefc!important;color:#79aefc!important;-webkit-text-fill-color:#79aefc!important}
 .subscription-secondary-action{margin-top:18px!important;background:transparent!important;border:0!important;color:#8b8e89!important;text-decoration:underline;text-underline-offset:3px;padding:8px!important;font-size:11px!important;font-weight:600!important}
 
 /* V59 — six-step onboarding + reversible auto-renew */
