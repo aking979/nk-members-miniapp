@@ -13,6 +13,12 @@ module.exports = async function handler(req, res) {
     const telegramId = String(body.telegram_id || '').slice(0, 64);
     const username = String(body.username || '').replace(/^@/, '').slice(0, 64);
 
+    // A payment must always belong to a Telegram resident. Without this ID,
+    // Make could match an unrelated row with an empty telegram_id.
+    if (!/^\d{5,20}$/.test(telegramId)) {
+      return res.status(400).json({ error: 'Откройте NK через Telegram и повторите оплату.' });
+    }
+
     const payload = {
       amount: { value: '1.00', currency: 'RUB' },
       capture: true,

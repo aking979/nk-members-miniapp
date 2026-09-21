@@ -140,6 +140,10 @@ const membershipPayBtn = document.getElementById('entryPayBtn');
 async function startNkPayment() {
   if (!membershipPayBtn) return;
   const resident = getTelegramResident();
+  if (!resident?.telegram_id) {
+    toast('Откройте NK через Telegram, чтобы мы могли привязать оплату к вашему профилю.');
+    return;
+  }
   membershipPayBtn.disabled = true;
   const oldText = membershipPayBtn.textContent;
   membershipPayBtn.textContent = 'Создаём оплату…';
@@ -149,7 +153,7 @@ async function startNkPayment() {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         telegram_id: resident?.telegram_id || '',
-        username: resident?.username || ''
+        username: resident?.telegram_username || ''
       })
     });
     const data = await response.json();
