@@ -17,11 +17,40 @@ function getActivationGateState() {
   };
 }
 
+function getYooKassaPaymentMethodId(profile = rvnwResidentProfile) {
+  const data = profile || {};
+  // Make/Google Sheets can expose the same column under slightly different
+  // keys depending on the module mapping. Normalize all known variants here.
+  const direct = [
+    data.yookassa_payment_method_id,
+    data.payment_method_id,
+    data.yookassaPaymentMethodId,
+    data.yookassa_payment_method,
+    data['yookassa_payment_method_id (K)'],
+    data['YooKassa payment method id'],
+    data['yookassa payment method id']
+  ];
+  for (const value of direct) {
+    const normalized = String(value ?? '').trim();
+    if (normalized && normalized.toLowerCase() !== 'null' && normalized.toLowerCase() !== 'undefined') return normalized;
+  }
+  // Last-resort normalization for Make keys that include a column letter,
+  // spaces or punctuation around the canonical field name.
+  for (const [key, value] of Object.entries(data)) {
+    const normalizedKey = String(key).toLowerCase().replace(/[^a-z0-9]+/g, '');
+    if (normalizedKey.includes('yookassapaymentmethodid') || normalizedKey === 'paymentmethodid') {
+      const normalized = String(value ?? '').trim();
+      if (normalized && normalized.toLowerCase() !== 'null' && normalized.toLowerCase() !== 'undefined') return normalized;
+    }
+  }
+  return '';
+}
+
 function hasNkPaymentAccess() {
   const status = String(rvnwResidentProfile?.status || '').trim().toLowerCase();
-  const paymentMethod = String(rvnwResidentProfile?.yookassa_payment_method_id || '').trim();
-  // Durable access rule: the resident must be active AND have a saved
-  // YooKassa payment method. Local browser markers never override Sheets.
+  const paymentMethod = getYooKassaPaymentMethodId(rvnwResidentProfile);
+  // Source of truth: Google Sheets resident row.
+  // Access only when status is active AND a YooKassa payment method exists.
   return status === 'active' && Boolean(paymentMethod);
 }
 
@@ -1785,6 +1814,8 @@ async function requestResidentProfile() {
       if (!backendHasResident) {
         return resetResidentAccessAfterBackendRemoval();
       }
+      const backendPaymentMethodId = getYooKassaPaymentMethodId(profile);
+      if (backendPaymentMethodId) profile.yookassa_payment_method_id = backendPaymentMethodId;
       resetStaleDeviceStateForNewMembership(profile);
       const mergedProfile = mergeResidentProfile(profile, {backendAuthoritative:true});
       applyResidentProfile(mergedProfile);
