@@ -26,8 +26,18 @@
     </header>
 
     <main>
-      <!-- HOME -->
-      <section class="screen payment-gate-screen active" id="payment-gate">
+      <!-- STARTUP: neutral state while membership is checked -->
+      <section class="screen startup-loading-screen active" id="startup-loading" aria-live="polite">
+        <div class="startup-loading-wrap">
+          <div class="startup-loading-mark">NK</div>
+          <div class="startup-loading-title">NK RESIDENT CLUB</div>
+          <div class="startup-loading-spinner" aria-hidden="true"></div>
+          <div class="startup-loading-text">Загрузка…</div>
+        </div>
+      </section>
+
+      <!-- PAYMENT GATE -->
+      <section class="screen payment-gate-screen" id="payment-gate">
         <div class="payment-gate-wrap">
           <span class="eyebrow">NK RESIDENT CLUB</span>
           <h1>Вступление в NK</h1>

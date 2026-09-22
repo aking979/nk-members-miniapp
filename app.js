@@ -1,6 +1,6 @@
 const screens = document.querySelectorAll('.screen');
 const navButtons = document.querySelectorAll('.bottom-nav button');
-const historyStack = ['payment-gate'];
+const historyStack = ['startup-loading'];
 let onboardingStepNavigation = false;
 let profileEditorDirty = false;
 
@@ -270,9 +270,13 @@ async function checkReturnedNkPayment() {
 
 membershipPayBtn?.addEventListener('click', startNkPayment);
 window.addEventListener('DOMContentLoaded', async () => {
-  // Keep the payment gate as the neutral first state until we have verified
-  // either a just-completed YooKassa payment or the resident's backend row.
-  showScreen('payment-gate', false);
+  // Never flash the payment gate before the backend has answered.
+  // The resident sees a neutral NK loading screen while access is verified.
+  const loading = document.getElementById('startup-loading');
+  if (loading) {
+    screens.forEach(s => s.classList.remove('active'));
+    loading.classList.add('active');
+  }
   await checkReturnedNkPayment();
   await requestResidentProfile();
   showScreen(hasNkPaymentAccess() ? 'home' : 'payment-gate', false);
