@@ -22,7 +22,10 @@ function hasNkPaymentAccess() {
   const status = String(rvnwResidentProfile?.status || '').trim().toLowerCase();
   const membership = String(rvnwResidentProfile?.membership_type || '').trim();
   const paymentMethod = String(rvnwResidentProfile?.yookassa_payment_method_id || '').trim();
-  return status === 'active' && Boolean(membership || paymentMethod);
+  // Google Sheets status is the durable access source across every device.
+  // A resident marked active has already been admitted/paid by the backend;
+  // membership/payment_method can arrive a moment later through Make.
+  return status === 'active';
 }
 
 function showScreen(id, push = true) {
@@ -221,6 +224,7 @@ async function checkReturnedNkPayment() {
         yookassa_payment_method_id: data.payment_method_id || ''
       });
       applyResidentProfile(paidProfile);
+      try { localStorage.setItem('nkMembershipFingerprint', membershipFingerprint(paidProfile)); } catch {}
       toast(data.payment_method_saved ? 'Оплата прошла. Карта сохранена для автопродления.' : 'Оплата прошла успешно.');
       showScreen('home');
     } else if (data.status === 'canceled') {
@@ -1038,13 +1042,16 @@ function normalizeProfileBoolean(value) {
   return undefined;
 }
 
-function mergeResidentProfile(serverProfile) {
-  // The Google Sheets / Make record is the durable source of truth. Local
-  // storage is only a fallback for fields the backend has not returned yet.
-  // This makes a resident's profile survive a new ZIP/app version and another
-  // device while still protecting freshly typed local data during outages.
+function mergeResidentProfile(serverProfile, {backendAuthoritative=false} = {}) {
+  // Google Sheets / Make is the durable source of truth across devices.
+  // Once a real backend row has been found, blank backend fields stay blank;
+  // we must not resurrect an old profile from this browser's localStorage.
   const local = getLocalResidentProfile();
   const server = serverProfile || {};
+  if (backendAuthoritative) return {...server};
+
+  // Before the first successful backend lookup, local data is only a temporary
+  // offline/draft fallback so freshly typed values are not lost.
   const keys = [
     'full_name','role','company','niche','city','website','about','useful','looking',
     'email','telegram_username','phone','promo_code','friend_promo_code'
@@ -1062,8 +1069,47 @@ function mergeResidentProfile(serverProfile) {
   const localConsent = normalizeProfileBoolean(local.public_consent);
   if (serverConsent !== undefined) merged.public_consent = serverConsent;
   else if (localConsent !== undefined) merged.public_consent = localConsent;
-
   return merged;
+}
+
+function membershipFingerprint(data) {
+  if (!data || typeof data !== 'object') return '';
+  const id = cleanProfileField(data.telegram_id, 'telegram_id');
+  const join = safeText(data.join_date);
+  const method = safeText(data.yookassa_payment_method_id);
+  return [id, join, method].join('|');
+}
+
+function resetStaleDeviceStateForNewMembership(backendProfile) {
+  const next = membershipFingerprint(backendProfile);
+  if (!next) return;
+  let previous = '';
+  try {
+    previous = localStorage.getItem('nkMembershipFingerprint') || '';
+    if (!previous) {
+      const cached = JSON.parse(localStorage.getItem('rvnwResidentProfile') || 'null');
+      previous = membershipFingerprint(cached);
+    }
+  } catch {}
+
+  // Same Telegram account can buy a brand-new membership after its old row was
+  // removed. In that case old browser onboarding/legal/profile state must not
+  // leak into the new membership.
+  if (previous && previous !== next) {
+    try {
+      [
+        'rvnwResidentProfile', RVNW_LOCAL_PROFILE_KEY, RVNW_PROFILE_PHOTO_KEY,
+        'rvnwOnboardingProgress', 'rvnwLegalAcceptances', 'rvnwResidentDirectory',
+        'rvnwCourseProgress', 'nk_analysis_request', 'rvnwTrackingDraft', 'rvnwQuestionsDraft',
+        'nkLastSuccessfulPaymentId', 'nkPendingPaymentId', 'nkPaymentMethodSaved'
+      ].forEach(key => localStorage.removeItem(key));
+      for (let i = localStorage.length - 1; i >= 0; i--) {
+        const key = localStorage.key(i) || '';
+        if (key.startsWith('rvnwOnboardingCompletionSent:')) localStorage.removeItem(key);
+      }
+    } catch {}
+  }
+  try { localStorage.setItem('nkMembershipFingerprint', next); } catch {}
 }
 
 function applyPhotoToElement(el, photo, fallbackText) {
@@ -1746,7 +1792,8 @@ async function requestResidentProfile() {
       if (!backendHasResident) {
         return resetResidentAccessAfterBackendRemoval();
       }
-      const mergedProfile = mergeResidentProfile(profile);
+      resetStaleDeviceStateForNewMembership(profile);
+      const mergedProfile = mergeResidentProfile(profile, {backendAuthoritative:true});
       applyResidentProfile(mergedProfile);
       return mergedProfile;
     }
