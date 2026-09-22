@@ -18,14 +18,11 @@ function getActivationGateState() {
 }
 
 function hasNkPaymentAccess() {
-  if (localStorage.getItem('nkLastSuccessfulPaymentId')) return true;
   const status = String(rvnwResidentProfile?.status || '').trim().toLowerCase();
-  const membership = String(rvnwResidentProfile?.membership_type || '').trim();
   const paymentMethod = String(rvnwResidentProfile?.yookassa_payment_method_id || '').trim();
-  // Google Sheets status is the durable access source across every device.
-  // A resident marked active has already been admitted/paid by the backend;
-  // membership/payment_method can arrive a moment later through Make.
-  return status === 'active';
+  // Durable access rule: the resident must be active AND have a saved
+  // YooKassa payment method. Local browser markers never override Sheets.
+  return status === 'active' && Boolean(paymentMethod);
 }
 
 function showScreen(id, push = true) {
@@ -248,10 +245,6 @@ window.addEventListener('DOMContentLoaded', async () => {
   // either a just-completed YooKassa payment or the resident's backend row.
   showScreen('payment-gate', false);
   await checkReturnedNkPayment();
-  if (localStorage.getItem('nkLastSuccessfulPaymentId')) {
-    showScreen('home', false);
-    return;
-  }
   await requestResidentProfile();
   showScreen(hasNkPaymentAccess() ? 'home' : 'payment-gate', false);
 });
