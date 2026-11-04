@@ -7,6 +7,7 @@ window.RVNW_CONFIG = {
   makeProfileWebhookUrl: 'https://hook.eu1.make.com/y1v4qh9u8dcdcyeapipsmykq5cg3rq81',
   makeProfileSaveWebhookUrl: 'https://hook.eu1.make.com/aih7wmukpblkq7t2fidgnyszuk9dg2f2',
   makeMembersWebhookUrl: 'https://hook.eu1.make.com/hds76iascnpe4tuy046n4tppulgud3yj',
+  makeAlternativePaymentWebhookUrl: 'https://hook.eu1.make.com/oy5fyl1ujcx80b0465d8vxwbycey9jks', // NK manual payment requests
   makeSubscriptionWebhookUrl: 'https://hook.eu1.make.com/limrj9orwsmrkx2ixwjds5by3xifdbof', // NK subscription management
   openChatUrl: "https://t.me/+YvCEROu4F5oxYzY6",
   closedChannelUrl: "https://t.me/+olQr5B7oINk0MGIy",
