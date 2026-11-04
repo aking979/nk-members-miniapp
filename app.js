@@ -268,6 +268,45 @@ async function checkReturnedNkPayment() {
 }
 
 membershipPayBtn?.addEventListener('click', startNkPayment);
+const alternativePayBtn = document.getElementById('entryAltPayBtn');
+const NK_ALTERNATIVE_PAYMENT_WEBHOOK = window.RVNW_CONFIG?.makeAlternativePaymentWebhookUrl || '';
+
+async function requestAlternativeNkPayment() {
+  if (!alternativePayBtn || alternativePayBtn.disabled || !NK_ALTERNATIVE_PAYMENT_WEBHOOK) return;
+  const resident = getTelegramResident();
+  if (!resident?.telegram_id) {
+    toast('Откройте NK через Telegram, чтобы отправить запрос на оплату.');
+    return;
+  }
+  const originalMarkup = alternativePayBtn.innerHTML;
+  alternativePayBtn.disabled = true;
+  alternativePayBtn.textContent = 'Отправляем запрос…';
+  try {
+    const response = await fetch(NK_ALTERNATIVE_PAYMENT_WEBHOOK, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        telegram_id: resident.telegram_id,
+        telegram_username: resident.telegram_username || '',
+        full_name: resident.resident_name || '',
+        amount: 4900,
+        payment_method: 'alternative',
+        source: 'nk_miniapp'
+      })
+    });
+    if (!response.ok) throw new Error('Alternative payment request failed: ' + response.status);
+    toast('Запрос отправлен. Администратор свяжется с вами в Telegram.');
+  } catch (error) {
+    console.error('Alternative payment request error:', error);
+    toast('Не удалось отправить запрос. Попробуйте ещё раз.');
+  } finally {
+    alternativePayBtn.disabled = false;
+    alternativePayBtn.innerHTML = originalMarkup;
+  }
+}
+
+alternativePayBtn?.addEventListener('click', requestAlternativeNkPayment);
+
 window.addEventListener('DOMContentLoaded', async () => {
   // Never flash the payment gate before the backend has answered.
   // The resident sees a neutral NK loading screen while access is verified.
