@@ -1250,3 +1250,12 @@ body{color:var(--ink)}
 .startup-loading-spinner{width:24px;height:24px;margin-top:26px;border:2px solid #2b2f34;border-top-color:#ff7a18;border-radius:50%;animation:nkStartupSpin .75s linear infinite}
 .startup-loading-text{margin-top:10px;font-size:11px;color:#7f8993}
 @keyframes nkStartupSpin{to{transform:rotate(360deg)}}
+
+/* NK payment gate: two payment methods (alternative pending setup) */
+.payment-gate-actions{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:9px;margin-top:18px;align-items:stretch}
+.payment-gate-actions .membership-pay-btn{margin-top:0;min-width:0;padding:13px 8px}
+.payment-gate-actions .membership-alt-btn{display:flex;align-items:center;justify-content:center;gap:7px;min-width:0;padding:11px 6px;border:1px solid #e9873b;border-radius:12px;background:transparent;color:#f4f4f4;font:inherit;font-size:12px;font-weight:800;white-space:nowrap;opacity:1;cursor:default}
+.payment-gate-actions .sbp-mark{display:inline-flex;align-items:center;gap:2px;flex-shrink:0;font-size:9px;font-weight:900;line-height:1}
+.payment-gate-actions .sbp-mark-stripes{font-size:8px;line-height:.55;transform:skew(-17deg);background:linear-gradient(180deg,#ee3d82,#f5a51b,#4cc56b);background-clip:text;-webkit-background-clip:text;color:transparent}
+.payment-gate-actions .sbp-mark-text{color:#fff;letter-spacing:-.3px}
+@media(max-width:360px){.payment-gate-actions{gap:6px;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr)}.payment-gate-actions .membership-alt-btn{font-size:11px;gap:4px}}
