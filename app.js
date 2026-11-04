@@ -271,6 +271,20 @@ membershipPayBtn?.addEventListener('click', startNkPayment);
 const alternativePayBtn = document.getElementById('entryAltPayBtn');
 const NK_ALTERNATIVE_PAYMENT_WEBHOOK = window.RVNW_CONFIG?.makeAlternativePaymentWebhookUrl || '';
 
+function showNkAltPaySuccessDialog() {
+  const overlay = document.getElementById('nkAltPaySuccessDialog');
+  const close = document.getElementById('nkAltPaySuccessClose');
+  if (!overlay || !close) return;
+  overlay.hidden = false;
+  close.focus();
+}
+
+document.getElementById('nkAltPaySuccessClose')?.addEventListener('click', () => {
+  const overlay = document.getElementById('nkAltPaySuccessDialog');
+  if (overlay) overlay.hidden = true;
+  alternativePayBtn?.focus();
+});
+
 async function requestAlternativeNkPayment() {
   if (!alternativePayBtn || alternativePayBtn.disabled || !NK_ALTERNATIVE_PAYMENT_WEBHOOK) return;
   const resident = getTelegramResident();
@@ -295,7 +309,7 @@ async function requestAlternativeNkPayment() {
       })
     });
     if (!response.ok) throw new Error('Alternative payment request failed: ' + response.status);
-    toast('Запрос отправлен. Администратор свяжется с вами в Telegram.');
+    showNkAltPaySuccessDialog();
   } catch (error) {
     console.error('Alternative payment request error:', error);
     toast('Не удалось отправить запрос. Попробуйте ещё раз.');
