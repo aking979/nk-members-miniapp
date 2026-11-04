@@ -8,9 +8,9 @@ window.RVNW_CONFIG = {
   makeProfileSaveWebhookUrl: 'https://hook.eu1.make.com/aih7wmukpblkq7t2fidgnyszuk9dg2f2',
   makeMembersWebhookUrl: 'https://hook.eu1.make.com/hds76iascnpe4tuy046n4tppulgud3yj',
   makeSubscriptionWebhookUrl: 'https://hook.eu1.make.com/limrj9orwsmrkx2ixwjds5by3xifdbof', // NK subscription management
-  openChatUrl: "https://t.me/+UJybp__ii_ZhZWFi",
-  closedChannelUrl: "https://t.me/+bAV1fRb7FapmZWUy",
-  closedChatUrl: "https://t.me/+RFlnlZQgRcQwN2Zi",
+  openChatUrl: "https://t.me/+YvCEROu4F5oxYzY6",
+  closedChannelUrl: "https://t.me/+olQr5B7oINk0MGIy",
+  closedChatUrl: "https://t.me/+8rRh0F9G0jowMjAy",
   lumaCalendarUrl: "",
   videos: {
     "module1": "https://drive.google.com/file/d/1WXkRoTS_5uosCube0-Y1E855RCMjQ080/preview",
