@@ -48,10 +48,9 @@ function getYooKassaPaymentMethodId(profile = rvnwResidentProfile) {
 
 function hasNkPaymentAccess() {
   const status = String(rvnwResidentProfile?.status || '').trim().toLowerCase();
-  const paymentMethod = getYooKassaPaymentMethodId(rvnwResidentProfile);
   // Source of truth: Google Sheets resident row.
-  // Access only when status is active AND a YooKassa payment method exists.
-  return status === 'active' && Boolean(paymentMethod);
+  // An active resident has confirmed payment, regardless of payment provider.
+  return status === 'active';
 }
 
 function showScreen(id, push = true) {
