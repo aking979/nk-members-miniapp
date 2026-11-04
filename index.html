@@ -1802,6 +1802,25 @@
 
     <div class="toast" id="toast">Готово</div>
   </div>
+  <style>
+    .nk-altpay-overlay[hidden] { display: none !important; }
+    .nk-altpay-overlay { position: fixed; inset: 0; z-index: 99999; display: flex; align-items: center; justify-content: center; padding: 24px; padding-top: calc(24px + env(safe-area-inset-top)); padding-bottom: calc(24px + env(safe-area-inset-bottom)); background: rgba(0,0,0,.76); backdrop-filter: blur(7px); -webkit-backdrop-filter: blur(7px); }
+    .nk-altpay-dialog { box-sizing: border-box; width: min(100%, 380px); padding: 32px 24px 24px; border: 1px solid rgba(255,255,255,.22); border-radius: 22px; background: #1c1c1e; color: #fff; text-align: center; box-shadow: 0 22px 75px rgba(0,0,0,.6); font-family: Inter, sans-serif; }
+    .nk-altpay-check { display: grid; place-items: center; width: 58px; height: 58px; margin: 0 auto 20px; border-radius: 50%; background: rgba(86,194,122,.16); color: #75e49a; font-size: 31px; font-weight: 700; }
+    .nk-altpay-dialog h2 { margin: 0 0 16px; color: #fff; font-size: 23px; font-weight: 700; line-height: 1.25; }
+    .nk-altpay-dialog p { margin: 0 0 26px; color: #e6e6e6; font-size: 16px; line-height: 1.55; }
+    .nk-altpay-dialog a { color: #9dcaff; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+    .nk-altpay-close { width: 100%; min-height: 48px; border: 0; border-radius: 12px; background: #fff; color: #171717; font: 700 16px Inter, sans-serif; cursor: pointer; }
+    .nk-altpay-close:focus-visible, .nk-altpay-dialog a:focus-visible { outline: 3px solid #9dcaff; outline-offset: 3px; }
+  </style>
+  <div class="nk-altpay-overlay" id="nkAltPaySuccessDialog" hidden>
+    <div class="nk-altpay-dialog" role="dialog" aria-modal="true" aria-labelledby="nkAltPaySuccessTitle" aria-describedby="nkAltPaySuccessText">
+      <div class="nk-altpay-check" aria-hidden="true">✓</div>
+      <h2 id="nkAltPaySuccessTitle">Запрос отправлен.</h2>
+      <p id="nkAltPaySuccessText">Связаться напрямую <a href="https://t.me/maria_nkclub" target="_blank" rel="noopener noreferrer">@maria_nkclub</a></p>
+      <button class="nk-altpay-close" id="nkAltPaySuccessClose" type="button">Понятно</button>
+    </div>
+  </div>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script src="config.js"></script>
   <script src="app.js"></script>
