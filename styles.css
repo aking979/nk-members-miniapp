@@ -1259,3 +1259,6 @@ body{color:var(--ink)}
 .payment-gate-actions .sbp-mark-stripes{font-size:8px;line-height:.55;transform:skew(-17deg);background:linear-gradient(180deg,#ee3d82,#f5a51b,#4cc56b);background-clip:text;-webkit-background-clip:text;color:transparent}
 .payment-gate-actions .sbp-mark-text{color:#fff;letter-spacing:-.3px}
 @media(max-width:360px){.payment-gate-actions{gap:6px;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr)}.payment-gate-actions .membership-alt-btn{font-size:11px;gap:4px}}
+
+/* White rendering of the official SBP logo on the alternative-payment button */
+.payment-gate-actions .sbp-official-logo{display:block;width:29px;height:22px;object-fit:contain;filter:brightness(0) invert(1);flex-shrink:0}
